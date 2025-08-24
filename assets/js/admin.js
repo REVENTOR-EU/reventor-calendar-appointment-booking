@@ -169,12 +169,12 @@
             
             // Get form data
             const formData = new FormData($('#eab-settings-form')[0]);
-            formData.append('action', 'rcab_save_settings');
-            formData.append('nonce', rcab_admin.nonce);
+            formData.append('action', 'reventorcab_save_settings');
+            formData.append('nonce', reventorcab_admin.nonce);
             
             // Send AJAX request
             $.ajax({
-                url: rcab_admin.ajax_url,
+                url: reventorcab_admin.ajax_url,
                 type: 'POST',
                 data: formData,
                 processData: false,
@@ -215,14 +215,14 @@
             $button.prop('disabled', true).text('Testing...');
             
             const data = {
-                action: 'rcab_test_caldav',
-                nonce: rcab_admin.nonce,
+                action: 'reventorcab_test_caldav',
+                nonce: reventorcab_admin.nonce,
                 caldav_url: $('#caldav_url').val(),
                 caldav_username: $('#caldav_username').val(),
                 caldav_password: $('#caldav_password').val()
             };
             
-            $.post(rcab_admin.ajax_url, data, function(response) {
+            $.post(reventorcab_admin.ajax_url, data, function(response) {
                 $button.prop('disabled', false).text(originalText);
                 const $result = $('#caldav-test-result');
                 
@@ -305,25 +305,25 @@
         
         // Make AJAX request to get available slots
         $.ajax({
-            url: rcab_admin.ajax_url,
+            url: reventorcab_admin.ajax_url,
             type: 'POST',
             data: {
-                action: 'rcab_get_available_slots',
-                nonce: rcab_admin.frontend_nonce,
+                action: 'reventorcab_get_available_slots',
+                nonce: reventorcab_admin.frontend_nonce,
                 date: today,
                 appointment_type: 'general',
                 admin_preview: true
             },
             success: function(response) {
-                console.log('EAB Debug - AJAX Response:', response);
+                console.log('REVENTORCAB Debug - AJAX Response:', response);
                 
                 if (response.success) {
                     // Check if this is admin preview mode with detailed slot data
                     if (response.data.admin_preview && response.data.all_slots) {
                         var allSlots = response.data.all_slots;
                         var availableSlots = response.data.slots;
-                        console.log('EAB Debug - All slots with status:', allSlots);
-                        console.log('EAB Debug - Available slots:', availableSlots);
+                        console.log('REVENTORCAB Debug - All slots with status:', allSlots);
+                        console.log('REVENTORCAB Debug - Available slots:', availableSlots);
                         
                         if (allSlots.length > 0) {
                              var slotsHtml = '<div class="eab-schedule-preview">';
@@ -362,7 +362,7 @@
     
     function formatTime(time) {
         // Get time format setting from backend
-        const timeFormat = rcab_admin.settings.time_format || '24h';
+        const timeFormat = reventorcab_admin.settings.time_format || '24h';
         
         if (timeFormat === '12h') {
             // Convert 24-hour format to 12-hour format
@@ -395,8 +395,8 @@
         const currentDayName = today.toLocaleDateString('en-US', { weekday: 'long' });
         const currentDate = today.toLocaleDateString();
         
-        console.log('EAB Debug - All slots with status:', allSlots);
-        console.log('EAB Debug - Available slots:', availableSlots);
+        console.log('REVENTORCAB Debug - All slots with status:', allSlots);
+        console.log('REVENTORCAB Debug - Available slots:', availableSlots);
         
         if (allSlots.length > 0) {
             let html = '<div class="eab-schedule-preview">';
@@ -591,8 +591,8 @@
             url: ajaxurl,
             type: 'POST',
             data: {
-                action: 'rcab_export_settings',
-                nonce: $('#rcab_nonce').val()
+                action: 'reventorcab_export_settings',
+                nonce: $('#reventorcab_nonce').val()
             },
             success: function(response) {
                 if (response.success) {
@@ -651,8 +651,8 @@
                     url: ajaxurl,
                     type: 'POST',
                     data: {
-                        action: 'rcab_import_settings',
-                        nonce: $('#rcab_nonce').val(),
+                        action: 'reventorcab_import_settings',
+                        nonce: $('#reventorcab_nonce').val(),
                         import_data: JSON.stringify(importData)
                     },
                     success: function(response) {

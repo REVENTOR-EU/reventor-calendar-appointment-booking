@@ -8,19 +8,19 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class RCAB_Admin {
+class REVENTORCAB_Admin {
     
     public function __construct() {
         add_action('admin_menu', [$this, 'add_admin_menu']);
         add_action('admin_init', [$this, 'register_settings']);
         add_action('admin_enqueue_scripts', [$this, 'enqueue_admin_scripts']);
-        add_action('wp_ajax_rcab_save_settings', [$this, 'save_settings_ajax']);
-        add_action('wp_ajax_rcab_save_appointment_types', [$this, 'save_appointment_types_ajax']);
-        add_action('wp_ajax_rcab_test_caldav', [$this, 'test_caldav_connection']);
-        add_action('wp_ajax_rcab_test_caldav_conflicts', [$this, 'test_caldav_conflicts']);
-        add_action('wp_ajax_nopriv_rcab_test_caldav_conflicts', [$this, 'test_caldav_conflicts']);
-        add_action('wp_ajax_rcab_export_settings', [$this, 'export_settings_ajax']);
-        add_action('wp_ajax_rcab_import_settings', [$this, 'import_settings_ajax']);
+        add_action('wp_ajax_reventorcab_save_settings', [$this, 'save_settings_ajax']);
+        add_action('wp_ajax_reventorcab_save_appointment_types', [$this, 'save_appointment_types_ajax']);
+        add_action('wp_ajax_reventorcab_test_caldav', [$this, 'test_caldav_connection']);
+        add_action('wp_ajax_reventorcab_test_caldav_conflicts', [$this, 'test_caldav_conflicts']);
+        add_action('wp_ajax_nopriv_reventorcab_test_caldav_conflicts', [$this, 'test_caldav_conflicts']);
+        add_action('wp_ajax_reventorcab_export_settings', [$this, 'export_settings_ajax']);
+        add_action('wp_ajax_reventorcab_import_settings', [$this, 'import_settings_ajax']);
 
     }
     
@@ -35,28 +35,28 @@ class RCAB_Admin {
     }
     
     public function register_settings(): void {
-        register_setting('rcab_settings', 'rcab_timeslot_duration', ['sanitize_callback' => 'intval']);
-        register_setting('rcab_settings', 'rcab_booking_days_ahead', ['sanitize_callback' => 'intval']);
-        register_setting('rcab_settings', 'rcab_theme_color', ['sanitize_callback' => 'sanitize_hex_color']);
-        register_setting('rcab_settings', 'rcab_timezone', ['sanitize_callback' => [$this, 'sanitize_timezone']]);
-        register_setting('rcab_settings', 'rcab_time_format', ['sanitize_callback' => 'sanitize_text_field']);
-        register_setting('rcab_settings', 'rcab_date_format', ['sanitize_callback' => 'sanitize_text_field']);
-        register_setting('rcab_settings', 'rcab_appointment_types', ['sanitize_callback' => [$this, 'sanitize_appointment_types']]);
-        register_setting('rcab_settings', 'rcab_caldav_url', ['sanitize_callback' => 'esc_url_raw']);
-        register_setting('rcab_settings', 'rcab_caldav_username', ['sanitize_callback' => 'sanitize_text_field']);
-        register_setting('rcab_settings', 'rcab_caldav_password', ['sanitize_callback' => 'sanitize_text_field']);
-        register_setting('rcab_settings', 'rcab_min_booking_advance', ['sanitize_callback' => 'sanitize_text_field']);
-        register_setting('rcab_settings', 'rcab_working_hours_start', ['sanitize_callback' => 'sanitize_text_field']);
-        register_setting('rcab_settings', 'rcab_working_hours_end', ['sanitize_callback' => 'sanitize_text_field']);
-        register_setting('rcab_settings', 'rcab_working_days', ['sanitize_callback' => [$this, 'sanitize_working_days']]);
-        register_setting('rcab_settings', 'rcab_timeslot_granularity', ['sanitize_callback' => 'intval']);
+        register_setting('reventorcab_settings', 'reventorcab_timeslot_duration', ['sanitize_callback' => 'intval']);
+        register_setting('reventorcab_settings', 'reventorcab_booking_days_ahead', ['sanitize_callback' => 'intval']);
+        register_setting('reventorcab_settings', 'reventorcab_theme_color', ['sanitize_callback' => 'sanitize_hex_color']);
+        register_setting('reventorcab_settings', 'reventorcab_timezone', ['sanitize_callback' => [$this, 'sanitize_timezone']]);
+        register_setting('reventorcab_settings', 'reventorcab_time_format', ['sanitize_callback' => 'sanitize_text_field']);
+        register_setting('reventorcab_settings', 'reventorcab_date_format', ['sanitize_callback' => 'sanitize_text_field']);
+        register_setting('reventorcab_settings', 'reventorcab_appointment_types', ['sanitize_callback' => [$this, 'sanitize_appointment_types']]);
+        register_setting('reventorcab_settings', 'reventorcab_caldav_url', ['sanitize_callback' => 'esc_url_raw']);
+        register_setting('reventorcab_settings', 'reventorcab_caldav_username', ['sanitize_callback' => 'sanitize_text_field']);
+        register_setting('reventorcab_settings', 'reventorcab_caldav_password', ['sanitize_callback' => 'sanitize_text_field']);
+        register_setting('reventorcab_settings', 'reventorcab_min_booking_advance', ['sanitize_callback' => 'sanitize_text_field']);
+        register_setting('reventorcab_settings', 'reventorcab_working_hours_start', ['sanitize_callback' => 'sanitize_text_field']);
+        register_setting('reventorcab_settings', 'reventorcab_working_hours_end', ['sanitize_callback' => 'sanitize_text_field']);
+        register_setting('reventorcab_settings', 'reventorcab_working_days', ['sanitize_callback' => [$this, 'sanitize_working_days']]);
+        register_setting('reventorcab_settings', 'reventorcab_timeslot_granularity', ['sanitize_callback' => 'intval']);
 
-        register_setting('rcab_settings', 'rcab_email_sender_name', ['sanitize_callback' => 'sanitize_text_field']);
-        register_setting('rcab_settings', 'rcab_email_sender_email', ['sanitize_callback' => 'sanitize_email']);
-        register_setting('rcab_settings', 'rcab_timezone', ['sanitize_callback' => 'sanitize_text_field']);
-        register_setting('rcab_settings', 'rcab_time_format', ['sanitize_callback' => 'sanitize_text_field']);
-        register_setting('rcab_settings', 'rcab_date_format', ['sanitize_callback' => 'sanitize_text_field']);
-        register_setting('rcab_settings', 'rcab_show_credits', ['sanitize_callback' => [$this, 'sanitize_checkbox']]);
+        register_setting('reventorcab_settings', 'reventorcab_email_sender_name', ['sanitize_callback' => 'sanitize_text_field']);
+        register_setting('reventorcab_settings', 'reventorcab_email_sender_email', ['sanitize_callback' => 'sanitize_email']);
+        register_setting('reventorcab_settings', 'reventorcab_timezone', ['sanitize_callback' => 'sanitize_text_field']);
+        register_setting('reventorcab_settings', 'reventorcab_time_format', ['sanitize_callback' => 'sanitize_text_field']);
+        register_setting('reventorcab_settings', 'reventorcab_date_format', ['sanitize_callback' => 'sanitize_text_field']);
+        register_setting('reventorcab_settings', 'reventorcab_show_credits', ['sanitize_callback' => [$this, 'sanitize_checkbox']]);
     }
     
     public function sanitize_working_days($value) {
@@ -124,15 +124,15 @@ class RCAB_Admin {
             return;
         }
         
-        wp_enqueue_style('eab-admin-style', RCAB_PLUGIN_URL . 'assets/css/admin.css', array(), RCAB_VERSION);
-        wp_enqueue_script('eab-admin-script', RCAB_PLUGIN_URL . 'assets/js/admin.js', array('jquery'), RCAB_VERSION, true);
+        wp_enqueue_style('reventorcab-admin-style', REVENTORCAB_PLUGIN_URL . 'assets/css/admin.css', array(), REVENTORCAB_VERSION);
+        wp_enqueue_script('reventorcab-admin-script', REVENTORCAB_PLUGIN_URL . 'assets/js/admin.js', array('jquery'), REVENTORCAB_VERSION, true);
         
-        wp_localize_script('eab-admin-script', 'rcab_admin', array(
+        wp_localize_script('reventorcab-admin-script', 'reventorcab_admin', array(
             'ajax_url' => admin_url('admin-ajax.php'),
-            'nonce' => wp_create_nonce('rcab_admin_nonce'),
-            'frontend_nonce' => wp_create_nonce('rcab_frontend_nonce'),
+            'nonce' => wp_create_nonce('reventorcab_admin_nonce'),
+            'frontend_nonce' => wp_create_nonce('reventorcab_frontend_nonce'),
             'settings' => array(
-                'time_format' => get_option('rcab_time_format', '24h')
+                'time_format' => get_option('reventorcab_time_format', '24h')
             ),
             'strings' => array(
                 'saving' => __('Saving...', 'reventor-calendar-appointment-booking'),
@@ -146,10 +146,10 @@ class RCAB_Admin {
     }
     
     public function admin_page() {
-        $timeslot_duration = get_option('rcab_timeslot_duration', 30);
-        $booking_days_ahead = get_option('rcab_booking_days_ahead', 7);
-        $theme_color = get_option('rcab_theme_color', '#007cba');
-        $appointment_types = get_option('rcab_appointment_types', array(array('name' => __('General Consultation', 'reventor-calendar-appointment-booking'), 'duration' => 30)));
+        $timeslot_duration = get_option('reventorcab_timeslot_duration', 30);
+        $booking_days_ahead = get_option('reventorcab_booking_days_ahead', 7);
+        $theme_color = get_option('reventorcab_theme_color', '#007cba');
+        $appointment_types = get_option('reventorcab_appointment_types', array(array('name' => __('General Consultation', 'reventor-calendar-appointment-booking'), 'duration' => 30)));
         
         // Convert old format to new format if needed
         if (!empty($appointment_types) && isset($appointment_types[0]) && is_string($appointment_types[0])) {
@@ -162,27 +162,27 @@ class RCAB_Admin {
             }
             $appointment_types = $converted_types;
             // Update the option with the new format
-            update_option('rcab_appointment_types', $appointment_types);
+            update_option('reventorcab_appointment_types', $appointment_types);
         }
-        $caldav_url = get_option('rcab_caldav_url', '');
-        $caldav_username = get_option('rcab_caldav_username', '');
-        $caldav_password = get_option('rcab_caldav_password', '');
-        $min_booking_advance = get_option('rcab_min_booking_advance', '2h');
-        $working_hours_start = get_option('rcab_working_hours_start', '09:00');
-        $working_hours_end = get_option('rcab_working_hours_end', '17:00');
-        $working_days = get_option('rcab_working_days', array('monday', 'tuesday', 'wednesday', 'thursday', 'friday'));
-        $timezone = get_option('rcab_timezone', 'UTC');
-        $time_format = get_option('rcab_time_format', '24h');
-        $date_format = get_option('rcab_date_format', 'DD.MM.YYYY');
-        $timeslot_granularity = get_option('rcab_timeslot_granularity', 15);
-        $show_credits = get_option('rcab_show_credits', 0);
+        $caldav_url = get_option('reventorcab_caldav_url', '');
+        $caldav_username = get_option('reventorcab_caldav_username', '');
+        $caldav_password = get_option('reventorcab_caldav_password', '');
+        $min_booking_advance = get_option('reventorcab_min_booking_advance', '2h');
+        $working_hours_start = get_option('reventorcab_working_hours_start', '09:00');
+        $working_hours_end = get_option('reventorcab_working_hours_end', '17:00');
+        $working_days = get_option('reventorcab_working_days', array('monday', 'tuesday', 'wednesday', 'thursday', 'friday'));
+        $timezone = get_option('reventorcab_timezone', 'UTC');
+        $time_format = get_option('reventorcab_time_format', '24h');
+        $date_format = get_option('reventorcab_date_format', 'DD.MM.YYYY');
+        $timeslot_granularity = get_option('reventorcab_timeslot_granularity', 15);
+        $show_credits = get_option('reventorcab_show_credits', 0);
         
-        include RCAB_PLUGIN_PATH . 'templates/admin-page.php';
+        include REVENTORCAB_PLUGIN_PATH . 'templates/admin-page.php';
     }
     
     public function save_settings_ajax() {
         try {
-            check_ajax_referer('rcab_admin_nonce', 'nonce');
+            check_ajax_referer('reventorcab_admin_nonce', 'nonce');
             
             if (!current_user_can('manage_options')) {
                 wp_send_json_error(array('message' => __('Unauthorized', 'reventor-calendar-appointment-booking')));
@@ -214,14 +214,14 @@ class RCAB_Admin {
         $show_credits = isset($_POST['show_credits']) ? 1 : 0;
         // phpcs:enable WordPress.Security.NonceVerification.Missing
         
-        update_option('rcab_timeslot_duration', $timeslot_duration);
-        update_option('rcab_booking_days_ahead', $booking_days_ahead);
-        update_option('rcab_theme_color', $theme_color);
-        update_option('rcab_timezone', $timezone);
-        update_option('rcab_time_format', $time_format);
-        update_option('rcab_show_credits', $show_credits);
-        update_option('rcab_date_format', $date_format);
-        update_option('rcab_timeslot_granularity', $timeslot_granularity);
+        update_option('reventorcab_timeslot_duration', $timeslot_duration);
+        update_option('reventorcab_booking_days_ahead', $booking_days_ahead);
+        update_option('reventorcab_theme_color', $theme_color);
+        update_option('reventorcab_timezone', $timezone);
+        update_option('reventorcab_time_format', $time_format);
+        update_option('reventorcab_show_credits', $show_credits);
+        update_option('reventorcab_date_format', $date_format);
+        update_option('reventorcab_timeslot_granularity', $timeslot_granularity);
         
         return true;
     }
@@ -230,7 +230,7 @@ class RCAB_Admin {
         // phpcs:disable WordPress.Security.NonceVerification.Missing -- Nonce verified in save_settings_ajax()
         $min_booking_advance = isset($_POST['min_booking_advance']) ? sanitize_text_field(wp_unslash($_POST['min_booking_advance'])) : '2h';
         // phpcs:enable WordPress.Security.NonceVerification.Missing
-        update_option('rcab_min_booking_advance', $min_booking_advance);
+        update_option('reventorcab_min_booking_advance', $min_booking_advance);
         
         return true;
     }
@@ -247,9 +247,9 @@ class RCAB_Admin {
         
         // Debug logging for working days removed
         
-        update_option('rcab_working_hours_start', $working_hours_start);
-        update_option('rcab_working_hours_end', $working_hours_end);
-        update_option('rcab_working_days', $working_days);
+        update_option('reventorcab_working_hours_start', $working_hours_start);
+        update_option('reventorcab_working_hours_end', $working_hours_end);
+        update_option('reventorcab_working_days', $working_days);
         
         // Verify the save removed
         
@@ -258,7 +258,7 @@ class RCAB_Admin {
     
     public function save_appointment_types_ajax() {
         try {
-            check_ajax_referer('rcab_admin_nonce', 'nonce');
+            check_ajax_referer('reventorcab_admin_nonce', 'nonce');
             
             if (!current_user_can('manage_options')) {
                 wp_send_json_error(array('message' => __('Unauthorized access.', 'reventor-calendar-appointment-booking')));
@@ -311,7 +311,7 @@ class RCAB_Admin {
         }
         
             // Update the option
-            $result = update_option('rcab_appointment_types', $appointment_types);
+            $result = update_option('reventorcab_appointment_types', $appointment_types);
             
             if ($result !== false) {
                 wp_send_json_success(array(
@@ -365,7 +365,7 @@ class RCAB_Admin {
             $appointment_types = array(array('name' => __('General Consultation', 'reventor-calendar-appointment-booking'), 'duration' => 30));
         }
         
-        update_option('rcab_appointment_types', $appointment_types);
+        update_option('reventorcab_appointment_types', $appointment_types);
         // phpcs:enable WordPress.Security.NonceVerification.Missing
         
         return true;
@@ -378,8 +378,8 @@ class RCAB_Admin {
         $email_sender_email = isset($_POST['email_sender_email']) ? sanitize_email(wp_unslash($_POST['email_sender_email'])) : '';
         // phpcs:enable WordPress.Security.NonceVerification.Missing
         
-        update_option('rcab_email_sender_name', $email_sender_name);
-        update_option('rcab_email_sender_email', $email_sender_email);
+        update_option('reventorcab_email_sender_name', $email_sender_name);
+        update_option('reventorcab_email_sender_email', $email_sender_email);
         
         return true;
     }
@@ -391,15 +391,15 @@ class RCAB_Admin {
         $caldav_password = isset($_POST['caldav_password']) ? sanitize_text_field(wp_unslash($_POST['caldav_password'])) : '';
         // phpcs:enable WordPress.Security.NonceVerification.Missing
         
-        update_option('rcab_caldav_url', $caldav_url);
-        update_option('rcab_caldav_username', $caldav_username);
-        update_option('rcab_caldav_password', $caldav_password);
+        update_option('reventorcab_caldav_url', $caldav_url);
+        update_option('reventorcab_caldav_username', $caldav_username);
+        update_option('reventorcab_caldav_password', $caldav_password);
         
         return true;
     }
     
     public function test_caldav_connection() {
-        check_ajax_referer('rcab_admin_nonce', 'nonce');
+        check_ajax_referer('reventorcab_admin_nonce', 'nonce');
         
         if (!current_user_can('manage_options')) {
             wp_die(esc_html__('Unauthorized', 'reventor-calendar-appointment-booking'));
@@ -409,7 +409,7 @@ class RCAB_Admin {
         $caldav_username = isset($_POST['caldav_username']) ? sanitize_text_field(wp_unslash($_POST['caldav_username'])) : '';
         $caldav_password = isset($_POST['caldav_password']) ? sanitize_text_field(wp_unslash($_POST['caldav_password'])) : '';
         
-        $caldav = new RCAB_CalDAV();
+        $caldav = new REVENTORCAB_CalDAV();
         $result = $caldav->test_connection($caldav_url, $caldav_username, $caldav_password);
         
         if ($result['success']) {
@@ -420,7 +420,7 @@ class RCAB_Admin {
     }
     
     public function test_caldav_conflicts() {
-        check_ajax_referer('rcab_frontend_nonce', 'nonce');
+        check_ajax_referer('reventorcab_frontend_nonce', 'nonce');
         
         $date = isset($_POST['date']) ? sanitize_text_field(wp_unslash($_POST['date'])) : '';
         $appointment_type = isset($_POST['appointment_type']) ? sanitize_text_field(wp_unslash($_POST['appointment_type'])) : '';
@@ -431,9 +431,9 @@ class RCAB_Admin {
         }
         
         // Get CalDAV settings
-        $caldav_url = get_option('rcab_caldav_url', '');
-        $caldav_username = get_option('rcab_caldav_username', '');
-        $caldav_password = get_option('rcab_caldav_password', '');
+        $caldav_url = get_option('reventorcab_caldav_url', '');
+        $caldav_username = get_option('reventorcab_caldav_username', '');
+        $caldav_password = get_option('reventorcab_caldav_password', '');
         
         if (empty($caldav_url) || empty($caldav_username) || empty($caldav_password)) {
             wp_send_json_error(array('message' => 'CalDAV not configured'));
@@ -441,12 +441,12 @@ class RCAB_Admin {
         }
         
         try {
-            $caldav = new RCAB_CalDAV();
+            $caldav = new REVENTORCAB_CalDAV();
             
             // Generate test time slots
-            $duration = get_option('rcab_timeslot_duration', 30);
-            $start_time = get_option('rcab_working_hours_start', '09:00');
-            $end_time = get_option('rcab_working_hours_end', '17:00');
+            $duration = get_option('reventorcab_timeslot_duration', 30);
+            $start_time = get_option('reventorcab_working_hours_start', '09:00');
+            $end_time = get_option('reventorcab_working_hours_end', '17:00');
             
             $slots = array();
             // Use UTC-based calculation to avoid server timezone dependency
@@ -478,7 +478,7 @@ class RCAB_Admin {
     
     public function export_settings_ajax() {
         // Check nonce for security
-        if (!isset($_POST['nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['nonce'])), 'rcab_admin_nonce')) {
+        if (!isset($_POST['nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['nonce'])), 'reventorcab_admin_nonce')) {
             wp_send_json_error(array('message' => 'Security check failed'));
             return;
         }
@@ -491,23 +491,23 @@ class RCAB_Admin {
         
         // Get all plugin settings
         $settings = array(
-            'rcab_timeslot_duration' => get_option('rcab_timeslot_duration', 30),
-            'rcab_booking_days_ahead' => get_option('rcab_booking_days_ahead', 30),
-            'rcab_theme_color' => get_option('rcab_theme_color', '#007cba'),
-            'rcab_appointment_types' => get_option('rcab_appointment_types', array(array('name' => __('General Consultation', 'reventor-calendar-appointment-booking'), 'duration' => 30))),
-            'rcab_caldav_url' => get_option('rcab_caldav_url', ''),
-            'rcab_caldav_username' => get_option('rcab_caldav_username', ''),
-            'rcab_caldav_password' => get_option('rcab_caldav_password', ''),
-            'rcab_min_booking_advance' => get_option('rcab_min_booking_advance', '1h'),
-            'rcab_working_hours_start' => get_option('rcab_working_hours_start', '09:00'),
-            'rcab_working_hours_end' => get_option('rcab_working_hours_end', '23:00'),
-            'rcab_working_days' => get_option('rcab_working_days', array('monday', 'tuesday', 'wednesday', 'thursday', 'friday')),
+            'reventorcab_timeslot_duration' => get_option('reventorcab_timeslot_duration', 30),
+            'reventorcab_booking_days_ahead' => get_option('reventorcab_booking_days_ahead', 30),
+            'reventorcab_theme_color' => get_option('reventorcab_theme_color', '#007cba'),
+            'reventorcab_appointment_types' => get_option('reventorcab_appointment_types', array(array('name' => __('General Consultation', 'reventor-calendar-appointment-booking'), 'duration' => 30))),
+            'reventorcab_caldav_url' => get_option('reventorcab_caldav_url', ''),
+            'reventorcab_caldav_username' => get_option('reventorcab_caldav_username', ''),
+            'reventorcab_caldav_password' => get_option('reventorcab_caldav_password', ''),
+            'reventorcab_min_booking_advance' => get_option('reventorcab_min_booking_advance', '1h'),
+            'reventorcab_working_hours_start' => get_option('reventorcab_working_hours_start', '09:00'),
+            'reventorcab_working_hours_end' => get_option('reventorcab_working_hours_end', '23:00'),
+            'reventorcab_working_days' => get_option('reventorcab_working_days', array('monday', 'tuesday', 'wednesday', 'thursday', 'friday')),
 
-            'rcab_email_sender_name' => get_option('rcab_email_sender_name', ''),
-            'rcab_email_sender_email' => get_option('rcab_email_sender_email', ''),
-            'rcab_timezone' => $this->get_timezone_string(),
-            'rcab_time_format' => get_option('rcab_time_format', 'H:i'),
-            'rcab_date_format' => get_option('rcab_date_format', 'Y-m-d')
+            'reventorcab_email_sender_name' => get_option('reventorcab_email_sender_name', ''),
+            'reventorcab_email_sender_email' => get_option('reventorcab_email_sender_email', ''),
+            'reventorcab_timezone' => $this->get_timezone_string(),
+            'reventorcab_time_format' => get_option('reventorcab_time_format', 'H:i'),
+            'reventorcab_date_format' => get_option('reventorcab_date_format', 'Y-m-d')
         );
         
         // Create export data
@@ -523,7 +523,7 @@ class RCAB_Admin {
     
     public function import_settings_ajax() {
         // Check nonce for security
-        if (!isset($_POST['nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['nonce'])), 'rcab_admin_nonce')) {
+        if (!isset($_POST['nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['nonce'])), 'reventorcab_admin_nonce')) {
             wp_send_json_error(array('message' => 'Security check failed'));
             return;
         }
@@ -552,23 +552,23 @@ class RCAB_Admin {
         
         // Define valid settings keys
         $valid_settings = array(
-            'rcab_timeslot_duration',
-            'rcab_booking_days_ahead',
-            'rcab_theme_color',
-            'rcab_appointment_types',
-            'rcab_caldav_url',
-            'rcab_caldav_username',
-            'rcab_caldav_password',
-            'rcab_min_booking_advance',
-            'rcab_working_hours_start',
-            'rcab_working_hours_end',
-            'rcab_working_days',
+            'reventorcab_timeslot_duration',
+            'reventorcab_booking_days_ahead',
+            'reventorcab_theme_color',
+            'reventorcab_appointment_types',
+            'reventorcab_caldav_url',
+            'reventorcab_caldav_username',
+            'reventorcab_caldav_password',
+            'reventorcab_min_booking_advance',
+            'reventorcab_working_hours_start',
+            'reventorcab_working_hours_end',
+            'reventorcab_working_days',
 
-            'rcab_email_sender_name',
-            'rcab_email_sender_email',
-            'rcab_timezone',
-            'rcab_time_format',
-            'rcab_date_format'
+            'reventorcab_email_sender_name',
+            'reventorcab_email_sender_email',
+            'reventorcab_timezone',
+            'reventorcab_time_format',
+            'reventorcab_date_format'
         );
         
         // Import settings
@@ -591,20 +591,20 @@ class RCAB_Admin {
     
     /**
      * Get timezone string - SIMPLIFIED VERSION
-     * Forces use of rcab_timezone only to ensure consistency across servers
+     * Forces use of reventorcab_timezone only to ensure consistency across servers
      */
     private function get_timezone_string() {
         // ONLY use the custom timezone setting - no fallbacks
-        $custom_timezone = get_option('rcab_timezone');
+        $custom_timezone = get_option('reventorcab_timezone');
         
-        // If rcab_timezone is set, use it exclusively
+        // If reventorcab_timezone is set, use it exclusively
         if (!empty($custom_timezone)) {
             return $custom_timezone;
         }
         
         // If not set, return UTC and log a warning
         if (defined('WP_DEBUG') && WP_DEBUG) {
-            error_log('EAB Admin Warning: rcab_timezone not set. Please configure it in plugin settings for consistent behavior across servers.'); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
+            error_log('REVENTORCAB Admin Warning: reventorcab_timezone not set. Please configure it in plugin settings for consistent behavior across servers.'); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
         }
         return 'UTC';
     }

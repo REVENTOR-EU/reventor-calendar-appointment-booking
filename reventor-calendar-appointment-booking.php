@@ -37,12 +37,12 @@ if (version_compare(PHP_VERSION, '8.1', '<')) {
 }
 
 // Define plugin constants
-define('RCAB_PLUGIN_URL', plugin_dir_url(__FILE__));
-define('RCAB_PLUGIN_PATH', plugin_dir_path(__FILE__));
-define('RCAB_VERSION', '1.0.0');
+define('REVENTORCAB_PLUGIN_URL', plugin_dir_url(__FILE__));
+define('REVENTORCAB_PLUGIN_PATH', plugin_dir_path(__FILE__));
+define('REVENTORCAB_VERSION', '1.0.0');
 
 // Main plugin class
-class EasyAppointmentBooking {
+class REVENTORCAB_Plugin {
     
     public function __construct() {
         // Include required files first
@@ -61,22 +61,22 @@ class EasyAppointmentBooking {
         $this->load_textdomain();
         
         // Check if plugin was properly activated
-        if (is_admin() && !get_option('rcab_plugin_activated')) {
+        if (is_admin() && !get_option('reventorcab_plugin_activated')) {
             add_action('admin_notices', array($this, 'activation_notice'));
         }
         
         // Initialize components
-        if (class_exists('RCAB_Admin')) {
-            new RCAB_Admin();
+        if (class_exists('REVENTORCAB_Admin')) {
+            new REVENTORCAB_Admin();
         }
-        if (class_exists('RCAB_Frontend')) {
-            new RCAB_Frontend();
+        if (class_exists('REVENTORCAB_Frontend')) {
+            new REVENTORCAB_Frontend();
         }
-        if (class_exists('RCAB_Database')) {
-            new RCAB_Database();
+        if (class_exists('REVENTORCAB_Database')) {
+            new REVENTORCAB_Database();
         }
-        if (class_exists('RCAB_CalDAV')) {
-            new RCAB_CalDAV();
+        if (class_exists('REVENTORCAB_CalDAV')) {
+            new REVENTORCAB_CalDAV();
         }
         
         // Register shortcode
@@ -94,7 +94,7 @@ class EasyAppointmentBooking {
         );
         
         foreach ($files as $file) {
-            $file_path = RCAB_PLUGIN_PATH . $file;
+            $file_path = REVENTORCAB_PLUGIN_PATH . $file;
             if (file_exists($file_path)) {
                 require_once $file_path;
             }
@@ -107,7 +107,7 @@ class EasyAppointmentBooking {
         ), $atts);
         
         ob_start();
-        include RCAB_PLUGIN_PATH . 'templates/booking-form.php';
+        include REVENTORCAB_PLUGIN_PATH . 'templates/booking-form.php';
         return ob_get_clean();
     }
     
@@ -120,8 +120,8 @@ class EasyAppointmentBooking {
     public function activate(): void {
         try {
             // Create database tables
-            if (class_exists('RCAB_Database')) {
-                RCAB_Database::create_tables();
+            if (class_exists('REVENTORCAB_Database')) {
+                REVENTORCAB_Database::create_tables();
             }
             
             // Set default options
@@ -136,13 +136,13 @@ class EasyAppointmentBooking {
             ];
             
             foreach ($default_options as $key => $value) {
-                if (!get_option('rcab_' . $key)) {
-                    update_option('rcab_' . $key, $value);
+                if (!get_option('reventorcab_' . $key)) {
+                    update_option('reventorcab_' . $key, $value);
                 }
             }
             
             // Set activation flag
-            update_option('rcab_plugin_activated', true);
+            update_option('reventorcab_plugin_activated', true);
             
         } catch (Exception $e) {
             // Don't prevent activation, just continue silently
@@ -163,9 +163,9 @@ class EasyAppointmentBooking {
     
     public function deactivate() {
         // Clean up activation flag
-        delete_option('rcab_plugin_activated');
+        delete_option('reventorcab_plugin_activated');
     }
 }
 
 // Initialize the plugin
-new EasyAppointmentBooking();
+new REVENTORCAB_Plugin();

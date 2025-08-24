@@ -8,7 +8,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class RCAB_Database {
+class REVENTORCAB_Database {
     
     public function __construct() {
         // Constructor can be used for future database operations
@@ -19,7 +19,7 @@ class RCAB_Database {
     public static function create_tables() {
         global $wpdb;
         
-        $table_name = $wpdb->prefix . 'rcab_appointments';
+        $table_name = $wpdb->prefix . 'reventorcab_appointments';
         
         $charset_collate = $wpdb->get_charset_collate();
         
@@ -45,7 +45,7 @@ class RCAB_Database {
         dbDelta($sql);
         
         // Create appointments view table for admin
-        $view_table_name = $wpdb->prefix . 'rcab_appointment_views';
+        $view_table_name = $wpdb->prefix . 'reventorcab_appointment_views';
         
         $view_sql = "CREATE TABLE $view_table_name (
             id mediumint(9) NOT NULL AUTO_INCREMENT,
@@ -74,7 +74,7 @@ class RCAB_Database {
         
         $args = wp_parse_args($args, $defaults);
         
-        $table_name = $wpdb->prefix . 'rcab_appointments';
+        $table_name = $wpdb->prefix . 'reventorcab_appointments';
         $where_clauses = array('1=1');
         $where_values = array();
         
@@ -103,16 +103,16 @@ class RCAB_Database {
         $limit = intval($args['limit']);
         $offset = intval($args['offset']);
         
-        $table_name = $wpdb->prefix . 'rcab_appointments';
+        $table_name = $wpdb->prefix . 'reventorcab_appointments';
         
         if (!empty($where_values)) {
             $where_values[] = $limit;
             $where_values[] = $offset;
-            $sql = "SELECT * FROM `{$wpdb->prefix}rcab_appointments` WHERE {$where_clause} ORDER BY {$orderby} LIMIT %d OFFSET %d";
+            $sql = "SELECT * FROM `{$wpdb->prefix}reventorcab_appointments` WHERE {$where_clause} ORDER BY {$orderby} LIMIT %d OFFSET %d";
             // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.NotPrepared
             $result = $wpdb->get_results($wpdb->prepare($sql, $where_values));
         } else {
-            $sql = "SELECT * FROM `{$wpdb->prefix}rcab_appointments` WHERE 1=1 ORDER BY {$orderby} LIMIT %d OFFSET %d";
+            $sql = "SELECT * FROM `{$wpdb->prefix}reventorcab_appointments` WHERE 1=1 ORDER BY {$orderby} LIMIT %d OFFSET %d";
             // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.NotPrepared
             $result = $wpdb->get_results($wpdb->prepare($sql, $limit, $offset));
         }
@@ -123,9 +123,9 @@ class RCAB_Database {
     public static function get_appointment($id) {
         global $wpdb;
         
-        $table_name = $wpdb->prefix . 'rcab_appointments';
+        $table_name = $wpdb->prefix . 'reventorcab_appointments';
         
-        $sql = "SELECT * FROM `{$wpdb->prefix}rcab_appointments` WHERE id = %d";
+        $sql = "SELECT * FROM `{$wpdb->prefix}reventorcab_appointments` WHERE id = %d";
         // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.NotPrepared
         return $wpdb->get_row($wpdb->prepare($sql, $id));
     }
@@ -133,7 +133,7 @@ class RCAB_Database {
     public static function update_appointment($id, $data) {
         global $wpdb;
         
-        $table_name = $wpdb->prefix . 'rcab_appointments';
+        $table_name = $wpdb->prefix . 'reventorcab_appointments';
         
         $allowed_fields = array(
             'name', 'email', 'phone', 'appointment_type',
@@ -168,12 +168,12 @@ class RCAB_Database {
         
         if ($result !== false) {
             // Update CalDAV event if CalDAV is configured
-            $caldav_url = get_option('rcab_caldav_url', '');
-            $caldav_username = get_option('rcab_caldav_username', '');
-            $caldav_password = get_option('rcab_caldav_password', '');
+            $caldav_url = get_option('reventorcab_caldav_url', '');
+            $caldav_username = get_option('reventorcab_caldav_username', '');
+            $caldav_password = get_option('reventorcab_caldav_password', '');
             
             if (!empty($caldav_url) && !empty($caldav_username) && !empty($caldav_password)) {
-                $caldav = new RCAB_CalDAV();
+                $caldav = new REVENTORCAB_CalDAV();
                 
                 // Get the updated appointment data
                 $updated_appointment = self::get_appointment($id);
@@ -220,11 +220,11 @@ class RCAB_Database {
             }
             
             // Fire action hook for other plugins/themes to use
-            do_action('rcab_appointment_updated', $id, $update_data, $old_appointment);
+            do_action('reventorcab_appointment_updated', $id, $update_data, $old_appointment);
             
             // Send update notification email with updated ICS attachment
-            if (function_exists('rcab_send_appointment_confirmation_email')) {
-                $email_sent = rcab_send_appointment_confirmation_email($id, $new_appointment_data, true);
+            if (function_exists('reventorcab_send_appointment_confirmation_email')) {
+                $email_sent = reventorcab_send_appointment_confirmation_email($id, $new_appointment_data, true);
                 if (!$email_sent) {
                     // Log the email error but don't fail the update
                     // Failed to send update confirmation email
@@ -238,7 +238,7 @@ class RCAB_Database {
     public static function delete_appointment($id) {
         global $wpdb;
         
-        $table_name = $wpdb->prefix . 'rcab_appointments';
+        $table_name = $wpdb->prefix . 'reventorcab_appointments';
         
         // Get the appointment data before deletion for CalDAV
         $appointment = self::get_appointment($id);
@@ -252,12 +252,12 @@ class RCAB_Database {
         
         if ($result !== false && $appointment) {
             // Delete CalDAV event if CalDAV is configured
-            $caldav_url = get_option('rcab_caldav_url', '');
-            $caldav_username = get_option('rcab_caldav_username', '');
-            $caldav_password = get_option('rcab_caldav_password', '');
+            $caldav_url = get_option('reventorcab_caldav_url', '');
+            $caldav_username = get_option('reventorcab_caldav_username', '');
+            $caldav_password = get_option('reventorcab_caldav_password', '');
             
             if (!empty($caldav_url) && !empty($caldav_username) && !empty($caldav_password)) {
-                $caldav = new RCAB_CalDAV();
+                $caldav = new REVENTORCAB_CalDAV();
                 
                 // Parse appointment type to handle both old JSON data and new clean data
                 $appointment_type_name = $appointment->appointment_type;
@@ -284,7 +284,7 @@ class RCAB_Database {
             }
             
             // Fire action hook for other plugins/themes to use
-            do_action('rcab_appointment_deleted', $id, $appointment);
+            do_action('reventorcab_appointment_deleted', $id, $appointment);
         }
         
         return $result;
@@ -301,7 +301,7 @@ class RCAB_Database {
         
         $args = wp_parse_args($args, $defaults);
         
-        $table_name = $wpdb->prefix . 'rcab_appointments';
+        $table_name = $wpdb->prefix . 'reventorcab_appointments';
         $where_clauses = array('1=1');
         $where_values = array();
         
@@ -322,14 +322,14 @@ class RCAB_Database {
         
         $where_clause = implode(' AND ', $where_clauses);
         
-        $table_name = $wpdb->prefix . 'rcab_appointments';
+        $table_name = $wpdb->prefix . 'reventorcab_appointments';
         
         if (!empty($where_values)) {
-            $sql = "SELECT COUNT(*) FROM `{$wpdb->prefix}rcab_appointments` WHERE {$where_clause}";
+            $sql = "SELECT COUNT(*) FROM `{$wpdb->prefix}reventorcab_appointments` WHERE {$where_clause}";
             // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.NotPrepared
             $result = $wpdb->get_var($wpdb->prepare($sql, $where_values));
         } else {
-            $sql = "SELECT COUNT(*) FROM `{$wpdb->prefix}rcab_appointments` WHERE 1=1";
+            $sql = "SELECT COUNT(*) FROM `{$wpdb->prefix}reventorcab_appointments` WHERE 1=1";
             // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.NotPrepared
             $result = $wpdb->get_var($sql);
         }
@@ -340,7 +340,7 @@ class RCAB_Database {
     public static function get_daily_stats($date) {
         global $wpdb;
         
-        $table_name = $wpdb->prefix . 'rcab_appointments';
+        $table_name = $wpdb->prefix . 'reventorcab_appointments';
         
         $stats = array(
             'total' => 0,
@@ -348,7 +348,7 @@ class RCAB_Database {
             'cancelled' => 0
         );
         
-        $sql = "SELECT status, COUNT(*) as count FROM `{$wpdb->prefix}rcab_appointments` WHERE appointment_date = %s GROUP BY status";
+        $sql = "SELECT status, COUNT(*) as count FROM `{$wpdb->prefix}reventorcab_appointments` WHERE appointment_date = %s GROUP BY status";
         // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.NotPrepared
         $results = $wpdb->get_results($wpdb->prepare($sql, $date));
         

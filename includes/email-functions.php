@@ -13,7 +13,7 @@ if (!defined('ABSPATH')) {
  *
  * @return string A random 10-character alphanumeric string
  */
-function rcab_generate_jitsi_room_id() {
+function reventorcab_generate_jitsi_room_id() {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $room_id = '';
     for ($i = 0; $i < 10; $i++) {
@@ -30,7 +30,7 @@ function rcab_generate_jitsi_room_id() {
  * @param bool $is_update Whether this is an update notification
  * @return bool Whether the email was sent successfully
  */
-function rcab_send_appointment_confirmation_email($appointment_id, $appointment_data, $is_update = false) {
+function reventorcab_send_appointment_confirmation_email($appointment_id, $appointment_data, $is_update = false) {
     
     // Get recipient email
     $to = $appointment_data['email'];
@@ -43,8 +43,8 @@ function rcab_send_appointment_confirmation_email($appointment_id, $appointment_
     $user_timezone = isset($appointment_data['user_timezone']) ? $appointment_data['user_timezone'] : null;
     
     // Format date and time for display in user's timezone
-    $formatted_date = rcab_format_date($appointment_data['appointment_date'], null, $user_timezone);
-    $formatted_time = rcab_format_time($appointment_data['appointment_time'], null, $user_timezone, $appointment_data['appointment_date']);
+    $formatted_date = reventorcab_format_date($appointment_data['appointment_date'], null, $user_timezone);
+    $formatted_time = reventorcab_format_time($appointment_data['appointment_time'], null, $user_timezone, $appointment_data['appointment_date']);
     
     // Use the Jitsi Meet URL that was already generated and passed in appointment data
     // No need to generate a new one here - it should be consistent across all components
@@ -62,19 +62,19 @@ function rcab_send_appointment_confirmation_email($appointment_id, $appointment_
     
     // Build email body
     $body = "<div style='font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;'>";
-    $body .= "<div style='background-color: #f8f8f8; padding: 20px; border-bottom: 3px solid " . get_option('rcab_theme_color', '#007cba') . ";'>";
-    $body .= "<h2 style='color: " . get_option('rcab_theme_color', '#007cba') . ";'>" . $heading . "</h2>";
+    $body .= "<div style='background-color: #f8f8f8; padding: 20px; border-bottom: 3px solid " . get_option('reventorcab_theme_color', '#007cba') . ";'>";
+    $body .= "<h2 style='color: " . get_option('reventorcab_theme_color', '#007cba') . ";'>" . $heading . "</h2>";
     $body .= "</div>";
     $body .= "<div style='padding: 20px;'>";
     // translators: %s is the customer's name
     $body .= "<p>" . sprintf(__('Dear %s,', 'reventor-calendar-appointment-booking'), esc_html($appointment_data['name'])) . "</p>";
     $body .= "<p>" . $intro_text . "</p>";
-    $body .= "<div style='background-color: #f8f8f8; padding: 15px; margin: 15px 0; border-left: 4px solid " . get_option('rcab_theme_color', '#007cba') . ";'>";
+    $body .= "<div style='background-color: #f8f8f8; padding: 15px; margin: 15px 0; border-left: 4px solid " . get_option('reventorcab_theme_color', '#007cba') . ";'>";
     $body .= "<p><strong>" . __('Appointment details:', 'reventor-calendar-appointment-booking') . "</strong></p>";
     $body .= "<p><strong>" . __('Service:', 'reventor-calendar-appointment-booking') . "</strong> " . esc_html($appointment_data['appointment_type']) . "</p>";
     $body .= "<p><strong>" . __('Date:', 'reventor-calendar-appointment-booking') . "</strong> " . esc_html($formatted_date) . "</p>";
     $body .= "<p><strong>" . __('Time:', 'reventor-calendar-appointment-booking') . "</strong> " . esc_html($formatted_time) . "</p>";
-    $duration_minutes = isset($appointment_data['appointment_duration']) ? $appointment_data['appointment_duration'] : get_option('rcab_timeslot_duration', 30);
+    $duration_minutes = isset($appointment_data['appointment_duration']) ? $appointment_data['appointment_duration'] : get_option('reventorcab_timeslot_duration', 30);
     $body .= "<p><strong>" . __('Duration:', 'reventor-calendar-appointment-booking') . "</strong> " . $duration_minutes . " " . __('minutes', 'reventor-calendar-appointment-booking') . "</p>";
     $body .= "<p><strong>" . __('Name:', 'reventor-calendar-appointment-booking') . "</strong> " . esc_html($appointment_data['name']) . "</p>";
     if (!empty($appointment_data['jitsi_url'])) {
@@ -96,8 +96,8 @@ function rcab_send_appointment_confirmation_email($appointment_id, $appointment_
     $body .= "</div>";
     
     // Get email sender settings
-    $sender_name = get_option('rcab_email_sender_name', $site_name);
-    $sender_email = get_option('rcab_email_sender_email', $admin_email);
+    $sender_name = get_option('reventorcab_email_sender_name', $site_name);
+    $sender_email = get_option('reventorcab_email_sender_email', $admin_email);
     
     // Email headers
     $headers = array(
@@ -107,7 +107,7 @@ function rcab_send_appointment_confirmation_email($appointment_id, $appointment_
     );
     
     // Generate ICS file
-    $ics_content = rcab_generate_ics_file($appointment_data);
+    $ics_content = reventorcab_generate_ics_file($appointment_data);
     
     // Create temporary file for attachment
     $upload_dir = wp_upload_dir();
@@ -156,21 +156,21 @@ function rcab_send_appointment_confirmation_email($appointment_id, $appointment_
  * @param array $appointment_data The appointment data
  * @return string The ICS file content
  */
-function rcab_generate_ics_file($appointment_data) {
+function reventorcab_generate_ics_file($appointment_data) {
     // Get site info
     $site_name = get_bloginfo('name');
     $site_url = get_bloginfo('url');
     
     // Get local timezone for conversion
     $user_timezone = isset($appointment_data['user_timezone']) ? $appointment_data['user_timezone'] : null;
-    $timezone_string = $user_timezone ? $user_timezone : rcab_get_timezone_string();
+    $timezone_string = $user_timezone ? $user_timezone : reventorcab_get_timezone_string();
     
     // Format date and time for ICS
     $appointment_date = $appointment_data['appointment_date'];
     $appointment_time = $appointment_data['appointment_time'];
     
     // Calculate start and end times using local timezone, then convert to UTC
-    $duration_minutes = isset($appointment_data['appointment_duration']) ? $appointment_data['appointment_duration'] : get_option('rcab_timeslot_duration', 30);
+    $duration_minutes = isset($appointment_data['appointment_duration']) ? $appointment_data['appointment_duration'] : get_option('reventorcab_timeslot_duration', 30);
     
     try {
         // Create timezone object
@@ -214,8 +214,8 @@ function rcab_generate_ics_file($appointment_data) {
     $summary = $site_name . ' - ' . $appointment_type_name . ' - ' . $duration_minutes . ' min';
     $description = __('Appointment details:', 'reventor-calendar-appointment-booking') . "\n";
     $description .= "Service: " . $appointment_type_name . "\n";
-    $description .= "Date: " . rcab_format_date($appointment_data['appointment_date'], null, $user_timezone) . "\n";
-    $description .= "Time: " . rcab_format_time($appointment_data['appointment_time'], null, $user_timezone, $appointment_data['appointment_date']) . "\n";
+    $description .= "Date: " . reventorcab_format_date($appointment_data['appointment_date'], null, $user_timezone) . "\n";
+    $description .= "Time: " . reventorcab_format_time($appointment_data['appointment_time'], null, $user_timezone, $appointment_data['appointment_date']) . "\n";
     $description .= "Duration: " . $duration_minutes . " minutes\n";
     $description .= "Name: " . $appointment_data['name'] . "\n";
     $phone = !empty($appointment_data['phone']) ? $appointment_data['phone'] : '---';
@@ -243,12 +243,12 @@ function rcab_generate_ics_file($appointment_data) {
     $ics_content .= "DTSTAMP:" . $timestamp . "\r\n";
     $ics_content .= $dtstart_value . "\r\n";
     $ics_content .= $dtend_value . "\r\n";
-    $ics_content .= "SUMMARY:" . rcab_ical_escape($summary) . "\r\n";
-    $ics_content .= "DESCRIPTION:" . rcab_ical_escape($description) . "\r\n";
+    $ics_content .= "SUMMARY:" . reventorcab_ical_escape($summary) . "\r\n";
+    $ics_content .= "DESCRIPTION:" . reventorcab_ical_escape($description) . "\r\n";
     $location = !empty($appointment_data['jitsi_url']) ? $appointment_data['jitsi_url'] : "Online Meeting";
-    $ics_content .= "LOCATION:" . rcab_ical_escape($location) . "\r\n";
+    $ics_content .= "LOCATION:" . reventorcab_ical_escape($location) . "\r\n";
     if (!empty($appointment_data['jitsi_url'])) {
-        $ics_content .= "URL:" . rcab_ical_escape($appointment_data['jitsi_url']) . "\r\n";
+        $ics_content .= "URL:" . reventorcab_ical_escape($appointment_data['jitsi_url']) . "\r\n";
     }
     $ics_content .= "STATUS:CONFIRMED\r\n";
     $ics_content .= "END:VEVENT\r\n";
@@ -263,7 +263,7 @@ function rcab_generate_ics_file($appointment_data) {
  * @param string $text The text to escape
  * @return string The escaped text
  */
-function rcab_ical_escape($text) {
+function reventorcab_ical_escape($text) {
     $text = str_replace("\r\n", "\n", $text);
     $text = str_replace("\n", "\\n", $text);
     $text = str_replace(",", "\\,", $text);

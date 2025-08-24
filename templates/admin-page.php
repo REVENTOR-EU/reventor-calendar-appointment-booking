@@ -8,7 +8,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-$appointment_types = get_option('rcab_appointment_types', array(array('name' => __('General Consultation', 'reventor-calendar-appointment-booking'), 'duration' => 30)));
+$appointment_types = get_option('reventorcab_appointment_types', array(array('name' => __('General Consultation', 'reventor-calendar-appointment-booking'), 'duration' => 30)));
 ?>
 
 <div class="wrap eab-admin-wrap">
@@ -16,7 +16,7 @@ $appointment_types = get_option('rcab_appointment_types', array(array('name' => 
     
     <div class="eab-admin-content">
         <form id="eab-settings-form" method="post">
-            <?php wp_nonce_field('rcab_admin_nonce', 'rcab_nonce'); ?>
+            <?php wp_nonce_field('reventorcab_admin_nonce', 'reventorcab_nonce'); ?>
             
             <div class="eab-save-header">
                 <button type="button" id="eab-save-all" class="eab-floating-save">
@@ -285,13 +285,13 @@ $appointment_types = get_option('rcab_appointment_types', array(array('name' => 
                     
                     <div class="eab-field-group">
                         <label for="email_sender_name"><?php esc_html_e('Sender Name', 'reventor-calendar-appointment-booking'); ?></label>
-                        <input type="text" id="email_sender_name" name="email_sender_name" value="<?php echo esc_attr(get_option('rcab_email_sender_name', get_bloginfo('name'))); ?>" placeholder="<?php echo esc_attr(get_bloginfo('name')); ?>" />
+                        <input type="text" id="email_sender_name" name="email_sender_name" value="<?php echo esc_attr(get_option('reventorcab_email_sender_name', get_bloginfo('name'))); ?>" placeholder="<?php echo esc_attr(get_bloginfo('name')); ?>" />
                         <p class="description"><?php esc_html_e('Name that will appear in the From field of notification emails.', 'reventor-calendar-appointment-booking'); ?></p>
                     </div>
                     
                     <div class="eab-field-group">
                         <label for="email_sender_email"><?php esc_html_e('Sender Email', 'reventor-calendar-appointment-booking'); ?></label>
-                        <input type="email" id="email_sender_email" name="email_sender_email" value="<?php echo esc_attr(get_option('rcab_email_sender_email', get_option('admin_email'))); ?>" placeholder="<?php echo esc_attr(get_option('admin_email')); ?>" />
+                        <input type="email" id="email_sender_email" name="email_sender_email" value="<?php echo esc_attr(get_option('reventorcab_email_sender_email', get_option('admin_email'))); ?>" placeholder="<?php echo esc_attr(get_option('admin_email')); ?>" />
                         <p class="description"><?php esc_html_e('Email address that will be used to send notification emails.', 'reventor-calendar-appointment-booking'); ?></p>
                     </div>
                     
@@ -419,16 +419,16 @@ $appointment_types = get_option('rcab_appointment_types', array(array('name' => 
                     <h3><?php esc_html_e('Plugin Information', 'reventor-calendar-appointment-booking'); ?></h3>
                     
                     <div class="eab-field-group">
-                        <p><strong><?php esc_html_e('Version:', 'reventor-calendar-appointment-booking'); ?></strong> <?php echo esc_html(RCAB_VERSION); ?></p>
+                        <p><strong><?php esc_html_e('Version:', 'reventor-calendar-appointment-booking'); ?></strong> <?php echo esc_html(REVENTORCAB_VERSION); ?></p>
                         <p><strong><?php esc_html_e('User Device Timezone:', 'reventor-calendar-appointment-booking'); ?></strong> <span id="eab-user-timezone"><?php esc_html_e('Detecting...', 'reventor-calendar-appointment-booking'); ?></span> - <span id="eab-user-time"><?php esc_html_e('Loading...', 'reventor-calendar-appointment-booking'); ?></span></p>
                         <p><strong><?php esc_html_e('Plugin Timezone:', 'reventor-calendar-appointment-booking'); ?></strong> <span id="eab-plugin-timezone"><?php 
-                            $plugin_timezone = get_option('rcab_timezone');
+                            $plugin_timezone = get_option('reventorcab_timezone');
                             if ($plugin_timezone) {
                                 echo esc_html($plugin_timezone);
                             } else {
                                 echo '<em>' . esc_html__('Not configured (using WordPress timezone)', 'reventor-calendar-appointment-booking') . '</em>';
                             }
-                        ?></span> - <span id="eab-plugin-time" data-timezone="<?php echo esc_attr(get_option('rcab_timezone') ?: 'UTC'); ?>"><?php esc_html_e('Loading...', 'reventor-calendar-appointment-booking'); ?></span></p>
+                        ?></span> - <span id="eab-plugin-time" data-timezone="<?php echo esc_attr(get_option('reventorcab_timezone') ?: 'UTC'); ?>"><?php esc_html_e('Loading...', 'reventor-calendar-appointment-booking'); ?></span></p>
                         <p><strong><?php esc_html_e('Server Timezone:', 'reventor-calendar-appointment-booking'); ?></strong> <span id="eab-server-timezone">UTC</span> - <span id="eab-server-time"><?php echo esc_html(gmdate('Y-m-d H:i:s')); ?></span></p>
                     </div>
                 </div>

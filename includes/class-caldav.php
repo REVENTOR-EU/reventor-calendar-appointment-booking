@@ -8,16 +8,16 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class RCAB_CalDAV {
+class REVENTORCAB_CalDAV {
     
     private $caldav_url = '';
     private $username = '';
     private $password = '';
     
     public function __construct() {
-        $this->caldav_url = get_option('rcab_caldav_url', '');
-        $this->username = get_option('rcab_caldav_username', '');
-        $this->password = get_option('rcab_caldav_password', '');
+        $this->caldav_url = get_option('reventorcab_caldav_url', '');
+        $this->username = get_option('reventorcab_caldav_username', '');
+        $this->password = get_option('reventorcab_caldav_password', '');
     }
     
     public function test_connection($url = null, $username = null, $password = null) {
@@ -67,12 +67,12 @@ class RCAB_CalDAV {
         $events = $this->get_events_for_date($date);
         
         // Force logging for debugging
-        rcab_log("CalDAV get_conflicts called for date: $date with " . count($time_slots) . " time slots");
-        rcab_log("Time slots: " . implode(', ', $time_slots));
-        rcab_log('Date: ' . $date);
-        rcab_log('Found ' . count($events) . ' events');
+        reventorcab_log("CalDAV get_conflicts called for date: $date with " . count($time_slots) . " time slots");
+        reventorcab_log("Time slots: " . implode(', ', $time_slots));
+        reventorcab_log('Date: ' . $date);
+        reventorcab_log('Found ' . count($events) . ' events');
         foreach ($events as $i => $event) {
-            rcab_log('Event ' . $i . ': ' . gmdate('Y-m-d H:i:s', $event['start']) . ' to ' . gmdate('Y-m-d H:i:s', $event['end']) . ' (' . (isset($event['summary']) ? $event['summary'] : 'No summary') . ')');
+            reventorcab_log('Event ' . $i . ': ' . gmdate('Y-m-d H:i:s', $event['start']) . ' to ' . gmdate('Y-m-d H:i:s', $event['end']) . ' (' . (isset($event['summary']) ? $event['summary'] : 'No summary') . ')');
         }
         
         if (empty($events)) {
@@ -93,7 +93,7 @@ class RCAB_CalDAV {
             
             // Check for conflicts using configured granularity
             $has_conflict = false;
-            $granularity = get_option('rcab_timeslot_granularity', 15);
+            $granularity = get_option('reventorcab_timeslot_granularity', 15);
             
             // Break the booking slot into granularity blocks and check each one
             $current_block = $slot_start;
@@ -330,8 +330,8 @@ class RCAB_CalDAV {
             // Keep UTC timestamps for consistent comparison across all dates
             if ($is_utc) {
                 $local_timezone = $this->get_timezone_string();
-                rcab_log('CalDAV timezone conversion - Original UTC timestamp: ' . $timestamp . ' (' . gmdate('Y-m-d H:i:s', $timestamp) . ' UTC)');
-                rcab_log('CalDAV timezone conversion - Target timezone: ' . $local_timezone);
+                reventorcab_log('CalDAV timezone conversion - Original UTC timestamp: ' . $timestamp . ' (' . gmdate('Y-m-d H:i:s', $timestamp) . ' UTC)');
+                reventorcab_log('CalDAV timezone conversion - Target timezone: ' . $local_timezone);
                 
                 // For conflict detection, we convert the UTC time to local time format
                 // but keep it as a timestamp for consistent comparison
@@ -346,11 +346,11 @@ class RCAB_CalDAV {
                     $local_datetime_obj = new DateTime($local_time_str, new DateTimeZone('UTC'));
                     $timestamp = $local_datetime_obj->getTimestamp();
                     
-                    rcab_log('CalDAV timezone conversion - Local time: ' . $local_time_str);
-                    rcab_log('CalDAV timezone conversion - Converted timestamp: ' . $timestamp . ' (' . gmdate('Y-m-d H:i:s', $timestamp) . ' UTC)');
+                    reventorcab_log('CalDAV timezone conversion - Local time: ' . $local_time_str);
+                    reventorcab_log('CalDAV timezone conversion - Converted timestamp: ' . $timestamp . ' (' . gmdate('Y-m-d H:i:s', $timestamp) . ' UTC)');
                 } catch (Exception $e) {
                     // If timezone conversion fails, keep original timestamp
-                    rcab_log('CalDAV timezone conversion failed: ' . $e->getMessage());
+                    reventorcab_log('CalDAV timezone conversion failed: ' . $e->getMessage());
                 }
             }
             
@@ -376,7 +376,7 @@ class RCAB_CalDAV {
         
         if (empty($user_timezone)) {
             // If no user timezone, use plugin setting as confirmed by user
-            $user_timezone = get_option('rcab_timezone');
+            $user_timezone = get_option('reventorcab_timezone');
             if (empty($user_timezone)) {
                 // This should not happen if frontend validation works correctly
                 // No timezone available - appointment creation fails
@@ -390,7 +390,7 @@ class RCAB_CalDAV {
             
             // Create DateTime objects in the user's timezone
             $start_datetime_obj = new DateTime($appointment_data['appointment_date'] . ' ' . $appointment_data['appointment_time'], $timezone);
-            $duration = isset($appointment_data['appointment_duration']) ? $appointment_data['appointment_duration'] : get_option('rcab_timeslot_duration', 30);
+            $duration = isset($appointment_data['appointment_duration']) ? $appointment_data['appointment_duration'] : get_option('reventorcab_timeslot_duration', 30);
             
             // Calculate end time
             $end_datetime_obj = clone $start_datetime_obj;
@@ -412,7 +412,7 @@ class RCAB_CalDAV {
         
         // Event creation parameters prepared
         
-        $uid = 'eab-' . md5($appointment_data['appointment_date'] . $appointment_data['appointment_time'] . $appointment_data['appointment_type']);
+        $uid = 'reventorcab-' . md5($appointment_data['appointment_date'] . $appointment_data['appointment_time'] . $appointment_data['appointment_type']);
         $summary = $appointment_data['appointment_type'] . ' - ' . $appointment_data['name'];
         
         // Build description with same details as ICS file
@@ -506,7 +506,7 @@ class RCAB_CalDAV {
                 strpos($event['summary'], $appointment_data['appointment_type']) !== false) {
                 
                 // Extract UID from the event (this is a simplified approach)
-                $uid = 'eab-' . md5($appointment_data['appointment_date'] . $appointment_data['appointment_time'] . $appointment_data['appointment_type']);
+                $uid = 'reventorcab-' . md5($appointment_data['appointment_date'] . $appointment_data['appointment_time'] . $appointment_data['appointment_type']);
                 $event_url = rtrim($this->caldav_url, '/') . '/' . $uid . '.ics';
                 
                 $response = wp_remote_request($event_url, array(
@@ -537,7 +537,7 @@ class RCAB_CalDAV {
             $start_date = gmdate('Y-m-d');
         }
         if (!$end_date) {
-            $booking_days_ahead = get_option('rcab_booking_days_ahead', 7);
+            $booking_days_ahead = get_option('reventorcab_booking_days_ahead', 7);
             $end_datetime = new DateTime("+{$booking_days_ahead} days", new DateTimeZone('UTC'));
             $end_date = $end_datetime->format('Y-m-d');
         }
@@ -569,7 +569,7 @@ class RCAB_CalDAV {
      */
     private function debug_log($message) {
         // Enable CalDAV debug logging temporarily
-        rcab_log('CalDAV Debug: ' . $message);
+        reventorcab_log('CalDAV Debug: ' . $message);
     }
     
     /**
@@ -579,17 +579,17 @@ class RCAB_CalDAV {
         $booked_slots = array();
         $events = $this->get_events_for_date($date);
         
-        rcab_log("get_booked_slots_for_date called for date: $date with " . count($events) . " events");
+        reventorcab_log("get_booked_slots_for_date called for date: $date with " . count($events) . " events");
         
         // Get the booking system's time slot interval from granularity setting
-        $slot_interval = get_option('rcab_timeslot_granularity', 15);
+        $slot_interval = get_option('reventorcab_timeslot_granularity', 15);
         
         foreach ($events as $event) {
             // Convert event start and end times to local timezone
             $local_start = $this->convert_utc_to_local($event['start']);
             $local_end = $this->convert_utc_to_local($event['end']);
             
-            rcab_log("Processing event: " . gmdate('Y-m-d H:i:s', $event['start']) . " to " . gmdate('Y-m-d H:i:s', $event['end']) . " UTC");
+            reventorcab_log("Processing event: " . gmdate('Y-m-d H:i:s', $event['start']) . " to " . gmdate('Y-m-d H:i:s', $event['end']) . " UTC");
             
             // Create DateTime objects for proper timezone-aware formatting
             $local_start_dt = new DateTime('@' . $local_start);
@@ -598,7 +598,7 @@ class RCAB_CalDAV {
             $local_start_dt->setTimezone($timezone);
             $local_end_dt->setTimezone($timezone);
             
-            rcab_log("Local times: " . $local_start_dt->format('Y-m-d H:i:s') . " to " . $local_end_dt->format('Y-m-d H:i:s'));
+            reventorcab_log("Local times: " . $local_start_dt->format('Y-m-d H:i:s') . " to " . $local_end_dt->format('Y-m-d H:i:s'));
             
             // Generate all time slots that this event overlaps
             $current_time = $local_start;
@@ -613,11 +613,11 @@ class RCAB_CalDAV {
                 $current_time += ($slot_interval * 60); // Move to next slot
             }
             
-            rcab_log("Event blocks slots: " . implode(', ', $event_slots));
+            reventorcab_log("Event blocks slots: " . implode(', ', $event_slots));
         }
         
         $unique_slots = array_unique($booked_slots);
-        rcab_log("Total booked slots: " . implode(', ', $unique_slots));
+        reventorcab_log("Total booked slots: " . implode(', ', $unique_slots));
         
         return $unique_slots;
     }
@@ -641,20 +641,20 @@ class RCAB_CalDAV {
     
     /**
      * Get timezone string - SIMPLIFIED VERSION
-     * Forces use of rcab_timezone only to ensure consistency across servers
+     * Forces use of reventorcab_timezone only to ensure consistency across servers
      */
     private function get_timezone_string() {
         // ONLY use the custom timezone setting - no fallbacks
-        $custom_timezone = get_option('rcab_timezone');
+        $custom_timezone = get_option('reventorcab_timezone');
         
-        // If rcab_timezone is set, use it exclusively
+        // If reventorcab_timezone is set, use it exclusively
         if (!empty($custom_timezone)) {
             return $custom_timezone;
         }
         
         // If not set, return UTC and log a warning
         if (defined('WP_DEBUG') && WP_DEBUG) {
-            error_log('EAB CalDAV Warning: rcab_timezone not set. Please configure it in plugin settings for consistent behavior across servers.'); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
+            error_log('REVENTORCAB CalDAV Warning: reventorcab_timezone not set. Please configure it in plugin settings for consistent behavior across servers.'); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
         }
         return 'UTC';
     }

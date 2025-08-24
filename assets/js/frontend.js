@@ -17,7 +17,7 @@
     function initializeBookingForm() {
         // Initialize timezone detection first - if it fails, stop form initialization
         if (!initTimezoneDetection()) {
-            console.error('EAB: Timezone detection failed, form initialization stopped');
+            console.error('REVENTORCAB: Timezone detection failed, form initialization stopped');
             return;
         }
         
@@ -150,7 +150,7 @@
     function validateServiceSelection() {
         const selectedServiceInput = $('input[name="appointment_type"]:checked');
         if (selectedServiceInput.length === 0) {
-            showError(rcab_frontend.strings.required_fields || 'Please select an appointment type.');
+            showError(reventorcab_frontend.strings.required_fields || 'Please select an appointment type.');
             return false;
         }
         
@@ -200,7 +200,7 @@
         }
         
         if (!isValidEmail(email)) {
-            showError(rcab_frontend.strings.invalid_email || 'Please enter a valid email address.');
+            showError(reventorcab_frontend.strings.invalid_email || 'Please enter a valid email address.');
             $('#customer_email').focus();
             return false;
         }
@@ -243,7 +243,7 @@
         const userTimezoneOffset = getUserTimezoneOffsetMinutes();
         
         // Show loading state
-        container.html('<div class="eab-loading-slots"><div class="eab-spinner"></div><p>' + (rcab_frontend.strings.loading || 'Loading available times...') + '</p></div>');
+        container.html('<div class="eab-loading-slots"><div class="eab-spinner"></div><p>' + (reventorcab_frontend.strings.loading || 'Loading available times...') + '</p></div>');
         
         // Debug logging for AJAX request
         console.log('=== AJAX Request Debug ===');
@@ -256,11 +256,11 @@
         
         // Load time slots directly (CalDAV sync already done when moving from step 1)
         $.ajax({
-            url: rcab_frontend.ajax_url,
+            url: reventorcab_frontend.ajax_url,
             type: 'POST',
             data: {
-                action: 'rcab_get_available_slots',
-                nonce: rcab_frontend.nonce,
+                action: 'reventorcab_get_available_slots',
+                nonce: reventorcab_frontend.nonce,
                 date: date,
                 appointment_type: appointmentType,
                 duration: appointmentDuration,
@@ -269,7 +269,7 @@
             },
             success: function(response) {
                 // Debug logging
-                console.log('EAB AJAX Response:', response);
+                console.log('REVENTORCAB AJAX Response:', response);
                 console.log('Response success:', response.success);
                 console.log('Response data:', response.data);
                 
@@ -286,7 +286,7 @@
                 }
             },
             error: function(xhr, status, error) {
-                console.log('EAB AJAX Error:', status, error);
+                console.log('REVENTORCAB AJAX Error:', status, error);
                 console.log('Response text:', xhr.responseText);
                 showNoSlotsMessage();
             }
@@ -318,7 +318,7 @@
     
     function showNoSlotsMessage() {
         const container = $('#time-slots-container');
-        container.html('<div class="eab-no-date-selected"><span class="dashicons dashicons-info"></span>' + (rcab_frontend.strings.no_slots || 'No available time slots for this date.') + '</div>');
+        container.html('<div class="eab-no-date-selected"><span class="dashicons dashicons-info"></span>' + (reventorcab_frontend.strings.no_slots || 'No available time slots for this date.') + '</div>');
         
         selectedTimeSlot = null;
         $('#appointment_time').val('');
@@ -336,7 +336,7 @@
     
     function formatTime(time) {
         // Get time format setting from backend
-        const timeFormat = rcab_frontend.settings.time_format || '24h';
+        const timeFormat = reventorcab_frontend.settings.time_format || '24h';
         
         if (timeFormat === '12h') {
             // Convert 24-hour format to 12-hour format
@@ -422,7 +422,7 @@
             const email = $(this).val().trim();
             if (email && !isValidEmail(email)) {
                 $(this).addClass('error');
-                showError(rcab_frontend.strings.invalid_email || 'Please enter a valid email address.');
+                showError(reventorcab_frontend.strings.invalid_email || 'Please enter a valid email address.');
             } else {
                 $(this).removeClass('error');
             }
@@ -461,8 +461,8 @@
         showLoadingOverlay();
         
         const submitData = {
-            action: 'rcab_book_appointment',
-            nonce: rcab_frontend.nonce,
+            action: 'reventorcab_book_appointment',
+            nonce: reventorcab_frontend.nonce,
             name: formData.name,
             email: formData.email,
             phone: formData.phone,
@@ -476,12 +476,12 @@
         };
         
         // Debug logging for duration
-        console.log('EAB Submit Data:', submitData);
+        console.log('REVENTORCAB Submit Data:', submitData);
         console.log('Form Data Duration:', formData.appointmentDuration);
         console.log('Selected Service Duration:', $('input[name="appointment_type"]:checked').data('duration'));
         
         $.ajax({
-            url: rcab_frontend.ajax_url,
+            url: reventorcab_frontend.ajax_url,
             type: 'POST',
             data: submitData,
             success: function(response) {
@@ -499,13 +499,13 @@
                         showTimezoneError(response.data.message);
                     } else {
                         // Regular error
-                        showError(response.data.message || rcab_frontend.strings.booking_error);
+                        showError(response.data.message || reventorcab_frontend.strings.booking_error);
                     }
                 }
             },
             error: function() {
                 hideLoadingOverlay();
-                showError(rcab_frontend.strings.booking_error || 'Error booking appointment. Please try again.');
+                showError(reventorcab_frontend.strings.booking_error || 'Error booking appointment. Please try again.');
             }
         });
     }
@@ -577,7 +577,7 @@
             showLoadingOverlay();
             
             $.ajax({
-                url: rcab_frontend.ajax_url,
+                url: reventorcab_frontend.ajax_url,
                 type: 'POST',
                 data: originalSubmitData,
                 success: function(response) {
@@ -585,12 +585,12 @@
                     if (response.success) {
                         showSuccessStep();
                     } else {
-                        showError(response.data.message || rcab_frontend.strings.booking_error);
+                        showError(response.data.message || reventorcab_frontend.strings.booking_error);
                     }
                 },
                 error: function() {
                     hideLoadingOverlay();
-                    showError(rcab_frontend.strings.booking_error || 'Error booking appointment. Please try again.');
+                    showError(reventorcab_frontend.strings.booking_error || 'Error booking appointment. Please try again.');
                 }
             });
         });
@@ -661,9 +661,9 @@
         const userTimezoneOffset = getUserTimezoneOffsetMinutes();
         const timezoneInfo = getTimezoneDisplayName();
         
-        console.log('EAB Debug - User timezone detected:', userTimezone);
-        console.log('EAB Debug - User timezone offset (minutes):', userTimezoneOffset);
-        console.log('EAB Debug - Timezone display info:', timezoneInfo);
+        console.log('REVENTORCAB Debug - User timezone detected:', userTimezone);
+        console.log('REVENTORCAB Debug - User timezone offset (minutes):', userTimezoneOffset);
+        console.log('REVENTORCAB Debug - Timezone display info:', timezoneInfo);
         
         // Check if timezone detection completely failed
         if (!userTimezone) {
@@ -777,7 +777,7 @@
     function showServiceSyncIndicator() {
         const step1 = $('#step-1');
         if (step1.find('.eab-service-sync').length === 0) {
-            const syncHtml = '<div class="eab-service-sync" style="margin-top: 15px; padding: 10px; background: #f8f9fa; border-radius: 4px; text-align: center;"><div class="eab-spinner" style="display: inline-block; margin-right: 8px;"></div><span>' + (rcab_frontend.strings.syncing_calendar || 'Syncing with calendar...') + '</span></div>';
+            const syncHtml = '<div class="eab-service-sync" style="margin-top: 15px; padding: 10px; background: #f8f9fa; border-radius: 4px; text-align: center;"><div class="eab-spinner" style="display: inline-block; margin-right: 8px;"></div><span>' + (reventorcab_frontend.strings.syncing_calendar || 'Syncing with calendar...') + '</span></div>';
             step1.append(syncHtml);
         }
     }
@@ -789,11 +789,11 @@
     function performInitialCalendarSync() {
         return new Promise(function(resolve) {
             $.ajax({
-                url: rcab_frontend.ajax_url,
+                url: reventorcab_frontend.ajax_url,
                 type: 'POST',
                 data: {
-                    action: 'rcab_sync_calendar',
-                    nonce: rcab_frontend.nonce
+                    action: 'reventorcab_sync_calendar',
+                    nonce: reventorcab_frontend.nonce
                 },
                 success: function(response) {
                     if (response.success) {
@@ -830,7 +830,7 @@
     
     function syncCalendarData() {
         // Show loading indicator - centered spinner with description
-        const loadingHtml = '<div class="eab-loading-slots"><div class="eab-spinner"></div><p>' + (rcab_frontend.strings.syncing_calendar || 'Syncing with calendar...') + '</p></div>';
+        const loadingHtml = '<div class="eab-loading-slots"><div class="eab-spinner"></div><p>' + (reventorcab_frontend.strings.syncing_calendar || 'Syncing with calendar...') + '</p></div>';
         
         // Add loading overlay to step 2
         const step2 = $('#step-2');
@@ -839,11 +839,11 @@
         }
         
         $.ajax({
-            url: rcab_frontend.ajax_url,
+            url: reventorcab_frontend.ajax_url,
             type: 'POST',
             data: {
-                action: 'rcab_sync_calendar',
-                nonce: rcab_frontend.nonce
+                action: 'reventorcab_sync_calendar',
+                nonce: reventorcab_frontend.nonce
             },
             success: function(response) {
                 // Remove loading indicator
@@ -886,11 +886,11 @@
     
     // Auto-save form data to localStorage
     function saveFormData() {
-        localStorage.setItem('rcab_form_data', JSON.stringify(formData));
+        localStorage.setItem('reventorcab_form_data', JSON.stringify(formData));
     }
     
     function loadFormData() {
-        const saved = localStorage.getItem('rcab_form_data');
+        const saved = localStorage.getItem('reventorcab_form_data');
         if (saved) {
             try {
                 formData = JSON.parse(saved);
@@ -902,7 +902,7 @@
     }
     
     function clearFormData() {
-        localStorage.removeItem('rcab_form_data');
+        localStorage.removeItem('reventorcab_form_data');
         formData = {};
     }
     

@@ -8,9 +8,9 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-$settings = rcab_get_settings();
+$settings = reventorcab_get_settings();
 $appointment_types = $settings['appointment_types'];
-$available_dates = rcab_get_available_dates();
+$available_dates = reventorcab_get_available_dates();
 
 // Handle backward compatibility for appointment types
 if (!empty($appointment_types) && is_string($appointment_types[0])) {
@@ -50,7 +50,7 @@ if (!empty($appointment_types) && is_string($appointment_types[0])) {
     </div>
     
     <form id="eab-appointment-form" class="eab-form">
-        <?php wp_nonce_field('rcab_frontend_nonce', 'rcab_frontend_nonce'); ?>
+        <?php wp_nonce_field('reventorcab_frontend_nonce', 'reventorcab_frontend_nonce'); ?>
         <input type="hidden" name="appointment_duration" id="appointment_duration" value="<?php echo esc_attr($settings['timeslot_duration']); ?>" />
         
         <!-- Step 1: Service Selection -->
@@ -192,9 +192,9 @@ if (!empty($appointment_types) && is_string($appointment_types[0])) {
     </div>
     
     <!-- Branding -->
-    <?php if (get_option('rcab_show_credits', 0)): ?>
+    <?php if (get_option('reventorcab_show_credits', 0)): ?>
     <div class="eab-branding">
-        <p><?php esc_html_e('Powered by', 'reventor-calendar-appointment-booking'); ?> <a href="https://kutt.it/wp-plugin" target="_blank" rel="noopener noreferrer" class="eab-branding-link"><?php esc_html_e('REVENTOR REVENTOR Calendar Appointment Booking', 'reventor-calendar-appointment-booking'); ?></a> - <?php esc_html_e('Get your own free booking system!', 'reventor-calendar-appointment-booking'); ?></p>
+        <p><?php esc_html_e('Powered by', 'reventor-calendar-appointment-booking'); ?> <a href="https://kutt.it/wp-plugin" target="_blank" rel="noopener noreferrer" class="eab-branding-link"><?php esc_html_e('REVENTOR Calendar Appointment Booking', 'reventor-calendar-appointment-booking'); ?></a> - <?php esc_html_e('Get your own free booking system!', 'reventor-calendar-appointment-booking'); ?></p>
     </div>
     <?php endif; ?>
 </div>

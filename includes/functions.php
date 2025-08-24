@@ -11,46 +11,46 @@ if (!defined('ABSPATH')) {
 /**
  * Get formatted appointment types for display
  */
-function rcab_get_appointment_types(): array {
-    $types = get_option('rcab_appointment_types', [__('General Consultation', 'reventor-calendar-appointment-booking')]);
+function reventorcab_get_appointment_types(): array {
+    $types = get_option('reventorcab_appointment_types', [__('General Consultation', 'reventor-calendar-appointment-booking')]);
     return is_array($types) ? $types : [__('General Consultation', 'reventor-calendar-appointment-booking')];
 }
 
 /**
  * Get plugin settings
  */
-function rcab_get_settings(): array {
+function reventorcab_get_settings(): array {
     return [
-        'timeslot_duration' => get_option('rcab_timeslot_duration', 30),
-        'booking_days_ahead' => get_option('rcab_booking_days_ahead', 7),
-        'theme_color' => get_option('rcab_theme_color', '#007cba'),
-        'appointment_types' => rcab_get_appointment_types(),
-        'caldav_url' => get_option('rcab_caldav_url', ''),
-        'caldav_username' => get_option('rcab_caldav_username', ''),
-        'caldav_password' => get_option('rcab_caldav_password', '')
+        'timeslot_duration' => get_option('reventorcab_timeslot_duration', 30),
+        'booking_days_ahead' => get_option('reventorcab_booking_days_ahead', 7),
+        'theme_color' => get_option('reventorcab_theme_color', '#007cba'),
+        'appointment_types' => reventorcab_get_appointment_types(),
+        'caldav_url' => get_option('reventorcab_caldav_url', ''),
+        'caldav_username' => get_option('reventorcab_caldav_username', ''),
+        'caldav_password' => get_option('reventorcab_caldav_password', '')
     ];
 }
 
 /**
  * Get the current time format setting
  */
-function rcab_get_time_format(): string {
-    return get_option('rcab_time_format', '24h');
+function reventorcab_get_time_format(): string {
+    return get_option('reventorcab_time_format', '24h');
 }
 
 /**
  * Get the current date format setting
  */
-function rcab_get_date_format(): string {
-    return get_option('rcab_date_format', 'DD.MM.YYYY');
+function reventorcab_get_date_format(): string {
+    return get_option('reventorcab_date_format', 'DD.MM.YYYY');
 }
 
 /**
  * Format date according to the selected date format setting
  */
-function rcab_format_date(string|int $date, ?string $format = null, ?string $timezone = null): string {
-    $format ??= get_option('rcab_date_format', 'DD.MM.YYYY');
-    $timezone ??= rcab_get_timezone_string();
+function reventorcab_format_date(string|int $date, ?string $format = null, ?string $timezone = null): string {
+    $format ??= get_option('reventorcab_date_format', 'DD.MM.YYYY');
+    $timezone ??= reventorcab_get_timezone_string();
     
     try {
         $tz = new DateTimeZone($timezone);
@@ -91,9 +91,9 @@ function rcab_format_date(string|int $date, ?string $format = null, ?string $tim
 /**
  * Format time according to the selected time format setting
  */
-function rcab_format_time(string $time, ?string $format = null, ?string $timezone = null, ?string $date = null): string {
-    $format ??= get_option('rcab_time_format', '24h');
-    $timezone ??= rcab_get_timezone_string();
+function reventorcab_format_time(string $time, ?string $format = null, ?string $timezone = null, ?string $date = null): string {
+    $format ??= get_option('reventorcab_time_format', '24h');
+    $timezone ??= reventorcab_get_timezone_string();
     
     try {
         $tz = new DateTimeZone($timezone);
@@ -135,13 +135,13 @@ function rcab_format_time(string $time, ?string $format = null, ?string $timezon
 /**
  * Get available booking dates
  */
-function rcab_get_available_dates() {
-    $booking_days_ahead = get_option('rcab_booking_days_ahead', 7);
-    $working_days = get_option('rcab_working_days', array('monday', 'tuesday', 'wednesday', 'thursday', 'friday'));
-    $min_booking_advance = get_option('rcab_min_booking_advance', '2h');
+function reventorcab_get_available_dates() {
+    $booking_days_ahead = get_option('reventorcab_booking_days_ahead', 7);
+    $working_days = get_option('reventorcab_working_days', array('monday', 'tuesday', 'wednesday', 'thursday', 'friday'));
+    $min_booking_advance = get_option('reventorcab_min_booking_advance', '2h');
     
     // Calculate minimum advance timestamp using UTC as base to avoid timezone dependency
-    $timezone_string = rcab_get_timezone_string();
+    $timezone_string = reventorcab_get_timezone_string();
     try {
         $timezone = new DateTimeZone($timezone_string);
         // Always use UTC for 'now' to avoid server timezone dependency
@@ -150,9 +150,9 @@ function rcab_get_available_dates() {
     } catch (Exception $e) {
         // Log error and throw exception - no fallback to ensure consistent behavior
         if (defined('WP_DEBUG') && WP_DEBUG) {
-            error_log('EAB Critical Error: Invalid timezone "' . $timezone_string . '" in rcab_get_available_dates(): ' . $e->getMessage()); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
+            error_log('REVENTORCAB Critical Error: Invalid timezone "' . $timezone_string . '" in reventorcab_get_available_dates(): ' . $e->getMessage()); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
         }
-        throw new Exception('EAB timezone configuration error: ' . esc_html($e->getMessage()));
+        throw new Exception('REVENTORCAB timezone configuration error: ' . esc_html($e->getMessage()));
     }
     
     switch ($min_booking_advance) {
@@ -195,10 +195,10 @@ function rcab_get_available_dates() {
         }
         
         // Check if date is a working day and has available time slots
-        if (in_array($day_of_week, $working_days) && rcab_date_has_available_slots($date)) {
+        if (in_array($day_of_week, $working_days) && reventorcab_date_has_available_slots($date)) {
             $dates[] = array(
                 'value' => $date,
-                'label' => rcab_format_date($date)
+                'label' => reventorcab_format_date($date)
             );
         }
     }
@@ -209,7 +209,7 @@ function rcab_get_available_dates() {
 /**
  * Validate appointment data
  */
-function rcab_validate_appointment_data(array $data): array {
+function reventorcab_validate_appointment_data(array $data): array {
     $errors = [];
     
     // Required fields
@@ -231,7 +231,7 @@ function rcab_validate_appointment_data(array $data): array {
     if (!empty($data['appointment_date'])) {
         $date = strtotime($data['appointment_date']);
         $today = strtotime('today');
-        $max_date = strtotime('+' . get_option('rcab_booking_days_ahead', 30) . ' days');
+        $max_date = strtotime('+' . get_option('reventorcab_booking_days_ahead', 30) . ' days');
         
         if ($date <= $today) {
             $errors[] = __('Appointment date must be in the future.', 'reventor-calendar-appointment-booking');
@@ -256,7 +256,7 @@ function rcab_validate_appointment_data(array $data): array {
 /**
  * Sanitize appointment data
  */
-function rcab_sanitize_appointment_data($data) {
+function reventorcab_sanitize_appointment_data($data) {
     $sanitized = array();
     
     $sanitized['name'] = sanitize_text_field($data['name'] ?? '');
@@ -273,7 +273,7 @@ function rcab_sanitize_appointment_data($data) {
 /**
  * Get appointment status options
  */
-function rcab_get_status_options(): array {
+function reventorcab_get_status_options(): array {
     return [
         'confirmed' => __('Confirmed', 'reventor-calendar-appointment-booking'),
         'pending' => __('Pending', 'reventor-calendar-appointment-booking'),
@@ -285,21 +285,21 @@ function rcab_get_status_options(): array {
 /**
  * Generate unique appointment ID
  */
-function rcab_generate_appointment_id(): string {
-    return 'EAB-' . strtoupper(wp_generate_password(8, false));
+function reventorcab_generate_appointment_id(): string {
+    return 'REVENTORCAB-' . strtoupper(wp_generate_password(8, false));
 }
 
 /**
  * Check if time slot is available
  */
-function rcab_is_time_slot_available(string $date, string $time): bool {
+function reventorcab_is_time_slot_available(string $date, string $time): bool {
     global $wpdb;
     
-    $table_name = $wpdb->prefix . 'rcab_appointments';
+    $table_name = $wpdb->prefix . 'reventorcab_appointments';
     
     // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
     $count = $wpdb->get_var($wpdb->prepare(
-        "SELECT COUNT(*) FROM `{$wpdb->prefix}rcab_appointments` WHERE appointment_date = %s AND appointment_time = %s AND status = 'confirmed'",
+        "SELECT COUNT(*) FROM `{$wpdb->prefix}reventorcab_appointments` WHERE appointment_date = %s AND appointment_time = %s AND status = 'confirmed'",
         $date,
         $time
     ));
@@ -310,8 +310,8 @@ function rcab_is_time_slot_available(string $date, string $time): bool {
 /**
  * Get business hours
  */
-function rcab_get_business_hours(): array {
-    return apply_filters('rcab_business_hours', [
+function reventorcab_get_business_hours(): array {
+    return apply_filters('reventorcab_business_hours', [
         'start' => '09:00',
         'end' => '17:00',
         'days' => [1, 2, 3, 4, 5] // Monday to Friday
@@ -321,8 +321,8 @@ function rcab_get_business_hours(): array {
 /**
  * Check if date is a business day
  */
-function rcab_is_business_day($date) {
-    $business_hours = rcab_get_business_hours();
+function reventorcab_is_business_day($date) {
+    $business_hours = reventorcab_get_business_hours();
     $day_of_week = gmdate('w', strtotime($date));
     
     return in_array($day_of_week, $business_hours['days']);
@@ -331,35 +331,35 @@ function rcab_is_business_day($date) {
 /**
  * Get plugin version
  */
-function rcab_get_version() {
-    return RCAB_VERSION;
+function reventorcab_get_version() {
+    return REVENTORCAB_VERSION;
 }
 
 /**
  * Debug logging function - enabled for troubleshooting
  */
-function rcab_log($message) {
+function reventorcab_log($message) {
     if (defined('WP_DEBUG') && WP_DEBUG) {
-        error_log('EAB Debug: ' . $message); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
+        error_log('REVENTORCAB Debug: ' . $message); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
     }
 }
 
 /**
  * Get timezone string - SIMPLIFIED VERSION
- * Forces use of rcab_timezone only to ensure consistency across servers
+ * Forces use of reventorcab_timezone only to ensure consistency across servers
  */
-function rcab_get_timezone_string() {
+function reventorcab_get_timezone_string() {
     // ONLY use the custom timezone setting - no fallbacks
-    $custom_timezone = get_option('rcab_timezone');
+    $custom_timezone = get_option('reventorcab_timezone');
     
-    // If rcab_timezone is set, use it exclusively
+    // If reventorcab_timezone is set, use it exclusively
     if (!empty($custom_timezone)) {
         return $custom_timezone;
     }
     
     // If not set, return UTC and log a warning
     if (defined('WP_DEBUG') && WP_DEBUG) {
-        error_log('EAB Warning: rcab_timezone not set. Please configure it in plugin settings for consistent behavior across servers.'); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
+        error_log('REVENTORCAB Warning: reventorcab_timezone not set. Please configure it in plugin settings for consistent behavior across servers.'); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
     }
     return 'UTC';
 }
@@ -367,8 +367,8 @@ function rcab_get_timezone_string() {
 /**
  * Convert time to user timezone
  */
-function rcab_convert_to_user_timezone($datetime, $format = 'Y-m-d H:i:s') {
-    $timezone = new DateTimeZone(rcab_get_timezone_string());
+function reventorcab_convert_to_user_timezone($datetime, $format = 'Y-m-d H:i:s') {
+    $timezone = new DateTimeZone(reventorcab_get_timezone_string());
     $date = new DateTime($datetime, new DateTimeZone('UTC'));
     $date->setTimezone($timezone);
     
@@ -378,7 +378,7 @@ function rcab_convert_to_user_timezone($datetime, $format = 'Y-m-d H:i:s') {
 /**
  * Get localized month names
  */
-function rcab_get_month_names() {
+function reventorcab_get_month_names() {
     global $wp_locale;
     
     $months = array();
@@ -392,7 +392,7 @@ function rcab_get_month_names() {
 /**
  * Get localized day names
  */
-function rcab_get_day_names() {
+function reventorcab_get_day_names() {
     global $wp_locale;
     
     $days = array();
@@ -406,27 +406,27 @@ function rcab_get_day_names() {
 /**
  * Check if a date has available time slots
  */
-function rcab_date_has_available_slots($date) {
+function reventorcab_date_has_available_slots($date) {
     // Get default appointment type duration
-    $appointment_types = rcab_get_appointment_types();
+    $appointment_types = reventorcab_get_appointment_types();
     $duration = 30; // Default duration
     if (!empty($appointment_types) && isset($appointment_types[0]['duration'])) {
         $duration = intval($appointment_types[0]['duration']);
     }
     
     // Check if it's a working day (using timezone-aware calculation)
-    $working_days = get_option('rcab_working_days', ['monday', 'tuesday', 'wednesday', 'thursday', 'friday']);
+    $working_days = get_option('reventorcab_working_days', ['monday', 'tuesday', 'wednesday', 'thursday', 'friday']);
     
     // Get timezone setting - use plugin timezone for consistency
     try {
-        $timezone_string = rcab_get_timezone_string();
+        $timezone_string = reventorcab_get_timezone_string();
         $timezone = new DateTimeZone($timezone_string);
     } catch (Exception $e) {
         // Log error and throw exception - no fallback to ensure consistent behavior
         if (defined('WP_DEBUG') && WP_DEBUG) {
-            error_log('EAB Critical Error: Invalid timezone "' . $timezone_string . '" in rcab_date_has_available_slots(): ' . $e->getMessage()); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
+            error_log('REVENTORCAB Critical Error: Invalid timezone "' . $timezone_string . '" in reventorcab_date_has_available_slots(): ' . $e->getMessage()); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
         }
-        throw new Exception('EAB timezone configuration error: ' . esc_html($e->getMessage()));
+        throw new Exception('REVENTORCAB timezone configuration error: ' . esc_html($e->getMessage()));
     }
     
     $date_obj = new DateTime($date, $timezone);
@@ -437,8 +437,8 @@ function rcab_date_has_available_slots($date) {
     }
     
     // Check minimum advance time using UTC as base to avoid timezone dependency
-    $min_advance = get_option('rcab_min_booking_advance', '2h');
-    $timezone_string = rcab_get_timezone_string();
+    $min_advance = get_option('reventorcab_min_booking_advance', '2h');
+    $timezone_string = reventorcab_get_timezone_string();
     try {
         $timezone = new DateTimeZone($timezone_string);
         // Always use UTC for 'now' to avoid server timezone dependency
@@ -447,9 +447,9 @@ function rcab_date_has_available_slots($date) {
     } catch (Exception $e) {
         // Log error and throw exception - no fallback to ensure consistent behavior
         if (defined('WP_DEBUG') && WP_DEBUG) {
-            error_log('EAB Critical Error: Invalid timezone "' . $timezone_string . '" in rcab_has_available_slots(): ' . $e->getMessage()); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
+            error_log('REVENTORCAB Critical Error: Invalid timezone "' . $timezone_string . '" in reventorcab_has_available_slots(): ' . $e->getMessage()); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
         }
-        throw new Exception('EAB timezone configuration error: ' . esc_html($e->getMessage()));
+        throw new Exception('REVENTORCAB timezone configuration error: ' . esc_html($e->getMessage()));
     }
 
     switch ($min_advance) {
@@ -487,8 +487,8 @@ function rcab_date_has_available_slots($date) {
     }
     
     // Generate time slots for this date (using same logic as AJAX handler)
-    $working_hours_start = get_option('rcab_working_hours_start', '09:00');
-    $working_hours_end = get_option('rcab_working_hours_end', '17:00');
+    $working_hours_start = get_option('reventorcab_working_hours_start', '09:00');
+    $working_hours_end = get_option('reventorcab_working_hours_end', '17:00');
     
     // Create timezone-aware datetime objects for working hours
     $start_datetime = new DateTime($date . ' ' . $working_hours_start . ':00', $timezone);
@@ -522,11 +522,11 @@ function rcab_date_has_available_slots($date) {
     
     // Check for booked slots
     global $wpdb;
-    $table_name = $wpdb->prefix . 'rcab_appointments';
+    $table_name = $wpdb->prefix . 'reventorcab_appointments';
     // phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery -- Custom table query required
     // phpcs:disable WordPress.DB.DirectDatabaseQuery.NoCaching -- Real-time booking data needed
     $booked_slots = $wpdb->get_col($wpdb->prepare(
-        "SELECT appointment_time FROM `{$wpdb->prefix}rcab_appointments` WHERE appointment_date = %s AND status = 'confirmed'",
+        "SELECT appointment_time FROM `{$wpdb->prefix}reventorcab_appointments` WHERE appointment_date = %s AND status = 'confirmed'",
         $date
     ));
     // phpcs:enable WordPress.DB.DirectDatabaseQuery.DirectQuery
@@ -534,14 +534,14 @@ function rcab_date_has_available_slots($date) {
     
     // Check for CalDAV conflicts if configured
     $caldav_conflicts = [];
-    $caldav_url = get_option('rcab_caldav_url', '');
-    $caldav_username = get_option('rcab_caldav_username', '');
-    $caldav_password = get_option('rcab_caldav_password', '');
+    $caldav_url = get_option('reventorcab_caldav_url', '');
+    $caldav_username = get_option('reventorcab_caldav_username', '');
+    $caldav_password = get_option('reventorcab_caldav_password', '');
     
     if (!empty($caldav_url) && !empty($caldav_username) && !empty($caldav_password)) {
         // Always fetch fresh data directly from CalDAV server
-        if (class_exists('RCAB_CalDAV')) {
-            $caldav = new RCAB_CalDAV();
+        if (class_exists('REVENTORCAB_CalDAV')) {
+            $caldav = new REVENTORCAB_CalDAV();
             $caldav_conflicts = $caldav->get_conflicts($date, $available_slots, $duration);
         }
     }
