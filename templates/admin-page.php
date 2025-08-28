@@ -157,6 +157,17 @@ $appointment_types = get_option('reventorcab_appointment_types', array(array('na
                         <p class="description"><?php esc_html_e('Choose how dates should be displayed throughout the booking system.', 'reventor-calendar-appointment-booking'); ?></p>
                     </div>
 
+                    <div class="reventorcab-field-group">
+                        <label for="appointment_reminder"><?php esc_html_e('Appointment Reminder', 'reventor-calendar-appointment-booking'); ?></label>
+                        <select id="appointment_reminder" name="appointment_reminder">
+                            <option value="none" <?php selected($appointment_reminder, 'none'); ?>><?php esc_html_e('No reminder', 'reventor-calendar-appointment-booking'); ?></option>
+                            <option value="5" <?php selected($appointment_reminder, '5'); ?>>5 <?php esc_html_e('minutes', 'reventor-calendar-appointment-booking'); ?></option>
+                            <option value="10" <?php selected($appointment_reminder, '10'); ?> selected>10 <?php esc_html_e('minutes', 'reventor-calendar-appointment-booking'); ?></option>
+                            <option value="15" <?php selected($appointment_reminder, '15'); ?>>15 <?php esc_html_e('minutes', 'reventor-calendar-appointment-booking'); ?></option>
+                        </select>
+                        <p class="description"><?php esc_html_e('Set a reminder time for appointments in calendar invitations. This will be included in the ICS file sent to customers and set for admin appointments.', 'reventor-calendar-appointment-booking'); ?></p>
+                    </div>
+
                 </div>
                 
                 <!-- Booking Restrictions -->

@@ -453,6 +453,17 @@ class REVENTORCAB_CalDAV {
             $ical_content .= "URL:" . $appointment_data['jitsi_url'] . "\r\n";
         }
         $ical_content .= "STATUS:CONFIRMED\r\n";
+        
+        // Add reminder if configured
+        $reminder_minutes = get_option('reventorcab_appointment_reminder', '10');
+        if ($reminder_minutes !== 'none' && is_numeric($reminder_minutes)) {
+            $ical_content .= "BEGIN:VALARM\r\n";
+            $ical_content .= "ACTION:DISPLAY\r\n";
+            $ical_content .= "DESCRIPTION:Reminder for appointment\r\n";
+            $ical_content .= "TRIGGER:-PT" . $reminder_minutes . "M\r\n";
+            $ical_content .= "END:VALARM\r\n";
+        }
+        
         $ical_content .= "END:VEVENT\r\n";
         $ical_content .= "END:VCALENDAR\r\n";
         

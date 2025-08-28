@@ -3,7 +3,7 @@ Contributors: REVENTOR
 Tags: appointments, booking, calendar, scheduling
 Requires at least: 6.3
 Tested up to: 6.8
-Stable tag: 1.0.0
+Stable tag: 1.0.2
 Requires PHP: 8.1
 License: GPL v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -40,6 +40,15 @@ Use the shortcode [reventor-booking] to display the booking form on any page or 
 Yes, you can configure the available time slots and working days in the plugin settings.
 
 == Changelog ==
+
+= 1.0.2 =
+* Added appointment reminder feature
+* Added configurable reminder time (5, 10, or 15 minutes) in admin settings
+* Added VALARM component to ICS files for email notifications
+* Added VALARM component to CalDAV events for admin calendar reminders
+
+= 1.0.1 =
+* Minor CSS fixes
 
 = 1.0.0 =
 * Initial release

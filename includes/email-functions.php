@@ -161,6 +161,9 @@ function reventorcab_generate_ics_file($appointment_data) {
     $site_name = get_bloginfo('name');
     $site_url = get_bloginfo('url');
     
+    // Get reminder setting
+    $reminder_minutes = get_option('reventorcab_appointment_reminder', '10');
+    
     // Get local timezone for conversion
     $user_timezone = isset($appointment_data['user_timezone']) ? $appointment_data['user_timezone'] : null;
     $timezone_string = $user_timezone ? $user_timezone : reventorcab_get_timezone_string();
@@ -251,6 +254,16 @@ function reventorcab_generate_ics_file($appointment_data) {
         $ics_content .= "URL:" . reventorcab_ical_escape($appointment_data['jitsi_url']) . "\r\n";
     }
     $ics_content .= "STATUS:CONFIRMED\r\n";
+    
+    // Add reminder if configured
+    if ($reminder_minutes !== 'none' && is_numeric($reminder_minutes)) {
+        $ics_content .= "BEGIN:VALARM\r\n";
+        $ics_content .= "ACTION:DISPLAY\r\n";
+        $ics_content .= "DESCRIPTION:Reminder for appointment\r\n";
+        $ics_content .= "TRIGGER:-PT" . $reminder_minutes . "M\r\n";
+        $ics_content .= "END:VALARM\r\n";
+    }
+    
     $ics_content .= "END:VEVENT\r\n";
     $ics_content .= "END:VCALENDAR\r\n";
     

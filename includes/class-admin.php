@@ -57,6 +57,7 @@ class REVENTORCAB_Admin {
         register_setting('reventorcab_settings', 'reventorcab_time_format', ['sanitize_callback' => 'sanitize_text_field']);
         register_setting('reventorcab_settings', 'reventorcab_date_format', ['sanitize_callback' => 'sanitize_text_field']);
         register_setting('reventorcab_settings', 'reventorcab_show_credits', ['sanitize_callback' => [$this, 'sanitize_checkbox']]);
+        register_setting('reventorcab_settings', 'reventorcab_appointment_reminder', ['sanitize_callback' => [$this, 'sanitize_reminder_time']]);
     }
     
     public function sanitize_working_days($value) {
@@ -119,6 +120,12 @@ class REVENTORCAB_Admin {
         return !empty($value) ? 1 : 0;
     }
     
+    public function sanitize_reminder_time($value) {
+        $valid_times = array('5', '10', '15', 'none');
+        $value = sanitize_text_field($value);
+        return in_array($value, $valid_times, true) ? $value : 'none';
+    }
+    
     public function enqueue_admin_scripts($hook) {
         if ($hook !== 'settings_page_reventor-calendar-appointment-booking') {
             return;
@@ -176,6 +183,7 @@ class REVENTORCAB_Admin {
         $date_format = get_option('reventorcab_date_format', 'DD.MM.YYYY');
         $timeslot_granularity = get_option('reventorcab_timeslot_granularity', 15);
         $show_credits = get_option('reventorcab_show_credits', 0);
+        $appointment_reminder = get_option('reventorcab_appointment_reminder', 'none');
         
         include REVENTORCAB_PLUGIN_PATH . 'templates/admin-page.php';
     }
@@ -212,6 +220,7 @@ class REVENTORCAB_Admin {
         $date_format = isset($_POST['date_format']) ? sanitize_text_field(wp_unslash($_POST['date_format'])) : 'DD.MM.YYYY';
         $timeslot_granularity = isset($_POST['timeslot_granularity']) ? intval($_POST['timeslot_granularity']) : 15;
         $show_credits = isset($_POST['show_credits']) ? 1 : 0;
+        $appointment_reminder = isset($_POST['appointment_reminder']) ? sanitize_text_field(wp_unslash($_POST['appointment_reminder'])) : '10';
         // phpcs:enable WordPress.Security.NonceVerification.Missing
         
         update_option('reventorcab_timeslot_duration', $timeslot_duration);
@@ -222,6 +231,7 @@ class REVENTORCAB_Admin {
         update_option('reventorcab_show_credits', $show_credits);
         update_option('reventorcab_date_format', $date_format);
         update_option('reventorcab_timeslot_granularity', $timeslot_granularity);
+        update_option('reventorcab_appointment_reminder', $appointment_reminder);
         
         return true;
     }
@@ -507,7 +517,8 @@ class REVENTORCAB_Admin {
             'reventorcab_email_sender_email' => get_option('reventorcab_email_sender_email', ''),
             'reventorcab_timezone' => $this->get_timezone_string(),
             'reventorcab_time_format' => get_option('reventorcab_time_format', 'H:i'),
-            'reventorcab_date_format' => get_option('reventorcab_date_format', 'Y-m-d')
+            'reventorcab_date_format' => get_option('reventorcab_date_format', 'Y-m-d'),
+            'reventorcab_appointment_reminder' => get_option('reventorcab_appointment_reminder', '10')
         );
         
         // Create export data

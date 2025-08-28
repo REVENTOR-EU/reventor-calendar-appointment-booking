@@ -3,7 +3,7 @@
  * Plugin Name: REVENTOR Calendar Appointment Booking
  * Description: A REVENTOR calendar appointment booking system with CalDAV integration for seamless scheduling and calendar synchronization.
  * Plugin URI: https://wordpress.org/plugins/reventor-calendar-appointment-booking/
- * Version: 1.0.0
+ * Version: 1.0.2
  * Author: REVENTOR
  * Author URI: https://reventor.eu
  * License: GPL v2 or later
