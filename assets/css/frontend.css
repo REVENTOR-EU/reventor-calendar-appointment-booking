@@ -2,7 +2,7 @@
  * Frontend styles for REVENTOR Calendar Appointment Booking
  */
 
-.eab-booking-form {
+.reventorcab-booking-form {
     max-width: 800px;
     margin: 0 auto;
     background: #fff;
@@ -14,7 +14,7 @@
 }
 
 /* Form Header */
-.eab-form-header {
+.reventorcab-form-header {
     background: linear-gradient(135deg, #007cba 0%, #005a87 100%);
     color: #fff;
     padding: 30px;
@@ -22,20 +22,20 @@
     position: relative;
 }
 
-.eab-form-header h3 {
+.reventorcab-form-header h3 {
     margin: 0 0 20px 0;
     font-size: 24px;
     font-weight: 600;
 }
 
-.eab-progress-container {
+.reventorcab-progress-container {
     background: rgba(255, 255, 255, 0.2);
     height: 4px;
     border-radius: 2px;
     overflow: hidden;
 }
 
-.eab-progress-bar {
+.reventorcab-progress-bar {
     height: 100%;
     background: #fff;
     width: 25%;
@@ -44,7 +44,7 @@
 }
 
 /* Steps Indicator */
-.eab-steps-indicator {
+.reventorcab-steps-indicator {
     display: flex;
     justify-content: space-between;
     padding: 30px;
@@ -52,7 +52,7 @@
     border-bottom: 1px solid #e9ecef;
 }
 
-.eab-step {
+.reventorcab-step {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -60,7 +60,7 @@
     position: relative;
 }
 
-.eab-step:not(:last-child)::after {
+.reventorcab-step:not(:last-child)::after {
     content: '';
     position: absolute;
     top: 15px;
@@ -71,12 +71,12 @@
     z-index: 1;
 }
 
-.eab-step.active:not(:last-child)::after,
-.eab-step.completed:not(:last-child)::after {
+.reventorcab-step.active:not(:last-child)::after,
+.reventorcab-step.completed:not(:last-child)::after {
     background: #007cba;
 }
 
-.eab-step-number {
+.reventorcab-step-number {
     width: 30px;
     height: 30px;
     border-radius: 50%;
@@ -93,48 +93,48 @@
     transition: all 0.3s ease;
 }
 
-.eab-step.active .eab-step-number {
+.reventorcab-step.active .reventorcab-step-number {
     background: #007cba;
     color: #fff;
 }
 
-.eab-step.completed .eab-step-number {
+.reventorcab-step.completed .reventorcab-step-number {
     background: #28a745;
     color: #fff;
 }
 
-.eab-step-label {
+.reventorcab-step-label {
     font-size: 12px;
     color: #6c757d;
     text-align: center;
     font-weight: 500;
 }
 
-.eab-step.active .eab-step-label {
+.reventorcab-step.active .reventorcab-step-label {
     color: #007cba;
     font-weight: 600;
 }
 
 /* Form Steps */
-.eab-form {
+.reventorcab-form {
     position: relative;
 }
 
-.eab-form-step {
+.reventorcab-form-step {
     display: none;
     padding: 40px;
     min-height: 400px;
 }
 
-.eab-form-step.active {
+.reventorcab-form-step.active {
     display: block;
 }
 
-.eab-step-content {
+.reventorcab-step-content {
     margin-bottom: 40px;
 }
 
-.eab-step-content h4 {
+.reventorcab-step-content h4 {
     color: #1d2327;
     font-size: 20px;
     font-weight: 600;
@@ -143,23 +143,23 @@
 }
 
 /* Service Selection */
-.eab-service-grid {
+.reventorcab-service-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 15px;
     margin-top: 20px;
 }
 
-.eab-service-option {
+.reventorcab-service-option {
     cursor: pointer;
     display: block;
 }
 
-.eab-service-option input[type="radio"] {
+.reventorcab-service-option input[type="radio"] {
     display: none;
 }
 
-.eab-service-card {
+.reventorcab-service-card {
     background: #f8f9fa;
     border: 2px solid #e9ecef;
     border-radius: 8px;
@@ -171,7 +171,7 @@
     min-height: 100px;
 }
 
-.eab-service-card::before {
+.reventorcab-service-card::before {
     content: '';
     position: absolute;
     top: 0;
@@ -183,56 +183,56 @@
     transition: transform 0.3s ease;
 }
 
-.eab-service-option:hover .eab-service-card {
+.reventorcab-service-option:hover .reventorcab-service-card {
     border-color: #007cba;
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(0, 124, 186, 0.15);
 }
 
-.eab-service-option input:checked + .eab-service-card {
+.reventorcab-service-option input:checked + .reventorcab-service-card {
     border-color: #007cba;
     background: rgba(0, 124, 186, 0.05);
 }
 
-.eab-service-option input:checked + .eab-service-card::before {
+.reventorcab-service-option input:checked + .reventorcab-service-card::before {
     transform: scaleX(1);
 }
 
-.eab-service-icon {
+.reventorcab-service-icon {
     font-size: 24px;
     color: #007cba;
     margin-bottom: 8px;
 }
 
-.eab-service-name {
+.reventorcab-service-name {
     font-size: 14px;
     font-weight: 600;
     color: #1d2327;
     margin-bottom: 4px;
 }
 
-.eab-service-duration {
+.reventorcab-service-duration {
     font-size: 12px;
     color: #6c757d;
 }
 
 /* Date & Time Selection */
-.eab-datetime-container {
+.reventorcab-datetime-container {
     display: grid;
     grid-template-columns: 1fr 2fr;
     gap: 30px;
     align-items: start;
 }
 
-.eab-date-selection,
-.eab-time-selection {
+.reventorcab-date-selection,
+.reventorcab-time-selection {
     display: grid;
     grid-template-rows: auto 1fr;
     gap: 12px;
 }
 
-.eab-date-selection label,
-.eab-time-selection label {
+.reventorcab-date-selection label,
+.reventorcab-time-selection label {
     font-weight: 600;
     color: #1d2327;
     font-size: 16px;
@@ -240,7 +240,7 @@
     padding: 0;
 }
 
-.eab-date-selection select {
+.reventorcab-date-selection select {
     width: 100%;
     padding: 12px 16px;
     border: 2px solid #e9ecef;
@@ -252,13 +252,13 @@
     box-sizing: border-box;
 }
 
-.eab-date-selection select:focus {
+.reventorcab-date-selection select:focus {
     outline: none;
     border-color: #007cba;
     box-shadow: 0 0 0 3px rgba(0, 124, 186, 0.1);
 }
 
-.eab-time-slots {
+.reventorcab-time-slots {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     gap: 12px;
@@ -266,7 +266,7 @@
     margin: 0;
 }
 
-.eab-time-slot {
+.reventorcab-time-slot {
     background: #f8f9fa;
     border: 2px solid #e9ecef;
     border-radius: 8px;
@@ -284,19 +284,19 @@
     justify-content: center;
 }
 
-.eab-time-slot:hover {
+.reventorcab-time-slot:hover {
     border-color: #007cba;
     background: rgba(0, 124, 186, 0.05);
     transform: translateY(-1px);
 }
 
-.eab-time-slot.selected {
+.reventorcab-time-slot.selected {
     background: #007cba;
     border-color: #007cba;
     color: #fff;
 }
 
-.eab-time-slot.unavailable {
+.reventorcab-time-slot.unavailable {
     background: #f8f9fa;
     border-color: #e9ecef;
     color: #6c757d;
@@ -304,7 +304,7 @@
     opacity: 0.6;
 }
 
-.eab-no-date-selected {
+.reventorcab-no-date-selected {
     grid-column: 1 / -1;
     text-align: center;
     color: #6c757d;
@@ -312,13 +312,13 @@
     font-size: 16px;
 }
 
-.eab-no-date-selected .dashicons {
+.reventorcab-no-date-selected .dashicons {
     font-size: 24px;
     margin-bottom: 10px;
     display: block;
 }
 
-.eab-loading-slots {
+.reventorcab-loading-slots {
     grid-column: 1 / -1;
     text-align: center;
     color: #6c757d;
@@ -327,34 +327,34 @@
 }
 
 /* Personal Information */
-.eab-form-grid {
+.reventorcab-form-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
 }
 
-.eab-form-group {
+.reventorcab-form-group {
     display: flex;
     flex-direction: column;
 }
 
-.eab-form-group-full {
+.reventorcab-form-group-full {
     grid-column: 1 / -1;
 }
 
-.eab-form-group label {
+.reventorcab-form-group label {
     font-weight: 600;
     color: #1d2327;
     margin-bottom: 8px;
     font-size: 14px;
 }
 
-.eab-form-group .required {
+.reventorcab-form-group .required {
     color: #dc3545;
 }
 
-.eab-form-group input,
-.eab-form-group textarea {
+.reventorcab-form-group input,
+.reventorcab-form-group textarea {
     padding: 12px 16px;
     border: 2px solid #e9ecef;
     border-radius: 8px;
@@ -363,32 +363,32 @@
     font-family: inherit;
 }
 
-.eab-form-group input:focus,
-.eab-form-group textarea:focus {
+.reventorcab-form-group input:focus,
+.reventorcab-form-group textarea:focus {
     outline: none;
     border-color: #007cba;
     box-shadow: 0 0 0 3px rgba(0, 124, 186, 0.1);
 }
 
-.eab-form-group textarea {
+.reventorcab-form-group textarea {
     resize: vertical;
     min-height: 100px;
 }
 
 /* Confirmation */
-.eab-confirmation-details {
+.reventorcab-confirmation-details {
     display: grid;
     gap: 25px;
 }
 
-.eab-confirmation-card {
+.reventorcab-confirmation-card {
     background: #f8f9fa;
     border: 1px solid #e9ecef;
     border-radius: 12px;
     padding: 25px;
 }
 
-.eab-confirmation-header {
+.reventorcab-confirmation-header {
     display: flex;
     align-items: center;
     gap: 12px;
@@ -397,19 +397,19 @@
     border-bottom: 1px solid #e9ecef;
 }
 
-.eab-confirmation-header .dashicons {
+.reventorcab-confirmation-header .dashicons {
     font-size: 20px;
     color: #007cba;
 }
 
-.eab-confirmation-header h5 {
+.reventorcab-confirmation-header h5 {
     margin: 0;
     font-size: 16px;
     font-weight: 600;
     color: #1d2327;
 }
 
-.eab-confirmation-row {
+.reventorcab-confirmation-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -417,22 +417,22 @@
     border-bottom: 1px solid #f0f0f1;
 }
 
-.eab-confirmation-row:last-child {
+.reventorcab-confirmation-row:last-child {
     border-bottom: none;
 }
 
-.eab-confirmation-row strong {
+.reventorcab-confirmation-row strong {
     color: #1d2327;
     font-weight: 600;
 }
 
-.eab-confirmation-row span {
+.reventorcab-confirmation-row span {
     color: #6c757d;
     text-align: right;
 }
 
 /* Navigation Buttons */
-.eab-step-navigation {
+.reventorcab-step-navigation {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -441,11 +441,11 @@
 }
 
 /* First step navigation - align Next button to the right */
-#step-1 .eab-step-navigation {
+#step-1 .reventorcab-step-navigation {
     justify-content: flex-end;
 }
 
-.eab-btn {
+.reventorcab-btn {
     padding: 12px 24px;
     border: none;
     border-radius: 8px;
@@ -461,28 +461,28 @@
     justify-content: center;
 }
 
-.eab-btn-primary {
+.reventorcab-btn-primary {
     background: #007cba;
     color: #fff;
 }
 
-.eab-btn-primary:hover:not(:disabled) {
+.reventorcab-btn-primary:hover:not(:disabled) {
     background: #005a87;
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(0, 124, 186, 0.3);
 }
 
-.eab-btn-secondary {
+.reventorcab-btn-secondary {
     background: #6c757d;
     color: #fff;
 }
 
-.eab-btn-secondary:hover {
+.reventorcab-btn-secondary:hover {
     background: #5a6268;
     transform: translateY(-1px);
 }
 
-.eab-btn:disabled {
+.reventorcab-btn:disabled {
     background: #e9ecef;
     color: #6c757d;
     cursor: not-allowed;
@@ -491,38 +491,38 @@
 }
 
 /* Success State */
-.eab-success-content {
+.reventorcab-success-content {
     text-align: center;
     padding: 40px 20px;
 }
 
-.eab-success-icon {
+.reventorcab-success-icon {
     font-size: 64px;
     color: #28a745;
     margin-bottom: 20px;
 }
 
-.eab-success-content h4 {
+.reventorcab-success-content h4 {
     color: #28a745;
     font-size: 24px;
     font-weight: 600;
     margin-bottom: 15px;
 }
 
-.eab-success-content p {
+.reventorcab-success-content p {
     color: #6c757d;
     font-size: 16px;
     line-height: 1.5;
     margin-bottom: 30px;
 }
 
-.eab-success-content .eab-btn {
+.reventorcab-success-content .reventorcab-btn {
     margin: 0 auto;
     display: inline-flex;
 }
 
 /* Loading Overlay */
-.eab-loading-overlay {
+.reventorcab-loading-overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -535,11 +535,11 @@
     z-index: 1000;
 }
 
-.eab-loading-spinner {
+.reventorcab-loading-spinner {
     text-align: center;
 }
 
-.eab-spinner {
+.reventorcab-spinner {
     width: 40px;
     height: 40px;
     border: 4px solid #f3f3f3;
@@ -554,7 +554,7 @@
     100% { transform: rotate(360deg); }
 }
 
-.eab-loading-spinner p {
+.reventorcab-loading-spinner p {
     color: #6c757d;
     font-weight: 500;
     margin: 0;
@@ -562,38 +562,38 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .eab-booking-form {
+    .reventorcab-booking-form {
         margin: 10px;
         border-radius: 8px;
     }
     
-    .eab-form-header {
+    .reventorcab-form-header {
         padding: 20px;
     }
     
-    .eab-form-header h3 {
+    .reventorcab-form-header h3 {
         font-size: 20px;
     }
     
-    .eab-steps-indicator {
+    .reventorcab-steps-indicator {
         padding: 20px 15px;
     }
     
-    .eab-step-label {
+    .reventorcab-step-label {
         font-size: 10px;
     }
     
-    .eab-form-step {
+    .reventorcab-form-step {
         padding: 15px;
         min-height: 350px;
     }
     
-    .eab-service-grid {
+    .reventorcab-service-grid {
         grid-template-columns: 1fr;
         gap: 10px;
     }
     
-    .eab-service-card {
+    .reventorcab-service-card {
         padding: 12px;
         min-height: 30px;
         display: flex;
@@ -602,94 +602,94 @@
         justify-content: center;
     }
     
-    .eab-service-icon {
+    .reventorcab-service-icon {
         font-size: 20px;
         margin-bottom: 0;
         margin-right: 12px;
         flex-shrink: 0;
     }
     
-    .eab-service-content {
+    .reventorcab-service-content {
         flex: 1;
     }
     
-    .eab-service-name {
+    .reventorcab-service-name {
         font-size: 13px;
         margin-bottom: 2px;
     }
     
-    .eab-service-duration {
+    .reventorcab-service-duration {
         font-size: 11px;
     }
     
-    .eab-datetime-container {
+    .reventorcab-datetime-container {
         grid-template-columns: 1fr;
         gap: 20px;
     }
     
-    .eab-form-grid {
+    .reventorcab-form-grid {
         grid-template-columns: 1fr;
     }
     
-    .eab-time-slots {
+    .reventorcab-time-slots {
         grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
     }
     
-    .eab-step-navigation {
+    .reventorcab-step-navigation {
         flex-direction: column;
         gap: 15px;
     }
     
-    .eab-btn {
+    .reventorcab-btn {
         width: 100%;
     }
     
-    .eab-confirmation-row {
+    .reventorcab-confirmation-row {
         flex-direction: column;
         align-items: flex-start;
         gap: 5px;
     }
     
-    .eab-confirmation-row span {
+    .reventorcab-confirmation-row span {
         text-align: left;
     }
 }
 
 @media (max-width: 1024px) and (min-width: 769px) {
-    .eab-service-grid {
+    .reventorcab-service-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (max-width: 480px) {
-    .eab-steps-indicator {
+    .reventorcab-steps-indicator {
         padding: 15px 10px;
     }
     
-    .eab-step-number {
+    .reventorcab-step-number {
         width: 25px;
         height: 25px;
         font-size: 12px;
     }
     
-    .eab-step-label {
+    .reventorcab-step-label {
         font-size: 9px;
     }
     
-    .eab-form-step {
+    .reventorcab-form-step {
         padding: 15px;
     }
     
-    .eab-success-content .eab-btn {
+    .reventorcab-success-content .reventorcab-btn {
         margin: 0 auto;
         display: inline-flex;
     }
     
-    .eab-service-card {
+    .reventorcab-service-card {
         padding: 20px;
     }
     
-    .eab-confirmation-card {
+    .reventorcab-confirmation-card {
         padding: 20px;
     }
 }
@@ -697,236 +697,236 @@
 /* Dark mode support */
 @media (prefers-color-scheme: dark) {
     /* Main container */
-    .eab-booking-form {
+    .reventorcab-booking-form {
         background: #1d2327;
         color: #f0f0f1;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     }
     
     /* Form header - keep gradient but adjust for dark mode */
-    .eab-form-header {
+    .reventorcab-form-header {
         background: linear-gradient(135deg, #0073aa 0%, #004a6b 100%);
     }
     
     /* Steps indicator */
-    .eab-steps-indicator {
+    .reventorcab-steps-indicator {
         background: #2c3338;
         border-color: #3c434a;
     }
     
-    .eab-step:not(:last-child)::after {
+    .reventorcab-step:not(:last-child)::after {
         background: #3c434a;
     }
     
-    .eab-step.active:not(:last-child)::after,
-    .eab-step.completed:not(:last-child)::after {
+    .reventorcab-step.active:not(:last-child)::after,
+    .reventorcab-step.completed:not(:last-child)::after {
         background: #0073aa;
     }
     
-    .eab-step-number {
+    .reventorcab-step-number {
         background: #3c434a;
         color: #a7aaad;
     }
     
-    .eab-step.active .eab-step-number {
+    .reventorcab-step.active .reventorcab-step-number {
         background: #0073aa;
         color: #fff;
     }
     
-    .eab-step.completed .eab-step-number {
+    .reventorcab-step.completed .reventorcab-step-number {
         background: #00a32a;
         color: #fff;
     }
     
-    .eab-step-label {
+    .reventorcab-step-label {
         color: #a7aaad;
     }
     
-    .eab-step.active .eab-step-label {
+    .reventorcab-step.active .reventorcab-step-label {
         color: #72aee6;
     }
     
     /* Step content headings */
-    .eab-step-content h4 {
+    .reventorcab-step-content h4 {
         color: #f0f0f1;
     }
     
     /* Service cards */
-    .eab-service-card {
+    .reventorcab-service-card {
         background: #2c3338;
         border-color: #3c434a;
     }
     
-    .eab-service-option:hover .eab-service-card {
+    .reventorcab-service-option:hover .reventorcab-service-card {
         border-color: #72aee6;
         box-shadow: 0 8px 25px rgba(114, 174, 230, 0.15);
     }
     
-    .eab-service-option input:checked + .eab-service-card {
+    .reventorcab-service-option input:checked + .reventorcab-service-card {
         border-color: #72aee6;
         background: rgba(114, 174, 230, 0.1);
     }
     
-    .eab-service-card::before {
+    .reventorcab-service-card::before {
         background: #72aee6;
     }
     
-    .eab-service-icon {
+    .reventorcab-service-icon {
         color: #72aee6;
     }
     
-    .eab-service-name {
+    .reventorcab-service-name {
         color: #f0f0f1;
     }
     
-    .eab-service-duration {
+    .reventorcab-service-duration {
         color: #a7aaad;
     }
     
     /* Form inputs */
-    .eab-date-selection label,
-    .eab-time-selection label,
-    .eab-form-group label {
+    .reventorcab-date-selection label,
+    .reventorcab-time-selection label,
+    .reventorcab-form-group label {
         color: #f0f0f1;
     }
     
-    .eab-form-group input,
-    .eab-form-group textarea,
-    .eab-date-selection select {
+    .reventorcab-form-group input,
+    .reventorcab-form-group textarea,
+    .reventorcab-date-selection select {
         background: #2c3338;
         border-color: #3c434a;
         color: #f0f0f1;
     }
     
-    .eab-form-group input:focus,
-    .eab-form-group textarea:focus,
-    .eab-date-selection select:focus {
+    .reventorcab-form-group input:focus,
+    .reventorcab-form-group textarea:focus,
+    .reventorcab-date-selection select:focus {
         border-color: #72aee6;
         box-shadow: 0 0 0 3px rgba(114, 174, 230, 0.1);
     }
     
     /* Time slots */
-    .eab-time-slot {
+    .reventorcab-time-slot {
         background: #2c3338;
         border-color: #3c434a;
         color: #f0f0f1;
     }
     
-    .eab-time-slot:hover {
+    .reventorcab-time-slot:hover {
         border-color: #72aee6;
         background: rgba(114, 174, 230, 0.1);
     }
     
-    .eab-time-slot.selected {
+    .reventorcab-time-slot.selected {
         background: #0073aa;
         border-color: #0073aa;
         color: #fff;
     }
     
-    .eab-time-slot.unavailable {
+    .reventorcab-time-slot.unavailable {
         background: #2c3338;
         border-color: #3c434a;
         color: #646970;
     }
     
     /* No date selected and loading states */
-    .eab-no-date-selected,
-    .eab-loading-slots {
+    .reventorcab-no-date-selected,
+    .reventorcab-loading-slots {
         color: #a7aaad;
     }
     
     /* Confirmation cards */
-    .eab-confirmation-card {
+    .reventorcab-confirmation-card {
         background: #2c3338;
         border-color: #3c434a;
     }
     
-    .eab-confirmation-header {
+    .reventorcab-confirmation-header {
         border-color: #3c434a;
     }
     
-    .eab-confirmation-header .dashicons {
+    .reventorcab-confirmation-header .dashicons {
         color: #72aee6;
     }
     
-    .eab-confirmation-header h5 {
+    .reventorcab-confirmation-header h5 {
         color: #f0f0f1;
     }
     
-    .eab-confirmation-row {
+    .reventorcab-confirmation-row {
         border-color: #3c434a;
     }
     
-    .eab-confirmation-row strong {
+    .reventorcab-confirmation-row strong {
         color: #f0f0f1;
     }
     
-    .eab-confirmation-row span {
+    .reventorcab-confirmation-row span {
         color: #a7aaad;
     }
     
     /* Navigation */
-    .eab-step-navigation {
+    .reventorcab-step-navigation {
         border-color: #3c434a;
     }
     
     /* Buttons */
-    .eab-btn-primary {
+    .reventorcab-btn-primary {
         background: #0073aa;
     }
     
-    .eab-btn-primary:hover:not(:disabled) {
+    .reventorcab-btn-primary:hover:not(:disabled) {
         background: #005177;
         box-shadow: 0 4px 12px rgba(0, 115, 170, 0.3);
     }
     
-    .eab-btn-secondary {
+    .reventorcab-btn-secondary {
         background: #646970;
     }
     
-    .eab-btn-secondary:hover {
+    .reventorcab-btn-secondary:hover {
         background: #50575e;
     }
     
-    .eab-btn:disabled {
+    .reventorcab-btn:disabled {
         background: #3c434a;
         color: #646970;
     }
     
     /* Success state */
-    .eab-success-icon {
+    .reventorcab-success-icon {
         color: #00a32a;
     }
     
-    .eab-success-content h4 {
+    .reventorcab-success-content h4 {
         color: #00a32a;
     }
     
-    .eab-success-content p {
+    .reventorcab-success-content p {
         color: #a7aaad;
     }
     
     /* Loading overlay */
-    .eab-loading-overlay {
+    .reventorcab-loading-overlay {
         background: rgba(29, 35, 39, 0.95);
     }
     
-    .eab-spinner {
+    .reventorcab-spinner {
         border-color: #3c434a;
         border-top-color: #72aee6;
     }
     
-    .eab-loading-spinner p {
+    .reventorcab-loading-spinner p {
         color: #a7aaad;
     }
     
     /* Branding */
-    .eab-branding {
+    .reventorcab-branding {
         background: #2c3338 !important;
         border-top-color: #3c434a !important;
     }
     
-    .eab-branding p {
+    .reventorcab-branding p {
         color: #a7aaad !important;
     }
     
@@ -934,7 +934,7 @@
 }
 
 /* Branding */
-.eab-branding {
+.reventorcab-branding {
     text-align: center;
     padding: 20px;
     background: #f8f9fa;
@@ -942,14 +942,14 @@
     margin-top: 0;
 }
 
-.eab-branding p {
+.reventorcab-branding p {
     margin: 0;
     font-size: 13px;
     color: #6c757d;
     line-height: 1.4;
 }
 
-.eab-branding-link {
+.reventorcab-branding-link {
     color: #007cba;
     text-decoration: none;
     font-weight: 600;
@@ -957,13 +957,13 @@
     position: relative;
 }
 
-.eab-branding-link:hover {
+.reventorcab-branding-link:hover {
     color: #005a87;
     text-decoration: none;
     transform: translateY(-1px);
 }
 
-.eab-branding-link:hover::after {
+.reventorcab-branding-link:hover::after {
     content: '';
     position: absolute;
     bottom: -2px;

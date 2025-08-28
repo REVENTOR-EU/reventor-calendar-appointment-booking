@@ -65,7 +65,7 @@
         });
         
         // Remove appointment type
-        $(document).on('click', '.eab-remove-type', function(e) {
+        $(document).on('click', '.reventorcab-remove-type', function(e) {
             e.preventDefault();
             removeAppointmentType($(this));
         });
@@ -87,7 +87,7 @@
             return;
         }
         
-        const index = container.find('.eab-appointment-type-row').length;
+        const index = container.find('.reventorcab-appointment-type-row').length;
         const newRow = template.replace(/INDEX/g, index);
         
         const $newRow = $(newRow);
@@ -101,11 +101,11 @@
     }
     
     function removeAppointmentType($button) {
-        const $row = $button.closest('.eab-appointment-type-row');
+        const $row = $button.closest('.reventorcab-appointment-type-row');
         const container = $('#appointment-types-container');
         
         // Don't allow removing the last appointment type
-        if (container.find('.eab-appointment-type-row').length <= 1) {
+        if (container.find('.reventorcab-appointment-type-row').length <= 1) {
             alert('You must have at least one appointment type.');
             return;
         }
@@ -118,7 +118,7 @@
     }
     
     function reindexAppointmentTypes() {
-        $('#appointment-types-container .eab-appointment-type-row').each(function(index) {
+        $('#appointment-types-container .reventorcab-appointment-type-row').each(function(index) {
             const $row = $(this);
             $row.find('input[name*="[name]"]').attr('name', 'appointment_types[' + index + '][name]');
             $row.find('select[name*="[duration]"]').attr('name', 'appointment_types[' + index + '][duration]');
@@ -127,19 +127,19 @@
     
     function validateAppointmentTypeName($input) {
         const value = $input.val().trim();
-        const $row = $input.closest('.eab-appointment-type-row');
+        const $row = $input.closest('.reventorcab-appointment-type-row');
         
         // Remove existing validation classes
-        $row.removeClass('eab-validation-error eab-validation-success');
+        $row.removeClass('reventorcab-validation-error reventorcab-validation-success');
         
         if (value.length === 0) {
-            $row.addClass('eab-validation-error');
+            $row.addClass('reventorcab-validation-error');
             return false;
         } else if (value.length < 2) {
-            $row.addClass('eab-validation-error');
+            $row.addClass('reventorcab-validation-error');
             return false;
         } else {
-            $row.addClass('eab-validation-success');
+            $row.addClass('reventorcab-validation-success');
             return true;
         }
     }
@@ -147,7 +147,7 @@
     // saveAppointmentTypes function removed - appointment types are now saved with main settings
     
     function initSaveButton() {
-        $('#eab-save-all').on('click', function() {
+        $('#reventorcab-save-all').on('click', function() {
             const $button = $(this);
             
             // Validate all appointment types before saving
@@ -168,7 +168,7 @@
             $button.text('Saving...');
             
             // Get form data
-            const formData = new FormData($('#eab-settings-form')[0]);
+            const formData = new FormData($('#reventorcab-settings-form')[0]);
             formData.append('action', 'reventorcab_save_settings');
             formData.append('nonce', reventorcab_admin.nonce);
             
@@ -246,7 +246,7 @@
     }
     
     function initShortcodeCopy() {
-        $('.eab-copy-shortcode').on('click', function() {
+        $('.reventorcab-copy-shortcode').on('click', function() {
             const shortcode = '[reventor-booking]';
             
             if (navigator.clipboard) {
@@ -293,7 +293,7 @@
     }
     
     function loadTodayTimeSlots() {
-        const preview = $('#eab-time-slots-preview');
+        const preview = $('#reventorcab-time-slots-preview');
         const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD format
         
         // Debug: Log the date being sent
@@ -301,7 +301,7 @@
         console.log('Today is:', new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }));
         
         // Show loading state
-        preview.html('<div class="eab-loading">Loading time slots...</div>');
+        preview.html('<div class="reventorcab-loading">Loading time slots...</div>');
         
         // Make AJAX request to get available slots
         $.ajax({
@@ -326,21 +326,21 @@
                         console.log('REVENTORCAB Debug - Available slots:', availableSlots);
                         
                         if (allSlots.length > 0) {
-                             var slotsHtml = '<div class="eab-schedule-preview">';
-                             slotsHtml += '<div class="eab-slots-grid">';
+                             var slotsHtml = '<div class="reventorcab-schedule-preview">';
+                             slotsHtml += '<div class="reventorcab-slots-grid">';
                              
                              for (var i = 0; i < allSlots.length; i++) {
                                  var slot = allSlots[i];
-                                 var cssClass = 'eab-time-slot eab-slot-' + slot.status;
+                                 var cssClass = 'reventorcab-time-slot reventorcab-slot-' + slot.status;
                                  
                                  slotsHtml += '<div class="' + cssClass + '">' + slot.time + '</div>';
                              }
                              
                              slotsHtml += '</div>';
                              slotsHtml += '</div>';
-                             $('#eab-time-slots-preview').html(slotsHtml);
+                             $('#reventorcab-time-slots-preview').html(slotsHtml);
                          } else {
-                             $('#eab-time-slots-preview').html('<div class="eab-loading">No time slots configured</div>');
+                             $('#reventorcab-time-slots-preview').html('<div class="reventorcab-loading">No time slots configured</div>');
                         }
                     } else if (response.data.slots && response.data.slots.length > 0) {
                         displayPreviewTimeSlots(response.data.slots);
@@ -378,19 +378,19 @@
     }
     
     function displayPreviewTimeSlots(slots) {
-        const preview = $('#eab-time-slots-preview');
+        const preview = $('#reventorcab-time-slots-preview');
         let html = '';
         
         slots.forEach(function(slot) {
             // All slots in preview are shown as available since they're already filtered
-            html += '<div class="eab-time-slot eab-available">' + formatTime(slot) + '</div>';
+            html += '<div class="reventorcab-time-slot reventorcab-available">' + formatTime(slot) + '</div>';
         });
         
         preview.html(html);
     }
     
     function displayAdminPreviewTimeSlots(allSlots, availableSlots) {
-        const preview = $('#eab-time-slots-preview');
+        const preview = $('#reventorcab-time-slots-preview');
         const today = new Date();
         const currentDayName = today.toLocaleDateString('en-US', { weekday: 'long' });
         const currentDate = today.toLocaleDateString();
@@ -399,12 +399,12 @@
         console.log('REVENTORCAB Debug - Available slots:', availableSlots);
         
         if (allSlots.length > 0) {
-            let html = '<div class="eab-schedule-preview">';
+            let html = '<div class="reventorcab-schedule-preview">';
             html += '<h4>Today\'s Schedule (' + currentDayName + ', ' + currentDate + ')</h4>';
-            html += '<div class="eab-slots-grid">';
+            html += '<div class="reventorcab-slots-grid">';
             
             allSlots.forEach(function(slot) {
-                let cssClass = 'eab-time-slot eab-slot-' + slot.status;
+                let cssClass = 'reventorcab-time-slot reventorcab-slot-' + slot.status;
                 let statusText = '';
                 
                 switch (slot.status) {
@@ -431,12 +431,12 @@
             html += '</div>';
             preview.html(html);
         } else {
-            preview.html('<div class="eab-loading">No time slots configured for today ' + currentDayName + ', ' + currentDate + '</div>');
+            preview.html('<div class="reventorcab-loading">No time slots configured for today ' + currentDayName + ', ' + currentDate + '</div>');
         }
     }
     
     function showNoSlotsPreview() {
-        const preview = $('#eab-time-slots-preview');
+        const preview = $('#reventorcab-time-slots-preview');
         const today = new Date();
         const dayName = today.toLocaleDateString('en-US', { weekday: 'long' }).toLowerCase();
         
@@ -447,9 +447,9 @@
         });
         
         if (!workingDays.includes(dayName)) {
-            preview.html('<div class="eab-loading">Today is not a working day</div>');
+            preview.html('<div class="reventorcab-loading">Today is not a working day</div>');
         } else {
-            preview.html('<div class="eab-loading">No available time slots for today</div>');
+            preview.html('<div class="reventorcab-loading">No available time slots for today</div>');
         }
     }
     
@@ -476,12 +476,12 @@
 
     
     function initLiveTime() {
-        const userTimezoneElement = $('#eab-user-timezone');
-        const userTimeElement = $('#eab-user-time');
-        const pluginTimezoneElement = $('#eab-plugin-timezone');
-        const pluginTimeElement = $('#eab-plugin-time');
-        const serverTimezoneElement = $('#eab-server-timezone');
-        const serverTimeElement = $('#eab-server-time');
+        const userTimezoneElement = $('#reventorcab-user-timezone');
+        const userTimeElement = $('#reventorcab-user-time');
+        const pluginTimezoneElement = $('#reventorcab-plugin-timezone');
+        const pluginTimeElement = $('#reventorcab-plugin-time');
+        const serverTimezoneElement = $('#reventorcab-server-timezone');
+        const serverTimeElement = $('#reventorcab-server-time');
         
         if (userTimezoneElement.length || pluginTimezoneElement.length || serverTimezoneElement.length) {
             // Detect and update user device timezone immediately
@@ -562,16 +562,16 @@
     
     function initExportImport() {
         // Export settings functionality
-        $('#eab-export-settings').on('click', function() {
+        $('#reventorcab-export-settings').on('click', function() {
             exportSettings();
         });
         
         // Import settings functionality
-        $('#eab-import-settings').on('click', function() {
-            $('#eab-import-file').click();
+        $('#reventorcab-import-settings').on('click', function() {
+            $('#reventorcab-import-file').click();
         });
         
-        $('#eab-import-file').on('change', function(e) {
+        $('#reventorcab-import-file').on('change', function(e) {
             const file = e.target.files[0];
             if (file) {
                 importSettings(file);
@@ -580,7 +580,7 @@
     }
     
     function exportSettings() {
-        const exportButton = $('#eab-export-settings');
+        const exportButton = $('#reventorcab-export-settings');
         const originalText = exportButton.html();
         
         // Show loading state
@@ -626,7 +626,7 @@
     
     function importSettings(file) {
         const reader = new FileReader();
-        const importButton = $('#eab-import-settings');
+        const importButton = $('#reventorcab-import-settings');
         const originalText = importButton.html();
         
         reader.onload = function(e) {
@@ -684,7 +684,7 @@
         reader.readAsText(file);
         
         // Reset file input
-        $('#eab-import-file').val('');
+        $('#reventorcab-import-file').val('');
     }
     
     function showNotice(message, type = 'info') {

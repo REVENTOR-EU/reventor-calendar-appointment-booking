@@ -51,7 +51,7 @@
         });
         
         // Next step buttons
-        $('.eab-next-step').on('click', function() {
+        $('.reventorcab-next-step').on('click', function() {
             if (validateCurrentStep()) {
                 // If moving from step 1 to step 2, trigger CalDAV sync
                 if (currentStep === 1) {
@@ -67,12 +67,12 @@
         });
         
         // Previous step buttons
-        $('.eab-prev-step').on('click', function() {
+        $('.reventorcab-prev-step').on('click', function() {
             prevStep();
         });
         
         // Step indicator clicks
-        $('.eab-step').on('click', function() {
+        $('.reventorcab-step').on('click', function() {
             const targetStep = parseInt($(this).data('step'));
             if (targetStep < currentStep) {
                 goToStep(targetStep);
@@ -105,15 +105,15 @@
     
     function updateStepDisplay() {
         // Hide all steps
-        $('.eab-form-step').removeClass('active');
+        $('.reventorcab-form-step').removeClass('active');
         
         // Show current step
         $('#step-' + currentStep).addClass('active');
         
         // Update step indicators
-        $('.eab-step').removeClass('active completed');
+        $('.reventorcab-step').removeClass('active completed');
         
-        $('.eab-step').each(function() {
+        $('.reventorcab-step').each(function() {
             const stepNum = parseInt($(this).data('step'));
             if (stepNum < currentStep) {
                 $(this).addClass('completed');
@@ -131,7 +131,7 @@
     
     function updateProgressBar() {
         const progress = (currentStep / totalSteps) * 100;
-        $('.eab-progress-bar').css('width', progress + '%');
+        $('.reventorcab-progress-bar').css('width', progress + '%');
     }
     
     function validateCurrentStep() {
@@ -243,7 +243,7 @@
         const userTimezoneOffset = getUserTimezoneOffsetMinutes();
         
         // Show loading state
-        container.html('<div class="eab-loading-slots"><div class="eab-spinner"></div><p>' + (reventorcab_frontend.strings.loading || 'Loading available times...') + '</p></div>');
+        container.html('<div class="reventorcab-loading-slots"><div class="reventorcab-spinner"></div><p>' + (reventorcab_frontend.strings.loading || 'Loading available times...') + '</p></div>');
         
         // Debug logging for AJAX request
         console.log('=== AJAX Request Debug ===');
@@ -304,7 +304,7 @@
         console.log('Number of slots:', slots.length);
         
         slots.forEach(function(slot) {
-            html += '<div class="eab-time-slot" data-time="' + slot + '">' + formatTime(slot) + '</div>';
+            html += '<div class="reventorcab-time-slot" data-time="' + slot + '">' + formatTime(slot) + '</div>';
             console.log('Displaying slot:', slot, 'formatted as:', formatTime(slot));
         });
         
@@ -318,7 +318,7 @@
     
     function showNoSlotsMessage() {
         const container = $('#time-slots-container');
-        container.html('<div class="eab-no-date-selected"><span class="dashicons dashicons-info"></span>' + (reventorcab_frontend.strings.no_slots || 'No available time slots for this date.') + '</div>');
+        container.html('<div class="reventorcab-no-date-selected"><span class="dashicons dashicons-info"></span>' + (reventorcab_frontend.strings.no_slots || 'No available time slots for this date.') + '</div>');
         
         selectedTimeSlot = null;
         $('#appointment_time').val('');
@@ -327,7 +327,7 @@
     
     function clearTimeSlots() {
         const container = $('#time-slots-container');
-        container.html('<div class="eab-no-date-selected"><span class="dashicons dashicons-info"></span>Please select a date first</div>');
+        container.html('<div class="reventorcab-no-date-selected"><span class="dashicons dashicons-info"></span>Please select a date first</div>');
         
         selectedTimeSlot = null;
         $('#appointment_time').val('');
@@ -352,13 +352,13 @@
     }
     
     function initTimeSlotSelection() {
-        $(document).on('click', '.eab-time-slot', function() {
+        $(document).on('click', '.reventorcab-time-slot', function() {
             if ($(this).hasClass('unavailable')) {
                 return;
             }
             
             // Remove previous selection
-            $('.eab-time-slot').removeClass('selected');
+            $('.reventorcab-time-slot').removeClass('selected');
             
             // Select current slot
             $(this).addClass('selected');
@@ -371,7 +371,7 @@
     }
     
     function updateNextButtonState() {
-        const nextButton = $('#step-2 .eab-next-step');
+        const nextButton = $('#step-2 .reventorcab-next-step');
         const hasDate = $('#appointment_date').val();
         const hasTime = $('#appointment_time').val();
         
@@ -435,7 +435,7 @@
     }
     
     function initFormSubmission() {
-        $('#eab-appointment-form').on('submit', function(e) {
+        $('#reventorcab-appointment-form').on('submit', function(e) {
             e.preventDefault();
             
             // Validate all steps before submitting
@@ -511,34 +511,34 @@
     }
     
     function showSuccessStep() {
-        $('.eab-form-step').removeClass('active');
+        $('.reventorcab-form-step').removeClass('active');
         $('#step-success').show();
         
         // Update progress to 100%
-        $('.eab-progress-bar').css('width', '100%');
+        $('.reventorcab-progress-bar').css('width', '100%');
         
         // Mark all steps as completed
-        $('.eab-step').removeClass('active').addClass('completed');
+        $('.reventorcab-step').removeClass('active').addClass('completed');
         
         // Scroll to top
-        $('.eab-booking-form')[0].scrollIntoView({ behavior: 'smooth' });
+        $('.reventorcab-booking-form')[0].scrollIntoView({ behavior: 'smooth' });
     }
     
     function showLoadingOverlay() {
-        $('#eab-loading-overlay').show();
+        $('#reventorcab-loading-overlay').show();
     }
     
     function hideLoadingOverlay() {
-        $('#eab-loading-overlay').hide();
+        $('#reventorcab-loading-overlay').hide();
     }
     
     function showError(message) {
         // Create or update error message
-        let errorDiv = $('.eab-error-message');
+        let errorDiv = $('.reventorcab-error-message');
         
         if (errorDiv.length === 0) {
-            errorDiv = $('<div class="eab-error-message"></div>');
-            $('.eab-booking-form').prepend(errorDiv);
+            errorDiv = $('<div class="reventorcab-error-message"></div>');
+            $('.reventorcab-booking-form').prepend(errorDiv);
         }
         
         errorDiv.html('<span class="dashicons dashicons-warning"></span> ' + message)
@@ -554,26 +554,26 @@
     }
     
     function showTimezoneWarning(message, fallbackTimezone, originalSubmitData) {
-        $('.eab-error-message').remove();
+        $('.reventorcab-error-message').remove();
         
-        const warningHtml = '<div class="eab-timezone-warning" style="background: #fff3cd; color: #856404; padding: 15px; border: 1px solid #ffeaa7; border-radius: 4px; margin: 10px 0;">' +
+        const warningHtml = '<div class="reventorcab-timezone-warning" style="background: #fff3cd; color: #856404; padding: 15px; border: 1px solid #ffeaa7; border-radius: 4px; margin: 10px 0;">' +
             '<p><strong>⚠️ Timezone Detection Failed</strong></p>' +
             '<p>' + message + '</p>' +
             '<div style="margin-top: 15px;">' +
-                '<button type="button" class="eab-btn eab-btn-primary" id="eab-confirm-timezone" style="margin-right: 10px;">Continue with ' + fallbackTimezone + '</button>' +
-                '<button type="button" class="eab-btn eab-btn-secondary" id="eab-cancel-timezone">Cancel</button>' +
+                '<button type="button" class="reventorcab-btn reventorcab-btn-primary" id="reventorcab-confirm-timezone" style="margin-right: 10px;">Continue with ' + fallbackTimezone + '</button>' +
+                '<button type="button" class="reventorcab-btn reventorcab-btn-secondary" id="reventorcab-cancel-timezone">Cancel</button>' +
             '</div>' +
         '</div>';
         
-        $('.eab-form-step.active').prepend(warningHtml);
+        $('.reventorcab-form-step.active').prepend(warningHtml);
         
         // Handle confirmation
-        $('#eab-confirm-timezone').on('click', function() {
+        $('#reventorcab-confirm-timezone').on('click', function() {
             // Force use plugin timezone and resubmit
             originalSubmitData.user_timezone = fallbackTimezone;
             originalSubmitData.timezone_confirmed = true;
             
-            $('.eab-timezone-warning').remove();
+            $('.reventorcab-timezone-warning').remove();
             showLoadingOverlay();
             
             $.ajax({
@@ -596,40 +596,40 @@
         });
         
         // Handle cancellation
-        $('#eab-cancel-timezone').on('click', function() {
-            $('.eab-timezone-warning').remove();
+        $('#reventorcab-cancel-timezone').on('click', function() {
+            $('.reventorcab-timezone-warning').remove();
         });
         
         // Scroll to warning
         $('html, body').animate({
-            scrollTop: $('.eab-timezone-warning').offset().top - 100
+            scrollTop: $('.reventorcab-timezone-warning').offset().top - 100
         }, 300);
     }
     
     function showTimezoneError(message) {
-        $('.eab-error-message').remove();
+        $('.reventorcab-error-message').remove();
         
-        const errorHtml = '<div class="eab-error-message" style="background: #f8d7da; color: #721c24; padding: 15px; border: 1px solid #f5c6cb; border-radius: 4px; margin: 10px 0;">' +
+        const errorHtml = '<div class="reventorcab-error-message" style="background: #f8d7da; color: #721c24; padding: 15px; border: 1px solid #f5c6cb; border-radius: 4px; margin: 10px 0;">' +
             '<p><strong>❌ Timezone Error</strong></p>' +
             '<p>' + message + '</p>' +
             '<p><small>Please refresh the page and ensure JavaScript is enabled in your browser.</small></p>' +
         '</div>';
         
-        $('.eab-form-step.active').prepend(errorHtml);
+        $('.reventorcab-form-step.active').prepend(errorHtml);
         
         // Scroll to error
         $('html, body').animate({
-            scrollTop: $('.eab-error-message').offset().top - 100
+            scrollTop: $('.reventorcab-error-message').offset().top - 100
         }, 300);
     }
     
     function initAccessibility() {
         // Add ARIA labels
-        $('.eab-time-slot').attr('role', 'button').attr('tabindex', '0');
-        $('.eab-service-option').attr('role', 'radio');
+        $('.reventorcab-time-slot').attr('role', 'button').attr('tabindex', '0');
+        $('.reventorcab-service-option').attr('role', 'radio');
         
         // Keyboard navigation for time slots
-        $(document).on('keydown', '.eab-time-slot', function(e) {
+        $(document).on('keydown', '.reventorcab-time-slot', function(e) {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
                 $(this).click();
@@ -637,7 +637,7 @@
         });
         
         // Keyboard navigation for service options
-        $(document).on('keydown', '.eab-service-option', function(e) {
+        $(document).on('keydown', '.reventorcab-service-option', function(e) {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
                 $(this).find('input[type="radio"]').prop('checked', true).trigger('change');
@@ -646,7 +646,7 @@
         
         // Announce step changes to screen readers
         const stepAnnouncer = $('<div class="sr-only" aria-live="polite" aria-atomic="true"></div>');
-        $('.eab-booking-form').append(stepAnnouncer);
+        $('.reventorcab-booking-form').append(stepAnnouncer);
         
         // Update announcer when step changes
         $(document).on('stepChanged', function() {
@@ -687,9 +687,9 @@
     
     function showTimezoneDetectionError() {
         // Remove any existing error messages
-        $('.eab-timezone-error').remove();
+        $('.reventorcab-timezone-error').remove();
         
-        const errorHtml = '<div class="eab-timezone-error" style="background: #f8d7da; color: #721c24; padding: 20px; border: 1px solid #f5c6cb; border-radius: 4px; margin: 20px 0; text-align: center;">' +
+        const errorHtml = '<div class="reventorcab-timezone-error" style="background: #f8d7da; color: #721c24; padding: 20px; border: 1px solid #f5c6cb; border-radius: 4px; margin: 20px 0; text-align: center;">' +
             '<h3 style="margin: 0 0 15px 0; color: #721c24;">❌ Timezone Detection Failed</h3>' +
             '<p style="margin: 0 0 15px 0; font-size: 16px;"><strong>Unable to detect your timezone automatically.</strong></p>' +
             '<p style="margin: 0 0 15px 0;">This booking system requires timezone detection to show accurate appointment times. Please ensure:</p>' +
@@ -702,19 +702,19 @@
         '</div>';
         
         // Insert error at the top of the form
-        $('.eab-booking-form').prepend(errorHtml);
+        $('.reventorcab-booking-form').prepend(errorHtml);
         
         // Disable all form interactions
-        $('.eab-booking-form input, .eab-booking-form select, .eab-booking-form button, .eab-booking-form textarea').prop('disabled', true);
-        $('.eab-booking-form').addClass('eab-form-disabled');
+        $('.reventorcab-booking-form input, .reventorcab-booking-form select, .reventorcab-booking-form button, .reventorcab-booking-form textarea').prop('disabled', true);
+        $('.reventorcab-booking-form').addClass('reventorcab-form-disabled');
         
         // Add CSS to visually indicate disabled state
         $('<style>').text(
-            '.eab-form-disabled {' +
+            '.reventorcab-form-disabled {' +
                 'opacity: 0.6;' +
                 'pointer-events: none;' +
             '}' +
-            '.eab-form-disabled .eab-timezone-error {' +
+            '.reventorcab-form-disabled .reventorcab-timezone-error {' +
                 'opacity: 1;' +
                 'pointer-events: auto;' +
             '}'
@@ -776,14 +776,14 @@
     
     function showServiceSyncIndicator() {
         const step1 = $('#step-1');
-        if (step1.find('.eab-service-sync').length === 0) {
-            const syncHtml = '<div class="eab-service-sync" style="margin-top: 15px; padding: 10px; background: #f8f9fa; border-radius: 4px; text-align: center;"><div class="eab-spinner" style="display: inline-block; margin-right: 8px;"></div><span>' + (reventorcab_frontend.strings.syncing_calendar || 'Syncing with calendar...') + '</span></div>';
+        if (step1.find('.reventorcab-service-sync').length === 0) {
+            const syncHtml = '<div class="reventorcab-service-sync" style="margin-top: 15px; padding: 10px; background: #f8f9fa; border-radius: 4px; text-align: center;"><div class="reventorcab-spinner" style="display: inline-block; margin-right: 8px;"></div><span>' + (reventorcab_frontend.strings.syncing_calendar || 'Syncing with calendar...') + '</span></div>';
             step1.append(syncHtml);
         }
     }
     
     function hideServiceSyncIndicator() {
-        $('.eab-service-sync').remove();
+        $('.reventorcab-service-sync').remove();
     }
     
     function performInitialCalendarSync() {
@@ -830,11 +830,11 @@
     
     function syncCalendarData() {
         // Show loading indicator - centered spinner with description
-        const loadingHtml = '<div class="eab-loading-slots"><div class="eab-spinner"></div><p>' + (reventorcab_frontend.strings.syncing_calendar || 'Syncing with calendar...') + '</p></div>';
+        const loadingHtml = '<div class="reventorcab-loading-slots"><div class="reventorcab-spinner"></div><p>' + (reventorcab_frontend.strings.syncing_calendar || 'Syncing with calendar...') + '</p></div>';
         
         // Add loading overlay to step 2
         const step2 = $('#step-2');
-        if (step2.find('.eab-calendar-sync').length === 0) {
+        if (step2.find('.reventorcab-calendar-sync').length === 0) {
             step2.append(loadingHtml);
         }
         
@@ -847,7 +847,7 @@
             },
             success: function(response) {
                 // Remove loading indicator
-                $('.eab-loading-slots').remove();
+                $('.reventorcab-loading-slots').remove();
                 
                 if (response.success) {
                     // Calendar sync successful, proceed normally
@@ -862,7 +862,7 @@
             },
             error: function(xhr, status, error) {
                 // Remove loading indicator
-                $('.eab-loading-slots').remove();
+                $('.reventorcab-loading-slots').remove();
                 
                 // Log error but don't block the user
                 console.warn('Calendar sync request failed:', error);
@@ -917,9 +917,9 @@
     $(document).on('appointmentBooked', clearFormData);
     
     // Add CSS for error messages
-    if ($('.eab-error-message').length === 0) {
+    if ($('.reventorcab-error-message').length === 0) {
         $('<style>').text(`
-            .eab-error-message {
+            .reventorcab-error-message {
                 background: #f8d7da;
                 color: #721c24;
                 border: 1px solid #f5c6cb;
@@ -930,10 +930,10 @@
                 align-items: center;
                 gap: 8px;
             }
-            .eab-error-message.show {
+            .reventorcab-error-message.show {
                 display: flex;
             }
-            .eab-error-message .dashicons {
+            .reventorcab-error-message .dashicons {
                 font-size: 16px;
                 width: 16px;
                 height: 16px;

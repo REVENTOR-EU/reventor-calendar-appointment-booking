@@ -11,47 +11,47 @@ if (!defined('ABSPATH')) {
 $appointment_types = get_option('reventorcab_appointment_types', array(array('name' => __('General Consultation', 'reventor-calendar-appointment-booking'), 'duration' => 30)));
 ?>
 
-<div class="wrap eab-admin-wrap">
+<div class="wrap reventorcab-admin-wrap">
     <h1><?php esc_html_e('REVENTOR Calendar Appointment Booking', 'reventor-calendar-appointment-booking'); ?></h1>
     
-    <div class="eab-admin-content">
-        <form id="eab-settings-form" method="post">
+    <div class="reventorcab-admin-content">
+        <form id="reventorcab-settings-form" method="post">
             <?php wp_nonce_field('reventorcab_admin_nonce', 'reventorcab_nonce'); ?>
             
-            <div class="eab-save-header">
-                <button type="button" id="eab-save-all" class="eab-floating-save">
+            <div class="reventorcab-save-header">
+                <button type="button" id="reventorcab-save-all" class="reventorcab-floating-save">
                     <span class="dashicons dashicons-yes"></span>
                     <?php esc_html_e('Save Settings', 'reventor-calendar-appointment-booking'); ?>
                 </button>
             </div>
             
-            <div class="eab-settings-grid">
+            <div class="reventorcab-settings-grid">
                 <!-- Import/Export Settings -->
-                <div class="eab-settings-section">
+                <div class="reventorcab-settings-section">
                     <h3><?php esc_html_e('Import/Export Settings', 'reventor-calendar-appointment-booking'); ?></h3>
                     
-                    <div class="eab-field-group">
-                        <div class="eab-export-import-buttons">
-                            <button type="button" id="eab-export-settings" class="button button-secondary">
+                    <div class="reventorcab-field-group">
+                        <div class="reventorcab-export-import-buttons">
+                            <button type="button" id="reventorcab-export-settings" class="button button-secondary">
                                 <span class="dashicons dashicons-download"></span>
                                 <?php esc_html_e('Export Settings', 'reventor-calendar-appointment-booking'); ?>
                             </button>
-                            <button type="button" id="eab-import-settings" class="button button-secondary">
+                            <button type="button" id="reventorcab-import-settings" class="button button-secondary">
                                 <span class="dashicons dashicons-upload"></span>
                                 <?php esc_html_e('Import Settings', 'reventor-calendar-appointment-booking'); ?>
                             </button>
-                            <input type="file" id="eab-import-file" accept=".json" style="display: none;" />
+                            <input type="file" id="reventorcab-import-file" accept=".json" style="display: none;" />
                         </div>
                         <p class="description"><?php esc_html_e('Export your current settings to a JSON file or import settings from a previously exported file.', 'reventor-calendar-appointment-booking'); ?></p>
                     </div>
                 </div>
                 
                 <!-- Quick Setup Guide -->
-                <div class="eab-settings-section">
+                <div class="reventorcab-settings-section">
                     <h3><?php esc_html_e('Quick Setup Guide', 'reventor-calendar-appointment-booking'); ?></h3>
                     
-                    <div class="eab-field-group">
-                        <ol class="eab-setup-guide">
+                    <div class="reventorcab-field-group">
+                        <ol class="reventorcab-setup-guide">
                             <li><?php esc_html_e('Configure your time slot duration and booking period', 'reventor-calendar-appointment-booking'); ?></li>
             <li><?php esc_html_e('Set up your appointment types', 'reventor-calendar-appointment-booking'); ?></li>
             <li><?php esc_html_e('Choose your theme color', 'reventor-calendar-appointment-booking'); ?></li>
@@ -63,26 +63,26 @@ $appointment_types = get_option('reventorcab_appointment_types', array(array('na
                 </div>
                 
                 <!-- General Settings -->
-                <div class="eab-settings-section">
+                <div class="reventorcab-settings-section">
                     <h3><?php esc_html_e('General Settings', 'reventor-calendar-appointment-booking'); ?></h3>
                     
 
-                    <div class="eab-field-group">
+                    <div class="reventorcab-field-group">
                         <label for="booking_days_ahead"><?php esc_html_e('Booking Days Ahead', 'reventor-calendar-appointment-booking'); ?></label>
                         <input type="number" id="booking_days_ahead" name="booking_days_ahead" value="<?php echo esc_attr($booking_days_ahead); ?>" min="1" max="365" />
                         <p class="description"><?php esc_html_e('How many days in advance customers can book appointments.', 'reventor-calendar-appointment-booking'); ?></p>
                     </div>
                     
-                    <div class="eab-field-group">
+                    <div class="reventorcab-field-group">
                         <label for="theme_color"><?php esc_html_e('Theme Color', 'reventor-calendar-appointment-booking'); ?></label>
-                        <div class="eab-color-picker-wrapper">
+                        <div class="reventorcab-color-picker-wrapper">
                             <input type="color" id="theme_color" name="theme_color" value="<?php echo esc_attr($theme_color); ?>" />
                             <input type="text" id="theme_color_text" value="<?php echo esc_attr($theme_color); ?>" />
                         </div>
                         <p class="description"><?php esc_html_e('Primary color for buttons and form elements.', 'reventor-calendar-appointment-booking'); ?></p>
                     </div>
                     
-                    <div class="eab-field-group">
+                    <div class="reventorcab-field-group">
                         <label for="timeslot_granularity"><?php esc_html_e('Timeslot Granularity', 'reventor-calendar-appointment-booking'); ?></label>
                         <select id="timeslot_granularity" name="timeslot_granularity">
                             <option value="15" <?php selected($timeslot_granularity, 15); ?>>15 <?php esc_html_e('minutes', 'reventor-calendar-appointment-booking'); ?></option>
@@ -92,7 +92,7 @@ $appointment_types = get_option('reventorcab_appointment_types', array(array('na
                         <p class="description"><?php esc_html_e('Time interval between available booking slots (e.g., 15min allows 8:00, 8:15, 8:30; 30min allows 8:00, 8:30; 60min allows 8:00, 9:00).', 'reventor-calendar-appointment-booking'); ?></p>
                     </div>
                     
-                    <div class="eab-field-group">
+                    <div class="reventorcab-field-group">
                         <label for="timezone"><?php esc_html_e('Timezone', 'reventor-calendar-appointment-booking'); ?></label>
                         <select id="timezone" name="timezone">
                             <?php
@@ -137,7 +137,7 @@ $appointment_types = get_option('reventorcab_appointment_types', array(array('na
                             <strong><?php esc_html_e('Important:', 'reventor-calendar-appointment-booking'); ?></strong> <?php esc_html_e('Setting this timezone ensures consistent time display across different servers. If you run the same plugin on multiple servers (development, staging, production), make sure they all use the same timezone setting here.', 'reventor-calendar-appointment-booking'); ?></p>
                     </div>
                     
-                    <div class="eab-field-group">
+                    <div class="reventorcab-field-group">
                         <label for="time_format"><?php esc_html_e('Time Format', 'reventor-calendar-appointment-booking'); ?></label>
                         <select id="time_format" name="time_format">
                             <option value="24h" <?php selected($time_format, '24h'); ?>>24-hour (14:30)</option>
@@ -146,7 +146,7 @@ $appointment_types = get_option('reventorcab_appointment_types', array(array('na
                         <p class="description"><?php esc_html_e('Choose how time should be displayed throughout the booking system.', 'reventor-calendar-appointment-booking'); ?></p>
                     </div>
                     
-                    <div class="eab-field-group">
+                    <div class="reventorcab-field-group">
                         <label for="date_format"><?php esc_html_e('Date Format', 'reventor-calendar-appointment-booking'); ?></label>
                         <select id="date_format" name="date_format">
                             <option value="DD.MM.YYYY" <?php selected($date_format, 'DD.MM.YYYY'); ?>>DD.MM.YYYY (31.12.2024)</option>
@@ -160,10 +160,10 @@ $appointment_types = get_option('reventorcab_appointment_types', array(array('na
                 </div>
                 
                 <!-- Booking Restrictions -->
-                <div class="eab-settings-section">
+                <div class="reventorcab-settings-section">
                     <h3><?php esc_html_e('Booking Restrictions', 'reventor-calendar-appointment-booking'); ?></h3>
                     
-                    <div class="eab-field-group">
+                    <div class="reventorcab-field-group">
                         <label for="min_booking_advance"><?php esc_html_e('Minimum Booking Advance Time', 'reventor-calendar-appointment-booking'); ?></label>
                         <select id="min_booking_advance" name="min_booking_advance">
                             <option value="1h" <?php selected($min_booking_advance, '1h'); ?>>1 <?php esc_html_e('hour', 'reventor-calendar-appointment-booking'); ?></option>
@@ -178,24 +178,24 @@ $appointment_types = get_option('reventorcab_appointment_types', array(array('na
                 </div>
                 
                 <!-- Working Hours -->
-                <div class="eab-settings-section">
+                <div class="reventorcab-settings-section">
                     <h3><?php esc_html_e('Working Hours', 'reventor-calendar-appointment-booking'); ?></h3>
                     
-                    <div class="eab-field-group">
+                    <div class="reventorcab-field-group">
                         <label for="working_hours_start"><?php esc_html_e('Start Time', 'reventor-calendar-appointment-booking'); ?></label>
                         <input type="time" id="working_hours_start" name="working_hours_start" value="<?php echo esc_attr($working_hours_start); ?>" />
                         <p class="description"><?php esc_html_e('Daily working hours start time.', 'reventor-calendar-appointment-booking'); ?></p>
                     </div>
                     
-                    <div class="eab-field-group">
+                    <div class="reventorcab-field-group">
                         <label for="working_hours_end"><?php esc_html_e('End Time', 'reventor-calendar-appointment-booking'); ?></label>
                         <input type="time" id="working_hours_end" name="working_hours_end" value="<?php echo esc_attr($working_hours_end); ?>" />
                         <p class="description"><?php esc_html_e('Daily working hours end time.', 'reventor-calendar-appointment-booking'); ?></p>
                     </div>
                     
-                    <div class="eab-field-group">
+                    <div class="reventorcab-field-group">
                         <label><?php esc_html_e('Working Days', 'reventor-calendar-appointment-booking'); ?></label>
-                        <div class="eab-working-days">
+                        <div class="reventorcab-working-days">
                             <?php 
                             $days = array(
                                 'monday' => __('Monday', 'reventor-calendar-appointment-booking'),
@@ -208,7 +208,7 @@ $appointment_types = get_option('reventorcab_appointment_types', array(array('na
                             );
                             foreach ($days as $day_key => $day_label): 
                             ?>
-                            <label class="eab-checkbox-label">
+                            <label class="reventorcab-checkbox-label">
                                 <input type="checkbox" name="working_days[]" value="<?php echo esc_attr($day_key); ?>" <?php checked(in_array($day_key, $working_days)); ?> />
                                 <?php echo esc_html($day_label); ?>
                             </label>
@@ -221,10 +221,10 @@ $appointment_types = get_option('reventorcab_appointment_types', array(array('na
                 </div>
                 
                 <!-- Appointment Types -->
-                <div class="eab-settings-section">
+                <div class="reventorcab-settings-section">
                     <h3><?php esc_html_e('Appointment Types', 'reventor-calendar-appointment-booking'); ?></h3>
                     
-                    <div class="eab-field-group">
+                    <div class="reventorcab-field-group">
                         <label><?php esc_html_e('Available Appointment Types', 'reventor-calendar-appointment-booking'); ?></label>
                         <div id="appointment-types-container">
                             <?php 
@@ -250,9 +250,9 @@ $appointment_types = get_option('reventorcab_appointment_types', array(array('na
                                 $type_name = isset($type['name']) ? $type['name'] : '';
                                 $type_duration = isset($type['duration']) ? $type['duration'] : 30;
                             ?>
-                            <div class="eab-appointment-type-row">
+                            <div class="reventorcab-appointment-type-row">
                                 <input type="text" name="appointment_types[<?php echo esc_attr($index); ?>][name]" value="<?php echo esc_attr($type_name); ?>" placeholder="<?php esc_attr_e('Appointment type name', 'reventor-calendar-appointment-booking'); ?>" required />
-                                <select name="appointment_types[<?php echo esc_attr($index); ?>][duration]" class="eab-duration-select" required>
+                                <select name="appointment_types[<?php echo esc_attr($index); ?>][duration]" class="reventorcab-duration-select" required>
                                     <option value="15" <?php selected($type_duration, 15); ?>>15 <?php esc_html_e('min', 'reventor-calendar-appointment-booking'); ?></option>
                                     <option value="30" <?php selected($type_duration, 30); ?>>30 <?php esc_html_e('min', 'reventor-calendar-appointment-booking'); ?></option>
                                     <option value="45" <?php selected($type_duration, 45); ?>>45 <?php esc_html_e('min', 'reventor-calendar-appointment-booking'); ?></option>
@@ -260,13 +260,13 @@ $appointment_types = get_option('reventorcab_appointment_types', array(array('na
                                     <option value="90" <?php selected($type_duration, 90); ?>>90 <?php esc_html_e('min', 'reventor-calendar-appointment-booking'); ?></option>
                                     <option value="120" <?php selected($type_duration, 120); ?>>120 <?php esc_html_e('min', 'reventor-calendar-appointment-booking'); ?></option>
                                 </select>
-                                <button type="button" class="eab-remove-type" title="<?php esc_attr_e('Remove this appointment type', 'reventor-calendar-appointment-booking'); ?>">
+                                <button type="button" class="reventorcab-remove-type" title="<?php esc_attr_e('Remove this appointment type', 'reventor-calendar-appointment-booking'); ?>">
                                     <span class="dashicons dashicons-trash"></span>
                                 </button>
                             </div>
                             <?php endforeach; ?>
                         </div>
-                        <div class="eab-appointment-types-actions">
+                        <div class="reventorcab-appointment-types-actions">
                             <button type="button" id="add-appointment-type" class="button">
                                 <span class="dashicons dashicons-plus-alt"></span>
                                 <?php esc_html_e('Add Type', 'reventor-calendar-appointment-booking'); ?>
@@ -279,17 +279,17 @@ $appointment_types = get_option('reventorcab_appointment_types', array(array('na
                 </div>
                 
                 <!-- Email Notifications -->
-                <div class="eab-settings-section">
+                <div class="reventorcab-settings-section">
                     <h3><?php esc_html_e('Email Notifications', 'reventor-calendar-appointment-booking'); ?></h3>
                     
                     
-                    <div class="eab-field-group">
+                    <div class="reventorcab-field-group">
                         <label for="email_sender_name"><?php esc_html_e('Sender Name', 'reventor-calendar-appointment-booking'); ?></label>
                         <input type="text" id="email_sender_name" name="email_sender_name" value="<?php echo esc_attr(get_option('reventorcab_email_sender_name', get_bloginfo('name'))); ?>" placeholder="<?php echo esc_attr(get_bloginfo('name')); ?>" />
                         <p class="description"><?php esc_html_e('Name that will appear in the From field of notification emails.', 'reventor-calendar-appointment-booking'); ?></p>
                     </div>
                     
-                    <div class="eab-field-group">
+                    <div class="reventorcab-field-group">
                         <label for="email_sender_email"><?php esc_html_e('Sender Email', 'reventor-calendar-appointment-booking'); ?></label>
                         <input type="email" id="email_sender_email" name="email_sender_email" value="<?php echo esc_attr(get_option('reventorcab_email_sender_email', get_option('admin_email'))); ?>" placeholder="<?php echo esc_attr(get_option('admin_email')); ?>" />
                         <p class="description"><?php esc_html_e('Email address that will be used to send notification emails.', 'reventor-calendar-appointment-booking'); ?></p>
@@ -299,30 +299,30 @@ $appointment_types = get_option('reventorcab_appointment_types', array(array('na
                 </div>
                 
                 <!-- CalDAV Integration -->
-                <div class="eab-settings-section">
+                <div class="reventorcab-settings-section">
                     <h3><?php esc_html_e('CalDAV Integration', 'reventor-calendar-appointment-booking'); ?></h3>
                     
-                    <div class="eab-caldav-container">
-                        <div class="eab-caldav-settings">
-                            <div class="eab-field-group">
+                    <div class="reventorcab-caldav-container">
+                        <div class="reventorcab-caldav-settings">
+                            <div class="reventorcab-field-group">
                                 <label for="caldav_url"><?php esc_html_e('CalDAV URL', 'reventor-calendar-appointment-booking'); ?></label>
                                 <input type="url" id="caldav_url" name="caldav_url" value="<?php echo esc_attr($caldav_url); ?>" placeholder="https://example.com/caldav/calendar/" />
                                 <p class="description"><?php esc_html_e('URL to your CalDAV calendar (e.g., Google Calendar, iCloud, etc.).', 'reventor-calendar-appointment-booking'); ?></p>
                             </div>
                             
-                            <div class="eab-field-group">
+                            <div class="reventorcab-field-group">
                                 <label for="caldav_username"><?php esc_html_e('Username', 'reventor-calendar-appointment-booking'); ?></label>
                                 <input type="text" id="caldav_username" name="caldav_username" value="<?php echo esc_attr($caldav_username); ?>" autocomplete="username" />
                                 <p class="description"><?php esc_html_e('Your CalDAV username or email address.', 'reventor-calendar-appointment-booking'); ?></p>
                             </div>
                             
-                            <div class="eab-field-group">
+                            <div class="reventorcab-field-group">
                                 <label for="caldav_password"><?php esc_html_e('Password/App Password', 'reventor-calendar-appointment-booking'); ?></label>
                                 <input type="password" id="caldav_password" name="caldav_password" value="<?php echo esc_attr($caldav_password); ?>" autocomplete="current-password" />
                                 <p class="description"><?php esc_html_e('Your CalDAV password or app-specific password.', 'reventor-calendar-appointment-booking'); ?></p>
                             </div>
                             
-                            <div class="eab-field-group">
+                            <div class="reventorcab-field-group">
                                 <button type="button" id="test-caldav-connection" class="button button-secondary">
                                     <span class="dashicons dashicons-admin-tools"></span>
                                     <?php esc_html_e('Test Connection', 'reventor-calendar-appointment-booking'); ?>
@@ -331,29 +331,29 @@ $appointment_types = get_option('reventorcab_appointment_types', array(array('na
                             </div>
                         </div>
                         
-                        <div class="eab-calendar-preview">
+                        <div class="reventorcab-calendar-preview">
                             <h4><?php esc_html_e('Today\'s Schedule Preview', 'reventor-calendar-appointment-booking'); ?></h4>
-                            <div class="eab-calendar-date">
-                                <span class="eab-date-display"><?php echo esc_html(date_i18n('l, F j, Y')); ?></span>
+                            <div class="reventorcab-calendar-date">
+                                <span class="reventorcab-date-display"><?php echo esc_html(date_i18n('l, F j, Y')); ?></span>
                             </div>
-                            <div class="eab-time-slots-preview" id="eab-time-slots-preview">
-                                <div class="eab-loading"><?php esc_html_e('Loading time slots...', 'reventor-calendar-appointment-booking'); ?></div>
+                            <div class="reventorcab-time-slots-preview" id="reventorcab-time-slots-preview">
+                                <div class="reventorcab-loading"><?php esc_html_e('Loading time slots...', 'reventor-calendar-appointment-booking'); ?></div>
                             </div>
-                            <div class="eab-legend">
-                                <div class="eab-legend-item">
-                                    <span class="eab-legend-color eab-slot-available"></span>
+                            <div class="reventorcab-legend">
+                                <div class="reventorcab-legend-item">
+                                    <span class="reventorcab-legend-color reventorcab-slot-available"></span>
                                     <?php esc_html_e('Available', 'reventor-calendar-appointment-booking'); ?>
                                 </div>
-                                <div class="eab-legend-item">
-                                    <span class="eab-legend-color eab-slot-past"></span>
+                                <div class="reventorcab-legend-item">
+                                    <span class="reventorcab-legend-color reventorcab-slot-past"></span>
                                     <?php esc_html_e('Past Time', 'reventor-calendar-appointment-booking'); ?>
                                 </div>
-                                <div class="eab-legend-item">
-                                    <span class="eab-legend-color eab-slot-booked"></span>
+                                <div class="reventorcab-legend-item">
+                                    <span class="reventorcab-legend-color reventorcab-slot-booked"></span>
                                     <?php esc_html_e('Booked', 'reventor-calendar-appointment-booking'); ?>
                                 </div>
-                                <div class="eab-legend-item">
-                                    <span class="eab-legend-color eab-slot-outside_hours"></span>
+                                <div class="reventorcab-legend-item">
+                                    <span class="reventorcab-legend-color reventorcab-slot-outside_hours"></span>
                                     <?php esc_html_e('Outside Hours', 'reventor-calendar-appointment-booking'); ?>
                                 </div>
                             </div>
@@ -364,13 +364,13 @@ $appointment_types = get_option('reventorcab_appointment_types', array(array('na
                 </div>
                 
                 <!-- Shortcode -->
-                <div class="eab-settings-section">
+                <div class="reventorcab-settings-section">
                     <h3><?php esc_html_e('Shortcode', 'reventor-calendar-appointment-booking'); ?></h3>
                     
-                    <div class="eab-field-group">
-                        <div class="eab-shortcode-box">
+                    <div class="reventorcab-field-group">
+                        <div class="reventorcab-shortcode-box">
                             <code>[reventor-booking]</code>
-                            <button type="button" class="eab-copy-shortcode" title="<?php esc_attr_e('Copy to clipboard', 'reventor-calendar-appointment-booking'); ?>">
+                            <button type="button" class="reventorcab-copy-shortcode" title="<?php esc_attr_e('Copy to clipboard', 'reventor-calendar-appointment-booking'); ?>">
                                 <span class="dashicons dashicons-admin-page"></span>
                             </button>
                         </div>
@@ -379,10 +379,10 @@ $appointment_types = get_option('reventorcab_appointment_types', array(array('na
                 </div>
                 
                 <!-- Support -->
-                <div class="eab-settings-section">
+                <div class="reventorcab-settings-section">
                     <h3><?php esc_html_e('Support', 'reventor-calendar-appointment-booking'); ?></h3>
                     
-                    <div class="eab-field-group">
+                    <div class="reventorcab-field-group">
                         <label>
                             <input type="checkbox" id="show_credits" name="show_credits" value="1" <?php checked($show_credits, 1); ?> />
                             <?php esc_html_e('Help support the future development of this plugin by displaying a small credit note below the booking form.', 'reventor-calendar-appointment-booking'); ?>
@@ -390,7 +390,7 @@ $appointment_types = get_option('reventorcab_appointment_types', array(array('na
                         <p class="description"><?php esc_html_e('This option allows you to show a small "Powered by" credit link below the booking form to help support the plugin development.', 'reventor-calendar-appointment-booking'); ?></p>
                     </div>
                     
-                    <div class="eab-field-group">
+                    <div class="reventorcab-field-group">
                         <p><?php esc_html_e('Need help, want to report a bug, or have an improvement idea?', 'reventor-calendar-appointment-booking'); ?></p>
                         <p><?php 
                             printf(
@@ -399,7 +399,7 @@ $appointment_types = get_option('reventorcab_appointment_types', array(array('na
                                 '<a href="https://wordpress.org/plugins/reventor-calendar-appointment-booking/" target="_blank" rel="noopener noreferrer">' . esc_html__('WordPress plugin page', 'reventor-calendar-appointment-booking') . '</a>'
                             );
                         ?></p>
-                        <div class="eab-support-buttons">
+                        <div class="reventorcab-support-buttons">
                             <a href="https://wordpress.org/support/plugin/reventor-calendar-appointment-booking/" target="_blank" rel="noopener noreferrer" class="button button-secondary">
                                 <span class="dashicons dashicons-sos"></span>
                                 <?php esc_html_e('Get Support', 'reventor-calendar-appointment-booking'); ?>
@@ -415,34 +415,34 @@ $appointment_types = get_option('reventorcab_appointment_types', array(array('na
 
                 
                 <!-- Plugin Information -->
-                <div class="eab-settings-section">
+                <div class="reventorcab-settings-section">
                     <h3><?php esc_html_e('Plugin Information', 'reventor-calendar-appointment-booking'); ?></h3>
                     
-                    <div class="eab-field-group">
+                    <div class="reventorcab-field-group">
                         <p><strong><?php esc_html_e('Version:', 'reventor-calendar-appointment-booking'); ?></strong> <?php echo esc_html(REVENTORCAB_VERSION); ?></p>
-                        <p><strong><?php esc_html_e('User Device Timezone:', 'reventor-calendar-appointment-booking'); ?></strong> <span id="eab-user-timezone"><?php esc_html_e('Detecting...', 'reventor-calendar-appointment-booking'); ?></span> - <span id="eab-user-time"><?php esc_html_e('Loading...', 'reventor-calendar-appointment-booking'); ?></span></p>
-                        <p><strong><?php esc_html_e('Plugin Timezone:', 'reventor-calendar-appointment-booking'); ?></strong> <span id="eab-plugin-timezone"><?php 
+                        <p><strong><?php esc_html_e('User Device Timezone:', 'reventor-calendar-appointment-booking'); ?></strong> <span id="reventorcab-user-timezone"><?php esc_html_e('Detecting...', 'reventor-calendar-appointment-booking'); ?></span> - <span id="reventorcab-user-time"><?php esc_html_e('Loading...', 'reventor-calendar-appointment-booking'); ?></span></p>
+                        <p><strong><?php esc_html_e('Plugin Timezone:', 'reventor-calendar-appointment-booking'); ?></strong> <span id="reventorcab-plugin-timezone"><?php 
                             $plugin_timezone = get_option('reventorcab_timezone');
                             if ($plugin_timezone) {
                                 echo esc_html($plugin_timezone);
                             } else {
                                 echo '<em>' . esc_html__('Not configured (using WordPress timezone)', 'reventor-calendar-appointment-booking') . '</em>';
                             }
-                        ?></span> - <span id="eab-plugin-time" data-timezone="<?php echo esc_attr(get_option('reventorcab_timezone') ?: 'UTC'); ?>"><?php esc_html_e('Loading...', 'reventor-calendar-appointment-booking'); ?></span></p>
-                        <p><strong><?php esc_html_e('Server Timezone:', 'reventor-calendar-appointment-booking'); ?></strong> <span id="eab-server-timezone">UTC</span> - <span id="eab-server-time"><?php echo esc_html(gmdate('Y-m-d H:i:s')); ?></span></p>
+                        ?></span> - <span id="reventorcab-plugin-time" data-timezone="<?php echo esc_attr(get_option('reventorcab_timezone') ?: 'UTC'); ?>"><?php esc_html_e('Loading...', 'reventor-calendar-appointment-booking'); ?></span></p>
+                        <p><strong><?php esc_html_e('Server Timezone:', 'reventor-calendar-appointment-booking'); ?></strong> <span id="reventorcab-server-timezone">UTC</span> - <span id="reventorcab-server-time"><?php echo esc_html(gmdate('Y-m-d H:i:s')); ?></span></p>
                     </div>
                 </div>
             </div>
             
-            <div class="eab-save-status" id="eab-save-status"></div>
+            <div class="reventorcab-save-status" id="reventorcab-save-status"></div>
         </form>
     </div>
 </div>
 
 <script type="text/template" id="appointment-type-template">
-    <div class="eab-appointment-type-row">
+    <div class="reventorcab-appointment-type-row">
         <input type="text" name="appointment_types[INDEX][name]" value="" placeholder="<?php esc_attr_e('Appointment type name', 'reventor-calendar-appointment-booking'); ?>" required />
-        <select name="appointment_types[INDEX][duration]" class="eab-duration-select" required>
+        <select name="appointment_types[INDEX][duration]" class="reventorcab-duration-select" required>
             <option value="15">15 <?php esc_html_e('min', 'reventor-calendar-appointment-booking'); ?></option>
             <option value="30" selected>30 <?php esc_html_e('min', 'reventor-calendar-appointment-booking'); ?></option>
             <option value="45">45 <?php esc_html_e('min', 'reventor-calendar-appointment-booking'); ?></option>
@@ -450,7 +450,7 @@ $appointment_types = get_option('reventorcab_appointment_types', array(array('na
             <option value="90">90 <?php esc_html_e('min', 'reventor-calendar-appointment-booking'); ?></option>
             <option value="120">120 <?php esc_html_e('min', 'reventor-calendar-appointment-booking'); ?></option>
         </select>
-        <button type="button" class="eab-remove-type" title="<?php esc_attr_e('Remove this appointment type', 'reventor-calendar-appointment-booking'); ?>">
+        <button type="button" class="reventorcab-remove-type" title="<?php esc_attr_e('Remove this appointment type', 'reventor-calendar-appointment-booking'); ?>">
             <span class="dashicons dashicons-trash"></span>
         </button>
     </div>

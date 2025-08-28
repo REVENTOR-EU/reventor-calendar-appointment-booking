@@ -39,9 +39,9 @@ class REVENTORCAB_Frontend {
                     background: {$theme_color} !important;
                 }
             ";
-            wp_add_inline_style('eab-frontend-style', wp_strip_all_tags($custom_css));
+            wp_add_inline_style('reventorcab-frontend-style', wp_strip_all_tags($custom_css));
             
-            wp_localize_script('eab-frontend-script', 'reventorcab_frontend', [
+            wp_localize_script('reventorcab-frontend-script', 'reventorcab_frontend', [
                 'ajax_url' => admin_url('admin-ajax.php'),
                 'nonce' => wp_create_nonce('reventorcab_frontend_nonce'),
                 'theme_color' => $theme_color,
@@ -66,7 +66,7 @@ class REVENTORCAB_Frontend {
             ]);
             
             // Add dynamic CSS for theme color
-            wp_add_inline_style('eab-frontend-style', $this->get_dynamic_css($theme_color));
+            wp_add_inline_style('reventorcab-frontend-style', $this->get_dynamic_css($theme_color));
         }
     }
     

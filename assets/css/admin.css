@@ -2,7 +2,7 @@
  * Admin styles for REVENTOR Calendar Appointment Booking
  */
 
-.eab-admin-wrap {
+.reventorcab-admin-wrap {
     width: 100%;
     margin: 20px 0;
     padding: 0 20px;
@@ -12,7 +12,7 @@
     flex-direction: column;
 }
 
-.eab-admin-wrap h1 {
+.reventorcab-admin-wrap h1 {
     color: #1d2327;
     font-size: 28px;
     font-weight: 600;
@@ -21,7 +21,7 @@
 }
 
 /* Header Section */
-.eab-admin-header {
+.reventorcab-admin-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -33,25 +33,25 @@
     border-left: 4px solid #007cba;
 }
 
-.eab-logo h2 {
+.reventorcab-logo h2 {
     color: #1d2327;
     font-size: 24px;
     font-weight: 600;
     margin: 0 0 5px 0;
 }
 
-.eab-subtitle {
+.reventorcab-subtitle {
     color: #646970;
     font-size: 14px;
     margin: 0;
     font-style: italic;
 }
 
-.eab-shortcode-info {
+.reventorcab-shortcode-info {
     text-align: right;
 }
 
-.eab-shortcode-info h3 {
+.reventorcab-shortcode-info h3 {
     color: #1d2327;
     font-size: 16px;
     font-weight: 600;
@@ -59,19 +59,19 @@
 }
 
 /* Quick Guide in Header */
-.eab-quick-guide-info {
+.reventorcab-quick-guide-info {
     text-align: right;
     max-width: 400px;
 }
 
-.eab-quick-guide-info h3 {
+.reventorcab-quick-guide-info h3 {
     color: #1d2327;
     font-size: 16px;
     font-weight: 600;
     margin: 0 0 10px 0;
 }
 
-.eab-quick-guide-info ol {
+.reventorcab-quick-guide-info ol {
     background: #f6f7f7;
     padding: 16px 20px;
     border-radius: 6px;
@@ -81,45 +81,45 @@
     line-height: 1.5;
 }
 
-.eab-quick-guide-info ol li {
+.reventorcab-quick-guide-info ol li {
     margin-bottom: 6px;
     color: #1d2327;
 }
 
-.eab-quick-guide-info ol li:last-child {
+.reventorcab-quick-guide-info ol li:last-child {
     margin-bottom: 0;
 }
 
 /* Setup Guide Styling */
-.eab-setup-guide {
+.reventorcab-setup-guide {
     margin: 0;
     padding-left: 20px;
     line-height: 1.6;
 }
 
-.eab-setup-guide li {
+.reventorcab-setup-guide li {
     margin-bottom: 8px;
     color: #1d2327;
 }
 
-.eab-setup-guide li:last-child {
+.reventorcab-setup-guide li:last-child {
     margin-bottom: 0;
 }
 
 /* Export/Import Buttons */
-.eab-export-import-buttons {
+.reventorcab-export-import-buttons {
     display: flex;
     gap: 10px;
     margin-bottom: 10px;
 }
 
-.eab-export-import-buttons .button {
+.reventorcab-export-import-buttons .button {
     display: flex;
     align-items: center;
     gap: 8px;
 }
 
-.eab-shortcode-box {
+.reventorcab-shortcode-box {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -130,7 +130,7 @@
     margin-bottom: 8px;
 }
 
-.eab-shortcode-box code {
+.reventorcab-shortcode-box code {
     background: none;
     padding: 0;
     font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
@@ -139,7 +139,7 @@
     font-weight: 600;
 }
 
-.eab-copy-shortcode {
+.reventorcab-copy-shortcode {
     background: none;
     border: none;
     cursor: pointer;
@@ -149,13 +149,13 @@
     transition: all 0.2s ease;
 }
 
-.eab-copy-shortcode:hover {
+.reventorcab-copy-shortcode:hover {
     color: #007cba;
     background: rgba(0, 124, 186, 0.1);
 }
 
 /* Main Content Layout */
-.eab-admin-content {
+.reventorcab-admin-content {
     width: 100%;
     max-width: 1200px;
     margin: 0;
@@ -163,14 +163,14 @@
 }
 
 /* Settings Grid */
-.eab-settings-grid {
+.reventorcab-settings-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 30px;
     width: 100%;
 }
 
-.eab-settings-section {
+.reventorcab-settings-section {
     background: #fff;
     padding: 30px;
     border-radius: 8px;
@@ -180,39 +180,39 @@
     box-sizing: border-box;
 }
 
-.eab-settings-section:nth-child(1) {
+.reventorcab-settings-section:nth-child(1) {
     border-left: 4px solid #007cba;
 }
 
-.eab-settings-section:nth-child(2) {
+.reventorcab-settings-section:nth-child(2) {
     border-left: 4px solid #d63638;
 }
 
-.eab-settings-section:nth-child(3) {
+.reventorcab-settings-section:nth-child(3) {
     border-left: 4px solid #00a32a;
 }
 
-.eab-settings-section:nth-child(4) {
+.reventorcab-settings-section:nth-child(4) {
     border-left: 4px solid #dba617;
 }
 
-.eab-settings-section:nth-child(5) {
+.reventorcab-settings-section:nth-child(5) {
     border-left: 4px solid #8c8f94;
 }
 
-.eab-settings-section:nth-child(6) {
+.reventorcab-settings-section:nth-child(6) {
     border-left: 4px solid #7c3aed;
 }
 
-.eab-settings-section:nth-child(7) {
+.reventorcab-settings-section:nth-child(7) {
     border-left: 4px solid #9b59b6;
 }
 
-.eab-settings-section:nth-child(8) {
+.reventorcab-settings-section:nth-child(8) {
     border-left: 4px solid #e67e22;
 }
 
-.eab-settings-section h3 {
+.reventorcab-settings-section h3 {
     color: #1d2327;
     font-size: 18px;
     font-weight: 600;
@@ -222,15 +222,15 @@
 }
 
 /* Form Fields */
-.eab-field-group {
+.reventorcab-field-group {
     margin-bottom: 25px;
 }
 
-.eab-field-group:last-child {
+.reventorcab-field-group:last-child {
     margin-bottom: 0;
 }
 
-.eab-field-group label {
+.reventorcab-field-group label {
     display: block;
     font-weight: 600;
     color: #1d2327;
@@ -238,13 +238,13 @@
     font-size: 14px;
 }
 
-.eab-field-group input[type="text"],
-.eab-field-group input[type="email"],
-.eab-field-group input[type="url"],
-.eab-field-group input[type="password"],
-.eab-field-group input[type="number"],
-.eab-field-group input[type="time"],
-.eab-field-group select {
+.reventorcab-field-group input[type="text"],
+.reventorcab-field-group input[type="email"],
+.reventorcab-field-group input[type="url"],
+.reventorcab-field-group input[type="password"],
+.reventorcab-field-group input[type="number"],
+.reventorcab-field-group input[type="time"],
+.reventorcab-field-group select {
     width: 100%;
     max-width: 400px;
     padding: 12px 16px;
@@ -255,14 +255,14 @@
     transition: all 0.2s ease;
 }
 
-.eab-field-group input:focus,
-.eab-field-group select:focus {
+.reventorcab-field-group input:focus,
+.reventorcab-field-group select:focus {
     outline: none;
     border-color: #007cba;
     box-shadow: 0 0 0 2px rgba(0, 124, 186, 0.1);
 }
 
-.eab-field-group .description {
+.reventorcab-field-group .description {
     color: #646970;
     font-size: 13px;
     margin-top: 8px;
@@ -270,14 +270,14 @@
 }
 
 /* Working Days Checkboxes */
-.eab-working-days {
+.reventorcab-working-days {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     gap: 10px;
     margin-top: 8px;
 }
 
-.eab-checkbox-label {
+.reventorcab-checkbox-label {
     display: flex !important;
     align-items: center;
     font-weight: normal !important;
@@ -290,20 +290,20 @@
     transition: all 0.2s ease;
 }
 
-.eab-checkbox-label:hover {
+.reventorcab-checkbox-label:hover {
     background: #f0f0f0;
     border-color: #007cba;
 }
 
-.eab-checkbox-label input[type="checkbox"] {
+.reventorcab-checkbox-label input[type="checkbox"] {
     margin-right: 8px;
     margin-bottom: 0;
     width: auto;
     max-width: none;
 }
 
-.eab-checkbox-label input[type="checkbox"]:checked + span,
-.eab-checkbox-label:has(input[type="checkbox"]:checked) {
+.reventorcab-checkbox-label input[type="checkbox"]:checked + span,
+.reventorcab-checkbox-label:has(input[type="checkbox"]:checked) {
     background: #e7f3ff;
     border-color: #007cba;
     color: #007cba;
@@ -311,13 +311,13 @@
 }
 
 /* Color Picker */
-.eab-color-picker-wrapper {
+.reventorcab-color-picker-wrapper {
     display: flex;
     align-items: center;
     gap: 12px;
 }
 
-.eab-color-picker-wrapper input[type="color"] {
+.reventorcab-color-picker-wrapper input[type="color"] {
     width: 50px;
     height: 40px;
     border: 1px solid #dcdcde;
@@ -327,13 +327,13 @@
     padding: 0;
 }
 
-.eab-color-picker-wrapper input[type="text"] {
+.reventorcab-color-picker-wrapper input[type="text"] {
     width: 120px;
     font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
 }
 
 /* Appointment Types */
-.eab-appointment-type-row {
+.reventorcab-appointment-type-row {
     display: flex;
     align-items: center;
     gap: 12px;
@@ -341,7 +341,7 @@
     transition: border-color 0.3s ease;
 }
 
-.eab-appointment-type-row.error {
+.reventorcab-appointment-type-row.error {
     border-color: #dc3232;
     background: #ffeaea;
     padding: 10px;
@@ -349,17 +349,17 @@
     border: 1px solid #dc3232;
 }
 
-.eab-appointment-type-row input[type="text"] {
+.reventorcab-appointment-type-row input[type="text"] {
     width: 300px;
     margin: 0;
 }
 
-.eab-appointment-type-row input[type="text"].error {
+.reventorcab-appointment-type-row input[type="text"].error {
     border-color: #dc3232;
     box-shadow: 0 0 2px rgba(220, 50, 50, 0.3);
 }
 
-.eab-duration-select {
+.reventorcab-duration-select {
     min-width: 80px;
     margin: 0;
     padding: 8px 12px;
@@ -369,7 +369,7 @@
     font-size: 14px;
 }
 
-.eab-remove-type {
+.reventorcab-remove-type {
     background: #dc3545;
     color: #fff;
     border: none;
@@ -382,11 +382,11 @@
     justify-content: center;
 }
 
-.eab-remove-type:hover {
+.reventorcab-remove-type:hover {
     background: #c82333;
 }
 
-.eab-remove-type .dashicons {
+.reventorcab-remove-type .dashicons {
     font-size: 16px;
     width: 16px;
     height: 16px;
@@ -411,31 +411,31 @@
     background: #005a87;
 }
 
-.eab-appointment-types-actions {
+.reventorcab-appointment-types-actions {
     display: flex;
     gap: 10px;
     align-items: center;
     margin-top: 15px;
 }
 
-.eab-appointment-types-actions .button {
+.reventorcab-appointment-types-actions .button {
     display: inline-flex;
     align-items: center;
     gap: 5px;
 }
 
-.eab-appointment-types-actions .button .dashicons {
+.reventorcab-appointment-types-actions .button .dashicons {
     font-size: 16px;
     width: 16px;
     height: 16px;
 }
 
-.eab-appointment-types-actions .button:disabled {
+.reventorcab-appointment-types-actions .button:disabled {
     opacity: 0.6;
     cursor: not-allowed;
 }
 
-.eab-appointment-types-actions .button.loading .dashicons {
+.reventorcab-appointment-types-actions .button.loading .dashicons {
     animation: spin 1s linear infinite;
 }
 
@@ -481,7 +481,7 @@
 }
 
 /* Footer */
-.eab-admin-footer {
+.reventorcab-admin-footer {
     background: #fff;
     padding: 25px 30px;
     border-radius: 8px;
@@ -495,7 +495,7 @@
     gap: 15px;
 }
 
-.eab-admin-footer .button-primary {
+.reventorcab-admin-footer .button-primary {
     background: #007cba;
     border-color: #007cba;
     color: #fff;
@@ -509,12 +509,12 @@
     transition: all 0.2s ease;
 }
 
-.eab-admin-footer .button-primary:hover {
+.reventorcab-admin-footer .button-primary:hover {
     background: #005a87;
     border-color: #005a87;
 }
 
-.eab-save-status {
+.reventorcab-save-status {
     font-weight: 500;
     padding: 12px 20px;
     border-radius: 6px;
@@ -524,28 +524,28 @@
     font-size: 14px;
 }
 
-.eab-save-status.success {
+.reventorcab-save-status.success {
     background: #d4edda;
     color: #155724;
     display: block;
     border: 1px solid #c3e6cb;
 }
 
-.eab-save-status.error {
+.reventorcab-save-status.error {
     background: #f8d7da;
     color: #721c24;
     display: block;
     border: 1px solid #f5c6cb;
 }
 
-.eab-save-status.loading {
+.reventorcab-save-status.loading {
     background: #e2f0ff;
     color: #0c5460;
     display: block;
     border: 1px solid #bee5eb;
 }
 
-.eab-autosave-note {
+.reventorcab-autosave-note {
     color: #646970;
     font-style: italic;
     margin: 0;
@@ -554,7 +554,7 @@
 }
 
 /* Header save area (now empty) */
-.eab-save-header {
+.reventorcab-save-header {
     display: flex;
     align-items: center;
     gap: 15px;
@@ -562,7 +562,7 @@
 }
 
 /* Save button (now in footer) */
-#eab-save-all {
+#reventorcab-save-all {
     background: #007cba;
     border-color: #007cba;
     color: white;
@@ -577,19 +577,19 @@
     gap: 8px;
 }
 
-#eab-save-all:hover {
+#reventorcab-save-all:hover {
     background: #005a87;
     border-color: #005a87;
     color: white;
 }
 
-#eab-save-all .dashicons {
+#reventorcab-save-all .dashicons {
     font-size: 18px;
     line-height: 1;
 }
 
 /* Save notification */
-.eab-notification {
+.reventorcab-notification {
     background: #d4edda;
     border: 1px solid #c3e6cb;
     color: #155724;
@@ -602,7 +602,7 @@
     animation: slideIn 0.3s ease;
 }
 
-.eab-notification .dashicons {
+.reventorcab-notification .dashicons {
     font-size: 16px;
     line-height: 1;
 }
@@ -619,13 +619,13 @@
 }
 
 /* Sidebar */
-.eab-admin-sidebar {
+.reventorcab-admin-sidebar {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-.eab-info-box {
+.reventorcab-info-box {
     background: #fff;
     padding: 25px;
     border-radius: 8px;
@@ -633,31 +633,31 @@
     border: 1px solid #e0e0e0;
 }
 
-.eab-info-box h3 {
+.reventorcab-info-box h3 {
     color: #1d2327;
     font-size: 16px;
     font-weight: 600;
     margin: 0 0 15px 0;
 }
 
-.eab-info-box ol {
+.reventorcab-info-box ol {
     margin: 0;
     padding-left: 20px;
 }
 
-.eab-info-box li {
+.reventorcab-info-box li {
     margin-bottom: 8px;
     color: #646970;
     line-height: 1.4;
 }
 
-.eab-info-box p {
+.reventorcab-info-box p {
     color: #646970;
     line-height: 1.5;
     margin: 0 0 15px 0;
 }
 
-.eab-info-box .button {
+.reventorcab-info-box .button {
     background: #007cba;
     color: #fff;
     border: none;
@@ -669,13 +669,13 @@
     display: inline-block;
 }
 
-.eab-info-box .button:hover {
+.reventorcab-info-box .button:hover {
     background: #005a87;
     color: #fff;
 }
 
 /* Live Time Display */
-#eab-live-time {
+#reventorcab-live-time {
     font-family: 'Courier New', monospace;
     font-weight: bold;
     color: #007cba;
@@ -690,19 +690,19 @@
     transition: all 0.3s ease;
 }
 
-#eab-live-time:hover {
+#reventorcab-live-time:hover {
     background: #e6f3ff;
     border-color: #007cba;
     transform: scale(1.02);
 }
 
 /* Loading States */
-.eab-loading {
+.reventorcab-loading {
     opacity: 0.6;
     pointer-events: none;
 }
 
-.eab-loading::after {
+.reventorcab-loading::after {
     content: '';
     position: absolute;
     top: 50%;
@@ -723,61 +723,61 @@
 
 /* Responsive Design */
 @media (max-width: 1024px) {
-    .eab-admin-content {
+    .reventorcab-admin-content {
         grid-template-columns: 1fr;
     }
     
-    .eab-admin-header {
+    .reventorcab-admin-header {
         flex-direction: column;
         gap: 20px;
     }
     
-    .eab-shortcode-info {
+    .reventorcab-shortcode-info {
         text-align: left;
     }
 }
 
 @media (max-width: 768px) {
-    .eab-admin-wrap {
+    .reventorcab-admin-wrap {
         margin: 10px;
     }
     
-    .eab-settings-section,
-    .eab-admin-header,
-    .eab-admin-footer,
-    .eab-info-box {
+    .reventorcab-settings-section,
+    .reventorcab-admin-header,
+    .reventorcab-admin-footer,
+    .reventorcab-info-box {
         padding: 20px;
     }
     
-    .eab-appointment-type-row {
+    .reventorcab-appointment-type-row {
         flex-direction: column;
         align-items: stretch;
     }
     
-    .eab-color-picker-wrapper {
+    .reventorcab-color-picker-wrapper {
         flex-direction: column;
         align-items: flex-start;
     }
     
-    .eab-admin-footer {
+    .reventorcab-admin-footer {
         flex-direction: column;
         gap: 15px;
     }
 }
 
 /* CalDAV Calendar Preview */
-.eab-caldav-container {
+.reventorcab-caldav-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 30px;
     align-items: start;
 }
 
-.eab-caldav-settings {
+.reventorcab-caldav-settings {
     min-width: 0;
 }
 
-.eab-calendar-preview {
+.reventorcab-calendar-preview {
     background: #f8f9fa;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -785,14 +785,14 @@
     min-height: 300px;
 }
 
-.eab-calendar-preview h4 {
+.reventorcab-calendar-preview h4 {
     margin: 0 0 15px 0;
     color: #1d2327;
     font-size: 16px;
     font-weight: 600;
 }
 
-.eab-calendar-date {
+.reventorcab-calendar-date {
     text-align: center;
     margin-bottom: 20px;
     padding: 10px;
@@ -801,13 +801,13 @@
     border: 1px solid #ddd;
 }
 
-.eab-date-display {
+.reventorcab-date-display {
     font-size: 14px;
     font-weight: 600;
     color: #1d2327;
 }
 
-.eab-time-slots-preview {
+.reventorcab-time-slots-preview {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
     gap: 8px;
@@ -817,20 +817,20 @@
 }
 
 /* Admin schedule preview styles */
-.eab-schedule-preview h4 {
+.reventorcab-schedule-preview h4 {
     margin: 0 0 15px 0;
     color: #333;
     font-size: 16px;
 }
 
-.eab-slots-grid {
+.reventorcab-slots-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 8px;
     margin-bottom: 15px;
 }
 
-.eab-time-slot {
+.reventorcab-time-slot {
     padding: 8px 12px;
     border-radius: 4px;
     text-align: center;
@@ -839,13 +839,13 @@
     border: 1px solid;
 }
 
-.eab-slot-available {
+.reventorcab-slot-available {
     background-color: #d4edda;
     border-color: #c3e6cb;
     color: #155724;
 }
 
-.eab-slot-booked {
+.reventorcab-slot-booked {
     background-color: #f8d7da;
     border-color: #f5c6cb;
     color: #721c24;
@@ -853,20 +853,20 @@
 
 /* CalDAV conflicts now use the same styling as booked slots */
 
-.eab-slot-past {
+.reventorcab-slot-past {
     background-color: #f5f5f5;
     border-color: #bdbdbd;
     color: #757575;
     opacity: 0.7;
 }
 
-.eab-slot-outside_hours {
+.reventorcab-slot-outside_hours {
     background-color: #fffbf0;
     border-color: #ffeaa7;
     color: #856404;
 }
 
-.eab-time-slot small {
+.reventorcab-time-slot small {
     display: block;
     font-size: 11px;
     font-weight: normal;
@@ -874,14 +874,14 @@
     margin-top: 2px;
 }
 
-.eab-schedule-preview p {
+.reventorcab-schedule-preview p {
     margin: 0;
     font-size: 14px;
     color: #666;
 }
 
 /* Legacy time slot styles */
-.eab-legacy-time-slot {
+.reventorcab-legacy-time-slot {
     padding: 8px 4px;
     text-align: center;
     border-radius: 4px;
@@ -891,26 +891,26 @@
     transition: all 0.2s ease;
 }
 
-.eab-time-slot.eab-available {
+.reventorcab-time-slot.reventorcab-available {
     background-color: #d4edda;
     color: #155724;
     border-color: #c3e6cb;
 }
 
-.eab-time-slot.eab-unavailable {
+.reventorcab-time-slot.reventorcab-unavailable {
     background-color: #f8d7da;
     color: #721c24;
     border-color: #f5c6cb;
 }
 
-.eab-loading {
+.reventorcab-loading {
     text-align: center;
     color: #646970;
     font-style: italic;
     padding: 40px 20px;
 }
 
-.eab-legend {
+.reventorcab-legend {
     display: flex;
     justify-content: center;
     gap: 20px;
@@ -918,7 +918,7 @@
     border-top: 1px solid #ddd;
 }
 
-.eab-legend-item {
+.reventorcab-legend-item {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -926,60 +926,60 @@
     color: #646970;
 }
 
-.eab-legend-color {
+.reventorcab-legend-color {
     width: 16px;
     height: 16px;
     border-radius: 3px;
     border: 1px solid transparent;
 }
 
-.eab-legend-color.eab-slot-available {
+.reventorcab-legend-color.reventorcab-slot-available {
     background-color: #d4edda;
     border-color: #c3e6cb;
 }
 
-.eab-legend-color.eab-slot-past {
+.reventorcab-legend-color.reventorcab-slot-past {
     background-color: #f5f5f5;
     border-color: #bdbdbd;
     opacity: 0.7;
 }
 
-.eab-legend-color.eab-slot-booked {
+.reventorcab-legend-color.reventorcab-slot-booked {
     background-color: #f8d7da;
     border-color: #f5c6cb;
 }
 
-.eab-legend-color.eab-slot-outside_hours {
+.reventorcab-legend-color.reventorcab-slot-outside_hours {
     background-color: #fffbf0;
     border-color: #ffeaa7;
 }
 
 /* Responsive design for calendar preview */
 @media (max-width: 1024px) {
-    .eab-caldav-container {
+    .reventorcab-caldav-container {
         grid-template-columns: 1fr;
         gap: 20px;
     }
     
-    .eab-calendar-preview {
+    .reventorcab-calendar-preview {
         order: -1;
     }
 }
 
 @media (max-width: 768px) {
-    .eab-time-slots-preview {
+    .reventorcab-time-slots-preview {
         grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
         gap: 6px;
     }
     
-    .eab-time-slot {
+    .reventorcab-time-slot {
         padding: 6px 2px;
         font-size: 11px;
     }
 }
 
 /* Save All button styles */
-#eab-save-all {
+#reventorcab-save-all {
     background: #0073aa;
     color: white;
     border: none;
@@ -996,33 +996,33 @@
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
-#eab-save-all:hover {
+#reventorcab-save-all:hover {
     background: #005a87;
     transform: translateY(-1px);
     box-shadow: 0 2px 5px rgba(0,0,0,0.15);
 }
 
-#eab-save-all:disabled {
+#reventorcab-save-all:disabled {
     background: #ccc;
     cursor: not-allowed;
     transform: none;
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
-#eab-save-all .dashicons {
+#reventorcab-save-all .dashicons {
     font-size: 18px;
     width: 18px;
     height: 18px;
 }
 
 /* Success state for save button */
-#eab-save-all.button-success {
+#reventorcab-save-all.button-success {
     background: #28a745;
     color: white;
     border-color: #28a745;
 }
 
-#eab-save-all.button-success:hover {
+#reventorcab-save-all.button-success:hover {
     background: #218838;
     border-color: #1e7e34;
     transform: translateY(-1px);
@@ -1033,38 +1033,38 @@
 
 /* Dark mode support */
 @media (prefers-color-scheme: dark) {
-    .eab-admin-wrap {
+    .reventorcab-admin-wrap {
         color: #f0f0f1;
     }
     
-    .eab-settings-section,
-    .eab-admin-header,
-    .eab-admin-footer,
-    .eab-info-box {
+    .reventorcab-settings-section,
+    .reventorcab-admin-header,
+    .reventorcab-admin-footer,
+    .reventorcab-info-box {
         background: #1d2327;
         border-color: #3c434a;
     }
     
-    .eab-field-group input,
-    .eab-field-group select {
+    .reventorcab-field-group input,
+    .reventorcab-field-group select {
         background: #2c3338;
         border-color: #3c434a;
         color: #f0f0f1;
     }
     
-    .eab-shortcode-box {
+    .reventorcab-shortcode-box {
         background: #2c3338;
         border-color: #3c434a;
     }
     
-    .eab-export-import-section {
+    .reventorcab-export-import-section {
         background: #2c3338;
         border-color: #3c434a;
     }
 }
 
 /* Export/Import Section */
-.eab-export-import-section {
+.reventorcab-export-import-section {
     background: #fff;
     padding: 20px 30px;
     border-radius: 8px;
@@ -1073,13 +1073,13 @@
     border-left: 4px solid #00a32a;
 }
 
-.eab-export-import-buttons {
+.reventorcab-export-import-buttons {
     display: flex;
     gap: 15px;
     margin-bottom: 10px;
 }
 
-.eab-export-import-buttons .button {
+.reventorcab-export-import-buttons .button {
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -1088,18 +1088,18 @@
     transition: all 0.2s ease;
 }
 
-.eab-export-import-buttons .button:hover {
+.reventorcab-export-import-buttons .button:hover {
     transform: translateY(-1px);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
-.eab-export-import-buttons .dashicons {
+.reventorcab-export-import-buttons .dashicons {
     font-size: 16px;
     width: 16px;
     height: 16px;
 }
 
-.eab-export-import-section .description {
+.reventorcab-export-import-section .description {
     color: #646970;
     font-size: 13px;
     margin: 0;
@@ -1107,7 +1107,7 @@
 }
 
 /* Floating Save Button */
-.eab-floating-save {
+.reventorcab-floating-save {
     position: fixed;
     top: 70px;
     right: 30px;
@@ -1127,24 +1127,24 @@
     gap: 8px;
 }
 
-.eab-floating-save:hover {
+.reventorcab-floating-save:hover {
     background: #005a87;
     transform: translateY(-2px);
     box-shadow: 0 6px 16px rgba(0, 124, 186, 0.4);
 }
 
-.eab-floating-save:active {
+.reventorcab-floating-save:active {
     transform: translateY(0);
 }
 
-.eab-floating-save .dashicons {
+.reventorcab-floating-save .dashicons {
     font-size: 16px;
     width: 16px;
     height: 16px;
 }
 
 /* Hide original footer save button */
-.eab-admin-footer {
+.reventorcab-admin-footer {
     display: none;
 }
 
@@ -1242,92 +1242,92 @@
     }
     
     /* Main admin wrapper */
-    .eab-admin-wrap {
+    .reventorcab-admin-wrap {
         background: #1d2327 !important;
         color: #c3c4c7;
     }
     
-    .eab-admin-wrap h1 {
+    .reventorcab-admin-wrap h1 {
         color: #c3c4c7;
     }
     
     /* Header section */
-    .eab-admin-header {
+    .reventorcab-admin-header {
         background: #1d2327;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
         border-left-color: #72aee6;
     }
     
-    .eab-logo h2 {
+    .reventorcab-logo h2 {
         color: #c3c4c7;
     }
     
-    .eab-subtitle {
+    .reventorcab-subtitle {
         color: #a7aaad;
     }
     
-    .eab-shortcode-info h3,
-    .eab-quick-guide-info h3 {
+    .reventorcab-shortcode-info h3,
+    .reventorcab-quick-guide-info h3 {
         color: #c3c4c7;
     }
     
-    .eab-quick-guide-info ol {
+    .reventorcab-quick-guide-info ol {
         background: #2c3338;
         border-color: #3c434a;
     }
     
-    .eab-quick-guide-info ol li {
+    .reventorcab-quick-guide-info ol li {
         color: #c3c4c7;
     }
     
     /* Main content sections */
-    .eab-admin-content {
+    .reventorcab-admin-content {
         background: #1d2327;
     }
     
-    .eab-section {
+    .reventorcab-section {
         background: #1d2327;
         border-color: #3c434a;
     }
     
-    .eab-section h3 {
+    .reventorcab-section h3 {
         color: #c3c4c7;
         border-color: #3c434a;
     }
     
-    .eab-section-content {
+    .reventorcab-section-content {
         background: #2c3338;
     }
     
     /* Form elements */
-    .eab-form-table th {
+    .reventorcab-form-table th {
         color: #c3c4c7;
     }
     
-    .eab-form-table td {
+    .reventorcab-form-table td {
         border-color: #3c434a;
     }
     
-    .eab-form-table input[type="text"],
-    .eab-form-table input[type="email"],
-    .eab-form-table input[type="password"],
-    .eab-form-table input[type="number"],
-    .eab-form-table input[type="url"],
-    .eab-form-table select,
-    .eab-form-table textarea {
+    .reventorcab-form-table input[type="text"],
+    .reventorcab-form-table input[type="email"],
+    .reventorcab-form-table input[type="password"],
+    .reventorcab-form-table input[type="number"],
+    .reventorcab-form-table input[type="url"],
+    .reventorcab-form-table select,
+    .reventorcab-form-table textarea {
         background: #2c3338;
         border-color: #3c434a;
         color: #c3c4c7;
     }
     
-    .eab-form-table input:focus,
-    .eab-form-table select:focus,
-    .eab-form-table textarea:focus {
+    .reventorcab-form-table input:focus,
+    .reventorcab-form-table select:focus,
+    .reventorcab-form-table textarea:focus {
         border-color: #5b9dd9;
         box-shadow: 0 0 0 1px #5b9dd9;
     }
     
-    .eab-form-table .description {
+    .reventorcab-form-table .description {
         color: #a7aaad;
     }
     
@@ -1354,122 +1354,122 @@
     }
     
     /* Tabs */
-    .eab-tabs {
+    .reventorcab-tabs {
         border-color: #3c434a;
     }
     
-    .eab-tab {
+    .reventorcab-tab {
         background: #2c3338;
         border-color: #3c434a;
         color: #a7aaad;
     }
     
-    .eab-tab:hover {
+    .reventorcab-tab:hover {
         background: #3c434a;
         color: #c3c4c7;
     }
     
-    .eab-tab.active {
+    .reventorcab-tab.active {
         background: #1d2327;
         color: #5b9dd9;
         border-bottom-color: #1d2327;
     }
     
-    .eab-tab-content {
+    .reventorcab-tab-content {
         background: #1d2327;
         border-color: #3c434a;
     }
     
     /* Statistics cards */
-    .eab-stats-grid .eab-stat-card {
+    .reventorcab-stats-grid .reventorcab-stat-card {
         background: #2c3338;
         border-color: #3c434a;
     }
     
-    .eab-stat-card h4 {
+    .reventorcab-stat-card h4 {
         color: #c3c4c7;
     }
     
-    .eab-stat-card .eab-stat-number {
+    .reventorcab-stat-card .reventorcab-stat-number {
         color: #5b9dd9;
     }
     
-    .eab-stat-card .eab-stat-label {
+    .reventorcab-stat-card .reventorcab-stat-label {
         color: #a7aaad;
     }
     
     /* Appointments table */
-    .eab-appointments-table {
+    .reventorcab-appointments-table {
         background: #1d2327;
         border-color: #3c434a;
     }
     
-    .eab-appointments-table th {
+    .reventorcab-appointments-table th {
         background: #2c3338;
         color: #c3c4c7;
         border-color: #3c434a;
     }
     
-    .eab-appointments-table td {
+    .reventorcab-appointments-table td {
         border-color: #3c434a;
         color: #c3c4c7;
     }
     
-    .eab-appointments-table tr:nth-child(even) {
+    .reventorcab-appointments-table tr:nth-child(even) {
         background: #2c3338;
     }
     
-    .eab-appointments-table tr:hover {
+    .reventorcab-appointments-table tr:hover {
         background: #3c434a;
     }
     
     /* Status badges */
-    .eab-status-confirmed {
+    .reventorcab-status-confirmed {
         background: #00a32a;
     }
     
-    .eab-status-pending {
+    .reventorcab-status-pending {
         background: #dba617;
     }
     
-    .eab-status-cancelled {
+    .reventorcab-status-cancelled {
         background: #d63638;
     }
     
     /* CalDAV test results */
-    .eab-caldav-test-result.success {
+    .reventorcab-caldav-test-result.success {
         background: #1e4d2b;
         border-color: #00a32a;
         color: #68de7c;
     }
     
-    .eab-caldav-test-result.error {
+    .reventorcab-caldav-test-result.error {
         background: #4a1e1e;
         border-color: #d63638;
         color: #ff6b6b;
     }
     
     /* Export/Import sections */
-    .eab-export-import-section {
+    .reventorcab-export-import-section {
         background: #2c3338;
         border-color: #3c434a;
     }
     
-    .eab-export-import-section h4 {
+    .reventorcab-export-import-section h4 {
         color: #c3c4c7;
     }
     
-    .eab-export-import-section .description {
+    .reventorcab-export-import-section .description {
         color: #a7aaad;
     }
     
     /* Floating save button */
-    .eab-floating-save {
+    .reventorcab-floating-save {
         background: #0073aa;
         box-shadow: 0 4px 12px rgba(0, 115, 170, 0.3);
     }
     
-    .eab-floating-save:hover {
+    .reventorcab-floating-save:hover {
         background: #005177;
         box-shadow: 0 6px 16px rgba(0, 115, 170, 0.4);
     }
@@ -1498,46 +1498,46 @@
     }
     
     /* Additional text elements for better readability */
-    .eab-admin-wrap p,
-    .eab-admin-wrap span,
-    .eab-admin-wrap div,
-    .eab-admin-wrap label,
-    .eab-admin-wrap strong,
-    .eab-admin-wrap em,
-    .eab-admin-wrap li,
-    .eab-admin-wrap td {
+    .reventorcab-admin-wrap p,
+    .reventorcab-admin-wrap span,
+    .reventorcab-admin-wrap div,
+    .reventorcab-admin-wrap label,
+    .reventorcab-admin-wrap strong,
+    .reventorcab-admin-wrap em,
+    .reventorcab-admin-wrap li,
+    .reventorcab-admin-wrap td {
         color: #c3c4c7;
     }
     
-    .eab-admin-wrap h2,
-    .eab-admin-wrap h3,
-    .eab-admin-wrap h4,
-    .eab-admin-wrap h5,
-    .eab-admin-wrap h6 {
+    .reventorcab-admin-wrap h2,
+    .reventorcab-admin-wrap h3,
+    .reventorcab-admin-wrap h4,
+    .reventorcab-admin-wrap h5,
+    .reventorcab-admin-wrap h6 {
         color: #c3c4c7;
     }
     
     /* Ensure all input types have proper dark styling */
-    .eab-admin-wrap input[type="text"],
-    .eab-admin-wrap input[type="email"],
-    .eab-admin-wrap input[type="password"],
-    .eab-admin-wrap input[type="number"],
-    .eab-admin-wrap input[type="url"],
-    .eab-admin-wrap input[type="tel"],
-    .eab-admin-wrap input[type="search"],
-    .eab-admin-wrap input[type="date"],
-    .eab-admin-wrap input[type="time"],
-    .eab-admin-wrap input[type="datetime-local"],
-    .eab-admin-wrap select,
-    .eab-admin-wrap textarea {
+    .reventorcab-admin-wrap input[type="text"],
+    .reventorcab-admin-wrap input[type="email"],
+    .reventorcab-admin-wrap input[type="password"],
+    .reventorcab-admin-wrap input[type="number"],
+    .reventorcab-admin-wrap input[type="url"],
+    .reventorcab-admin-wrap input[type="tel"],
+    .reventorcab-admin-wrap input[type="search"],
+    .reventorcab-admin-wrap input[type="date"],
+    .reventorcab-admin-wrap input[type="time"],
+    .reventorcab-admin-wrap input[type="datetime-local"],
+    .reventorcab-admin-wrap select,
+    .reventorcab-admin-wrap textarea {
         background: #2c3338 !important;
         border-color: #3c434a !important;
         color: #c3c4c7 !important;
     }
     
-    .eab-admin-wrap input:focus,
-    .eab-admin-wrap select:focus,
-    .eab-admin-wrap textarea:focus {
+    .reventorcab-admin-wrap input:focus,
+    .reventorcab-admin-wrap select:focus,
+    .reventorcab-admin-wrap textarea:focus {
         background: #2c3338 !important;
         border-color: #5b9dd9 !important;
         box-shadow: 0 0 0 1px #5b9dd9 !important;
@@ -1545,68 +1545,68 @@
     }
     
     /* WordPress admin form elements */
-    .eab-admin-wrap .form-table th,
-    .eab-admin-wrap .form-table td {
+    .reventorcab-admin-wrap .form-table th,
+    .reventorcab-admin-wrap .form-table td {
         color: #c3c4c7;
         border-color: #3c434a;
     }
     
-    .eab-admin-wrap .form-table input[type="text"],
-    .eab-admin-wrap .form-table input[type="email"],
-    .eab-admin-wrap .form-table input[type="password"],
-    .eab-admin-wrap .form-table input[type="number"],
-    .eab-admin-wrap .form-table input[type="url"],
-    .eab-admin-wrap .form-table select,
-    .eab-admin-wrap .form-table textarea {
+    .reventorcab-admin-wrap .form-table input[type="text"],
+    .reventorcab-admin-wrap .form-table input[type="email"],
+    .reventorcab-admin-wrap .form-table input[type="password"],
+    .reventorcab-admin-wrap .form-table input[type="number"],
+    .reventorcab-admin-wrap .form-table input[type="url"],
+    .reventorcab-admin-wrap .form-table select,
+    .reventorcab-admin-wrap .form-table textarea {
         background: #2c3338 !important;
         border-color: #3c434a !important;
         color: #c3c4c7 !important;
     }
     
     /* Description and help text */
-    .eab-admin-wrap .description,
-    .eab-admin-wrap .help-text,
-    .eab-admin-wrap small {
+    .reventorcab-admin-wrap .description,
+    .reventorcab-admin-wrap .help-text,
+    .reventorcab-admin-wrap small {
         color: #a7aaad !important;
     }
     
     /* Links */
-    .eab-admin-wrap a {
+    .reventorcab-admin-wrap a {
         color: #5b9dd9;
     }
     
-    .eab-admin-wrap a:hover {
+    .reventorcab-admin-wrap a:hover {
         color: #72aee6;
     }
     
     /* Checkboxes and radio buttons */
-    .eab-admin-wrap input[type="checkbox"],
-    .eab-admin-wrap input[type="radio"] {
+    .reventorcab-admin-wrap input[type="checkbox"],
+    .reventorcab-admin-wrap input[type="radio"] {
         background: #2c3338 !important;
         border-color: #3c434a !important;
     }
     
-    .eab-admin-wrap input[type="checkbox"]:checked,
-    .eab-admin-wrap input[type="radio"]:checked {
+    .reventorcab-admin-wrap input[type="checkbox"]:checked,
+    .reventorcab-admin-wrap input[type="radio"]:checked {
         background: #5b9dd9 !important;
         border-color: #5b9dd9 !important;
     }
     
     /* WordPress metabox styling */
-    .eab-admin-wrap .postbox,
-    .eab-admin-wrap .meta-box-sortables {
+    .reventorcab-admin-wrap .postbox,
+    .reventorcab-admin-wrap .meta-box-sortables {
         background: #1d2327;
         border-color: #3c434a;
     }
     
-    .eab-admin-wrap .postbox h3,
-    .eab-admin-wrap .postbox .hndle {
+    .reventorcab-admin-wrap .postbox h3,
+    .reventorcab-admin-wrap .postbox .hndle {
         background: #2c3338;
         color: #c3c4c7;
         border-color: #3c434a;
     }
     
-    .eab-admin-wrap .inside {
+    .reventorcab-admin-wrap .inside {
         background: #1d2327;
         color: #c3c4c7;
     }
@@ -1714,118 +1714,118 @@
     
     /* Specific overrides for form elements */
     body.wp-admin label,
-    body.wp-admin .eab-checkbox-label,
+    body.wp-admin .reventorcab-checkbox-label,
     body.wp-admin .checkbox-label {
         color: #c3c4c7 !important;
     }
     
     /* Checkbox labels dark mode styling */
-    body.wp-admin .eab-checkbox-label {
+    body.wp-admin .reventorcab-checkbox-label {
         background: #2c3338 !important;
         border-color: #3c434a !important;
     }
     
-    body.wp-admin .eab-checkbox-label:hover {
+    body.wp-admin .reventorcab-checkbox-label:hover {
         background: #3c434a !important;
         border-color: #5b9dd9 !important;
     }
     
-    body.wp-admin .eab-checkbox-label input[type="checkbox"]:checked + span,
-    body.wp-admin .eab-checkbox-label:has(input[type="checkbox"]:checked) {
+    body.wp-admin .reventorcab-checkbox-label input[type="checkbox"]:checked + span,
+    body.wp-admin .reventorcab-checkbox-label:has(input[type="checkbox"]:checked) {
         background: #1e3a5f !important;
         border-color: #5b9dd9 !important;
         color: #72aee6 !important;
     }
     
     /* Calendar preview and time slots */
-    body.wp-admin .eab-calendar-preview {
+    body.wp-admin .reventorcab-calendar-preview {
         background: #2c3338 !important;
         border-color: #3c434a !important;
         color: #c3c4c7 !important;
     }
     
-    body.wp-admin .eab-calendar-preview *,
-    body.wp-admin .eab-time-slots-preview,
-    body.wp-admin .eab-time-slots-preview *,
-    body.wp-admin .eab-schedule-preview,
-    body.wp-admin .eab-schedule-preview * {
+    body.wp-admin .reventorcab-calendar-preview *,
+    body.wp-admin .reventorcab-time-slots-preview,
+    body.wp-admin .reventorcab-time-slots-preview *,
+    body.wp-admin .reventorcab-schedule-preview,
+    body.wp-admin .reventorcab-schedule-preview * {
         color: #c3c4c7 !important;
     }
     
-    body.wp-admin .eab-calendar-date {
+    body.wp-admin .reventorcab-calendar-date {
         background: #1d2327 !important;
         border-color: #3c434a !important;
     }
     
-    body.wp-admin .eab-calendar-preview h4 {
+    body.wp-admin .reventorcab-calendar-preview h4 {
         color: #f0f0f1 !important;
     }
     
     /* Legend items */
-    body.wp-admin .eab-legend,
-    body.wp-admin .eab-legend *,
-    body.wp-admin .eab-legend-item,
-    body.wp-admin .eab-legend-item * {
+    body.wp-admin .reventorcab-legend,
+    body.wp-admin .reventorcab-legend *,
+    body.wp-admin .reventorcab-legend-item,
+    body.wp-admin .reventorcab-legend-item * {
         color: #c3c4c7 !important;
     }
     
     /* Time slot elements */
-    body.wp-admin .eab-time-slot {
+    body.wp-admin .reventorcab-time-slot {
         color: #c3c4c7 !important;
     }
     
     /* Time slot colors - dark mode friendly */
-    body.wp-admin .eab-slot-available {
+    body.wp-admin .reventorcab-slot-available {
         background-color: #1e4d3a !important;
         border-color: #2d5a47 !important;
         color: #7dd3a0 !important;
     }
     
-    body.wp-admin .eab-slot-booked {
+    body.wp-admin .reventorcab-slot-booked {
         background-color: #4a1e1e !important;
         border-color: #5a2d2d !important;
         color: #ff9999 !important;
     }
     
-    body.wp-admin .eab-slot-past {
+    body.wp-admin .reventorcab-slot-past {
         background-color: #2a2a2a !important;
         border-color: #3a3a3a !important;
         color: #888888 !important;
         opacity: 0.7 !important;
     }
     
-    body.wp-admin .eab-slot-outside_hours {
+    body.wp-admin .reventorcab-slot-outside_hours {
         background-color: #3d3520 !important;
         border-color: #4a4228 !important;
         color: #d4b86a !important;
     }
     
     /* Legend colors - dark mode friendly */
-    body.wp-admin .eab-legend-color.eab-slot-available {
+    body.wp-admin .reventorcab-legend-color.reventorcab-slot-available {
         background-color: #1e4d3a !important;
         border-color: #2d5a47 !important;
     }
     
-    body.wp-admin .eab-legend-color.eab-slot-booked {
+    body.wp-admin .reventorcab-legend-color.reventorcab-slot-booked {
         background-color: #4a1e1e !important;
         border-color: #5a2d2d !important;
     }
     
-    body.wp-admin .eab-legend-color.eab-slot-past {
+    body.wp-admin .reventorcab-legend-color.reventorcab-slot-past {
         background-color: #2a2a2a !important;
         border-color: #3a3a3a !important;
         opacity: 0.7 !important;
     }
     
-    body.wp-admin .eab-legend-color.eab-slot-outside_hours {
+    body.wp-admin .reventorcab-legend-color.reventorcab-slot-outside_hours {
         background-color: #3d3520 !important;
         border-color: #4a4228 !important;
     }
     
     /* Date display */
-    body.wp-admin .eab-date-display,
-    body.wp-admin .eab-calendar-date,
-    body.wp-admin .eab-calendar-date * {
+    body.wp-admin .reventorcab-date-display,
+    body.wp-admin .reventorcab-calendar-date,
+    body.wp-admin .reventorcab-calendar-date * {
         color: #c3c4c7 !important;
     }
     
@@ -1843,11 +1843,11 @@
 }
 
 /* Debug Tools Styles */
-.eab-debug-buttons {
+.reventorcab-debug-buttons {
     margin: 15px 0;
 }
 
-.eab-debug-buttons button {
+.reventorcab-debug-buttons button {
     margin-right: 10px;
 }
 

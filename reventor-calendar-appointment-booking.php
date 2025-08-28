@@ -112,7 +112,7 @@ class REVENTORCAB_Plugin {
     }
     
     public function add_settings_link($links) {
-        $settings_link = '<a href="' . admin_url('options-general.php?page=reventor-calendar-appointment-booking') . '">' . __('Settings', 'reventor-calendar-appointment-booking') . '</a>';
+        $settings_link = '<a href="' . admin_url('options-general.php?page=reventor-calendar-appointment-booking') . '">' . esc_html__('Settings', 'reventor-calendar-appointment-booking') . '</a>';
         array_unshift($links, $settings_link);
         return $links;
     }
@@ -157,7 +157,7 @@ class REVENTORCAB_Plugin {
     
     public function activation_notice() {
         echo '<div class="notice notice-warning is-dismissible">';
-        echo '<p><strong>REVENTOR Calendar Appointment Booking:</strong> Plugin activation may not have completed successfully. Please check your error logs or try deactivating and reactivating the plugin.</p>';
+        echo '<p><strong>' . esc_html__('REVENTOR Calendar Appointment Booking:', 'reventor-calendar-appointment-booking') . '</strong> ' . esc_html__('Plugin activation may not have completed successfully. Please check your error logs or try deactivating and reactivating the plugin.', 'reventor-calendar-appointment-booking') . '</p>';
         echo '</div>';
     }
     

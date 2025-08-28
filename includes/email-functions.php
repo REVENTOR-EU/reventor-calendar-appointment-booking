@@ -111,7 +111,7 @@ function reventorcab_send_appointment_confirmation_email($appointment_id, $appoi
     
     // Create temporary file for attachment
     $upload_dir = wp_upload_dir();
-    $temp_dir = $upload_dir['basedir'] . '/eab-temp';
+    $temp_dir = $upload_dir['basedir'] . '/reventorcab-temp';
     
     // Create directory if it doesn't exist
     if (!file_exists($temp_dir)) {
@@ -202,7 +202,7 @@ function reventorcab_generate_ics_file($appointment_data) {
     }
     
     // Create unique identifier
-    $uid = 'eab-' . md5($appointment_data['appointment_date'] . $appointment_data['appointment_time'] . $appointment_data['appointment_type']);
+    $uid = 'reventorcab-' . md5($appointment_data['appointment_date'] . $appointment_data['appointment_time'] . $appointment_data['appointment_type']);
     
     // Create timestamp
     $timestamp = gmdate('Ymd\THis\Z');
